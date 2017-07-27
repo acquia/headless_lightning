@@ -1,0 +1,26 @@
+name: 'Headless Lightning'
+type: profile
+description: 'Drupal Lightning as a backend for fully decoupled applications.'
+version: 8.x-dev
+core: '8.x'
+distribution:
+  name: Headless Lightning
+dependencies: {}
+
+themes:
+  - seven
+
+base profile:
+  name: lightning
+  excluded_dependencies:
+  - breakpoint
+  - contextual
+  - quickedit
+  - history
+  - rdf
+  - metatag
+  - lightning_layout
+  - lightning_contact_form
+  - lightning_page
+  - lightning_search
+  - lightning_landing_page
