@@ -22,7 +22,9 @@
     <!-- Installation and build-specific variables. -->
     <property name="url" value="http://127.0.0.1" />
     <property name="docroot" value="docroot" />
-    <property name="profile" value="${docroot}/profiles/headless_lightning" />
+    <property name="profile.human" value="Headless Lightning" />
+    <property name="profile.machine" value="headless_lightning" />
+    <property name="profile.dir" value="${docroot}/profiles/${profile.machine}" />
     <property name="site" value="${docroot}/sites/default" />
     <property name="version" value="HEAD" />
     <property name="fixture" value="${project.basedir}/tests/fixtures/${version}.sql" />
@@ -53,14 +55,14 @@
     <!-- Syncs the Headless Lightning profile into the Drupal code base. -->
     <target name="push" depends="env">
         <!-- Create the destination if it doesn't exist. -->
-        <mkdir dir="${profile}" />
+        <mkdir dir="${profile.dir}" />
 
         <!-- rsync the profile, excluding developer flotsam. -->
-        <filesync destinationDir="${profile}" rsyncPath="${rsync}" sourceDir="." verbose="false" exclude=".idea,bin,build.xml,.git,.gitignore,${docroot},karma.conf.js,*.make,node_modules,.travis.yml,vendor" />
+        <filesync destinationDir="${profile.dir}" rsyncPath="${rsync}" sourceDir="." verbose="false" exclude=".idea,bin,build.xml,.git,.gitignore,${docroot},karma.conf.js,*.make,node_modules,.travis.yml,vendor" />
     </target>
 
     <target name="pull" depends="env">
-        <filesync destinationDir="." rsyncPath="${rsync}" sourceDir="${profile}/" verbose="false" exclude="modules/contrib" />
+        <filesync destinationDir="." rsyncPath="${rsync}" sourceDir="${profile.dir}/" verbose="false" exclude="modules/contrib" />
     </target>
 
     <!-- Prepares the docroot for installation via the UI. -->
@@ -93,7 +95,7 @@
     <!-- Installs Headless Lightning and sets it up for development. -->
     <target name="install" depends="env">
         <!-- Use passthru() when executing drush site-install so that we'll know if errors occur. -->
-        <exec command="${drush} site-install headless_lightning --yes --account-pass=admin --db-url=${db.url}" dir="${docroot}" passthru="true" />
+        <exec command="${drush} site-install ${profile.machine} --yes --site-name='${profile.human}' --account-pass=admin --db-url=${db.url}" dir="${docroot}" passthru="true" />
         <chmod file="${site}" mode="0755" />
 
         <!-- Prepare PHPUnit. -->
@@ -193,7 +195,7 @@
     <target name="cloud-settings">
         <chmod file="${docroot}/sites/default/settings.php" mode="0664" />
         <append destFile="${docroot}/sites/default/settings.php" text="${line.separator}if (file_exists('/var/www/site-php')) {${line.separator}  require '/var/www/site-php/${cloud.subscription}/${cloud.subscription}-settings.inc';${line.separator}}${line.separator}" />
-        <append destFile="${docroot}/sites/default/settings.php" text="$settings['install_profile'] = 'headless_lightning';${line.separator}" />
+        <append destFile="${docroot}/sites/default/settings.php" text="$settings['install_profile'] = '${profile.machine}';${line.separator}" />
         <mkdir dir="config/default" />
         <touch file="config/default/.gitkeep" />
     </target>
