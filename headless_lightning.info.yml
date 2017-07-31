@@ -20,6 +20,7 @@ base profile:
   - history
   - rdf
   - metatag
+  - menu_ui
   - lightning_layout
   - lightning_contact_form
   - lightning_page
