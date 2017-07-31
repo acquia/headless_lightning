@@ -1,0 +1,48 @@
+<?php
+
+use Drupal\node\NodeTypeInterface;
+
+/**
+ * Implements hook_local_tasks_alter().
+ */
+function headless_ui_local_tasks_alter(array &$local_tasks) {
+  foreach (array_keys($local_tasks) as $key) {
+    if (strpos($key, 'field_ui.fields:display_overview_') === 0) {
+      unset($local_tasks[$key]);
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function headless_ui_menu_links_discovered_alter(array &$links) {
+  unset($links['field_ui.display_mode']);
+  unset($links['block.admin_display']);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_create().
+ */
+function headless_ui_node_type_create(NodeTypeInterface $node_type) {
+  $node_type->setDisplaySubmitted(FALSE);
+  $node_type->setPreviewMode(DRUPAL_DISABLED);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function headless_ui_form_node_type_add_form_alter(array &$form) {
+  $form['display']['#access'] = FALSE;
+  $form['submission']['preview_mode']['#access'] = FALSE;
+
+  $options = &$form['workflow']['options'];
+  \Drupal::service('lightning.form_helper')->applyStandardProcessing($options);
+  $options['#process'][] = 'headless_ui_process_node_type_workflow_options';
+}
+
+function headless_ui_process_node_type_workflow_options(array $element) {
+  $element['promote']['#access'] = FALSE;
+  $element['sticky']['#access'] = FALSE;
+  return $element;
+}
