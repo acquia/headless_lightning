@@ -4,8 +4,15 @@ namespace Drupal\Tests\headless_ui\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 
+/**
+ * @group headless
+ * @group headless_ui
+ */
 class UiTest extends BrowserTestBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected $profile = 'lightning_headless';
 
   public function test() {
