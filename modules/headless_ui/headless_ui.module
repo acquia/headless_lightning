@@ -3,6 +3,13 @@
 use Drupal\node\NodeTypeInterface;
 
 /**
+ * Implements hook_entity_operation_alter().
+ */
+function headless_ui_entity_operation_alter(array &$operations) {
+  unset($operations['manage-display']);
+}
+
+/**
  * Implements hook_local_tasks_alter().
  */
 function headless_ui_local_tasks_alter(array &$local_tasks) {
