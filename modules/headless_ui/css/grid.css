@@ -1,0 +1,21 @@
+.admin-list.grid {
+  width: 70%;
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.admin-list.grid li {
+  margin: 1%;
+  padding: 0;
+  text-align: center;
+  width: calc(48% - 2px);
+  border: 1px solid #bfbfbf;
+  transition: background-color .5s;
+}
+.admin-list.grid li:hover {
+  background-color: #f7f7f7;
+}
+.admin-list.grid li a {
+  padding: 1rem 2%;
+  background: none;
+}
