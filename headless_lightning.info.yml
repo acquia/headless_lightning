@@ -25,6 +25,5 @@ base profile:
     - metatag
     - lightning_layout
     - lightning_contact_form
-    - lightning_page
     - lightning_search
     - lightning_landing_page
