@@ -1,0 +1,4 @@
+grid:
+  css:
+    component:
+      css/grid.css: {}
