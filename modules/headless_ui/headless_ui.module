@@ -52,6 +52,8 @@ function headless_ui_menu_links_discovered_alter(array &$links) {
 function headless_ui_node_type_create(NodeTypeInterface $node_type) {
   $node_type->setDisplaySubmitted(FALSE);
   $node_type->setPreviewMode(DRUPAL_DISABLED);
+  $node_type->unsetThirdPartySetting('menu_ui', 'available_menus');
+  $node_type->unsetThirdPartySetting('menu_ui', 'parent');
 }
 
 /**
