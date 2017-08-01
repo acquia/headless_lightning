@@ -6,6 +6,7 @@ core: '8.x'
 distribution:
   name: Headless Lightning
 dependencies:
+  - block
   - headless_ui
 
 themes:
@@ -14,16 +15,17 @@ themes:
 base profile:
   name: lightning
   excluded_dependencies:
-  - breakpoint
-  - contextual
-  - quickedit
-  - history
-  - rdf
-  - menu_ui
-  - metatag
-  - lightning_layout
-  - lightning_contact_form
-  - lightning_page
-  - lightning_search
-  - lightning_landing_page
-  - views_ui
+    - block_content
+    - breakpoint
+    - contextual
+    - quickedit
+    - history
+    - rdf
+    - menu_ui
+    - metatag
+    - lightning_layout
+    - lightning_contact_form
+    - lightning_page
+    - lightning_search
+    - lightning_landing_page
+    - views_ui
