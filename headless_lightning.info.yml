@@ -28,3 +28,4 @@ base profile:
     - lightning_page
     - lightning_search
     - lightning_landing_page
+    - views_ui
