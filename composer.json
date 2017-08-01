@@ -28,7 +28,7 @@
         "composer/installers": "^1.0",
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "cweagans/composer-patches": "^1.6.0",
-        "acquia/lightning": "~2.1.6"
+        "acquia/lightning": "dev-8.x-2.x#abfe5cfa75ef6fec0167425fc46dbd1ceb15b5a4"
     },
     "repositories": [
         {
