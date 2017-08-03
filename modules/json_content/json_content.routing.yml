@@ -4,4 +4,4 @@ d8contrib.frontpage:
     _title: 'Login'
     _controller: '\Drupal\json_content\Controller\FrontController:frontpage'
   requirements:
-    _access: true
+    _access: 'TRUE'
