@@ -7,7 +7,7 @@ use Drupal\node\NodeTypeInterface;
  */
 function headless_ui_page_attachments(array &$attachments) {
   if (\Drupal::routeMatch()->getRouteName() == 'system.admin_structure') {
-    $attachments['#attached']['library'][] = 'headless_ui/grid';
+    $attachments['#attached']['library'][] = 'headless_ui/icons';
   }
 }
 
@@ -16,7 +16,7 @@ function headless_ui_page_attachments(array &$attachments) {
  */
 function headless_ui_preprocess_admin_block_content(array &$variables) {
   if (\Drupal::routeMatch()->getRouteName() == 'system.admin_structure') {
-    $variables['attributes']['class'][] = 'grid';
+    $variables['attributes']['class'][] = 'grid with-icons';
   }
 }
 
@@ -44,6 +44,8 @@ function headless_ui_local_tasks_alter(array &$local_tasks) {
 function headless_ui_menu_links_discovered_alter(array &$links) {
   unset($links['field_ui.display_mode']);
   unset($links['block.admin_display']);
+
+  $links['headless_ui.users']['description'] = $links['entity.user.admin_form']['description'];
 }
 
 /**
