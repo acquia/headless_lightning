@@ -1,4 +1,4 @@
-grid:
+icons:
   css:
     component:
-      css/grid.css: {}
+      css/icons.css: {}
