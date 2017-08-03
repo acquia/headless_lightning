@@ -11,7 +11,7 @@ class FrontController extends ControllerBase {
    */
   public function frontpage() {
     $build = [];
-    if (\Drupal::currentUser()->isAnonymous()) {
+    if ($this->currentUser()->isAnonymous()) {
       $build['heading'] = [
         '#type' => 'markup',
         '#markup' => $this->t('Please login for access to the content repository.'),
@@ -20,7 +20,7 @@ class FrontController extends ControllerBase {
         ->getForm('Drupal\json_content\Form\UserLoginForm');
     }
     else {
-      if (\Drupal::currentUser()->hasPermission('access content overview')) {
+      if ($this->currentUser()->hasPermission('access content overview')) {
         // Permitted users are directed to the admin content page.
         return $this->redirect('view.content.page_1');
       }

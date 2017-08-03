@@ -2,10 +2,10 @@
 
 namespace Drupal\json_content\Form;
 
-use Drupal\user\Form\UserLoginForm as UserLoginFormBase;
+use Drupal\user\Form\UserLoginForm as BaseUserLoginForm;
 use Drupal\Core\Form\FormStateInterface;
 
-class UserLoginForm extends UserLoginFormBase {
+class UserLoginForm extends BaseUserLoginForm {
 
   /**
    * {@inheritdoc}
