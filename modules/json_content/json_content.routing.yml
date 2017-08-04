@@ -2,6 +2,6 @@ d8contrib.frontpage:
   path: '/frontpage'
   defaults:
     _title: 'Login'
-    _controller: '\Drupal\json_content\Controller\FrontController:frontpage'
+    _controller: '\Drupal\json_content\Controller\FrontController::frontpage'
   requirements:
     _access: 'TRUE'

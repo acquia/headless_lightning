@@ -11,9 +11,8 @@ class UserLoginForm extends BaseUserLoginForm {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $account = $this->userStorage->load($form_state->get('uid'));
+    parent::submitForm($form, $form_state);
     $form_state->setRedirect('<front>');
-    user_login_finalize($account);
   }
 
 }
