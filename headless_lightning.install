@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Install and uninstall functions for the JSON Content module.
+ * Install and uninstall functions for the Headless Lightning distribution.
  */
 
 /**
@@ -14,10 +14,19 @@ function headless_lightning_install() {
     return;
   }
 
-  if (\Drupal::moduleHandler()->moduleExists('json_content')) {
-    \Drupal::configFactory()
+  $module_handler = \Drupal::moduleHandler();
+  $config_factory = \Drupal::configFactory();
+
+  if ($module_handler->moduleExists('json_content')) {
+    $config_factory
       ->getEditable('system.site')
       ->set('page.front', '/frontpage')
+      ->save();
+  }
+  if ($module_handler->moduleExists('lightning_api')) {
+    $config_factory
+      ->getEditable('lightning_api.settings')
+      ->set('entity_json', TRUE)
       ->save();
   }
 }

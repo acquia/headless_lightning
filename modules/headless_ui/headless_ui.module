@@ -1,6 +1,91 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element as RenderElement;
+use Drupal\lightning_core\Element;
 use Drupal\node\NodeTypeInterface;
+use Drupal\views\ViewEntityInterface;
+
+/**
+ * {@inheritdoc}
+ */
+function headless_ui_view_presave(ViewEntityInterface $view) {
+  if (\Drupal::isConfigSyncing()) {
+    return;
+  }
+  if ($view->id() == 'content' && $view->isNew()) {
+    $display = &$view->getDisplay('default');
+
+    $fields = &$display['display_options']['fields'];
+    if (isset($fields['title'])) {
+      // Add the node ID as a hidden field at the top of the list, if it doesn't
+      // already exist, so we can use it as a token in the title field.
+      if (empty($fields['nid'])) {
+        $keys = array_keys($fields);
+        array_unshift($keys, 'nid');
+        $fields['nid'] = unserialize('a:37:{s:2:"id";s:3:"nid";s:5:"table";s:15:"node_field_data";s:5:"field";s:3:"nid";s:12:"relationship";s:4:"none";s:10:"group_type";s:5:"group";s:11:"admin_label";s:0:"";s:5:"label";s:2:"ID";s:7:"exclude";b:1;s:5:"alter";a:26:{s:10:"alter_text";b:0;s:4:"text";s:0:"";s:9:"make_link";b:0;s:4:"path";s:0:"";s:8:"absolute";b:0;s:8:"external";b:0;s:14:"replace_spaces";b:0;s:9:"path_case";s:4:"none";s:15:"trim_whitespace";b:0;s:3:"alt";s:0:"";s:3:"rel";s:0:"";s:10:"link_class";s:0:"";s:6:"prefix";s:0:"";s:6:"suffix";s:0:"";s:6:"target";s:0:"";s:5:"nl2br";b:0;s:10:"max_length";i:0;s:13:"word_boundary";b:1;s:8:"ellipsis";b:1;s:9:"more_link";b:0;s:14:"more_link_text";s:0:"";s:14:"more_link_path";s:0:"";s:10:"strip_tags";b:0;s:4:"trim";b:0;s:13:"preserve_tags";s:0:"";s:4:"html";b:0;}s:12:"element_type";s:0:"";s:13:"element_class";s:0:"";s:18:"element_label_type";s:0:"";s:19:"element_label_class";s:0:"";s:19:"element_label_colon";b:1;s:20:"element_wrapper_type";s:0:"";s:21:"element_wrapper_class";s:0:"";s:23:"element_default_classes";b:1;s:5:"empty";s:0:"";s:10:"hide_empty";b:0;s:10:"empty_zero";b:0;s:16:"hide_alter_empty";b:1;s:17:"click_sort_column";s:5:"value";s:4:"type";s:14:"number_integer";s:8:"settings";a:2:{s:18:"thousand_separator";s:0:"";s:13:"prefix_suffix";b:1;}s:12:"group_column";s:5:"value";s:13:"group_columns";a:0:{}s:10:"group_rows";b:1;s:11:"delta_limit";i:0;s:12:"delta_offset";i:0;s:14:"delta_reversed";b:0;s:16:"delta_first_last";b:0;s:10:"multi_type";s:9:"separator";s:9:"separator";s:2:", ";s:17:"field_api_classes";b:0;s:11:"entity_type";s:4:"node";s:12:"entity_field";s:3:"nid";s:9:"plugin_id";s:5:"field";}');
+        Element::order($fields, $keys);
+      }
+
+      $fields['title']['settings']['link_to_entity'] = FALSE;
+      $fields['title']['alter']['make_link'] = TRUE;
+      $fields['title']['alter']['path'] = '/node/{{ nid }}/edit?destination=/admin/content';
+    }
+  }
+  if ($view->id() == 'media' && $view->isNew()) {
+    $display = &$view->getDisplay('default');
+
+    $fields = &$display['display_options']['fields'];
+    if (isset($fields['name'])) {
+      // Add the media ID as a hidden field at the top of the list, if it
+      // doesn't already exist, so we can use it as a token in the name field.
+      if (empty($fields['mid'])) {
+        $keys = array_keys($fields);
+        array_unshift($keys, 'mid');
+        $fields['mid'] = unserialize('a:37:{s:2:"id";s:3:"mid";s:5:"table";s:16:"media_field_data";s:5:"field";s:3:"mid";s:12:"relationship";s:4:"none";s:10:"group_type";s:5:"group";s:11:"admin_label";s:0:"";s:5:"label";s:8:"Media ID";s:7:"exclude";b:1;s:5:"alter";a:26:{s:10:"alter_text";b:0;s:4:"text";s:0:"";s:9:"make_link";b:0;s:4:"path";s:0:"";s:8:"absolute";b:0;s:8:"external";b:0;s:14:"replace_spaces";b:0;s:9:"path_case";s:4:"none";s:15:"trim_whitespace";b:0;s:3:"alt";s:0:"";s:3:"rel";s:0:"";s:10:"link_class";s:0:"";s:6:"prefix";s:0:"";s:6:"suffix";s:0:"";s:6:"target";s:0:"";s:5:"nl2br";b:0;s:10:"max_length";i:0;s:13:"word_boundary";b:1;s:8:"ellipsis";b:1;s:9:"more_link";b:0;s:14:"more_link_text";s:0:"";s:14:"more_link_path";s:0:"";s:10:"strip_tags";b:0;s:4:"trim";b:0;s:13:"preserve_tags";s:0:"";s:4:"html";b:0;}s:12:"element_type";s:0:"";s:13:"element_class";s:0:"";s:18:"element_label_type";s:0:"";s:19:"element_label_class";s:0:"";s:19:"element_label_colon";b:1;s:20:"element_wrapper_type";s:0:"";s:21:"element_wrapper_class";s:0:"";s:23:"element_default_classes";b:1;s:5:"empty";s:0:"";s:10:"hide_empty";b:0;s:10:"empty_zero";b:0;s:16:"hide_alter_empty";b:1;s:17:"click_sort_column";s:5:"value";s:4:"type";s:14:"number_integer";s:8:"settings";a:2:{s:18:"thousand_separator";s:0:"";s:13:"prefix_suffix";b:1;}s:12:"group_column";s:5:"value";s:13:"group_columns";a:0:{}s:10:"group_rows";b:1;s:11:"delta_limit";i:0;s:12:"delta_offset";i:0;s:14:"delta_reversed";b:0;s:16:"delta_first_last";b:0;s:10:"multi_type";s:9:"separator";s:9:"separator";s:2:", ";s:17:"field_api_classes";b:0;s:11:"entity_type";s:5:"media";s:12:"entity_field";s:3:"mid";s:9:"plugin_id";s:5:"field";}');
+        Element::order($fields, $keys);
+      }
+
+      $fields['name']['settings']['link_to_entity'] = FALSE;
+      $fields['name']['alter']['make_link'] = TRUE;
+      $fields['name']['alter']['path'] = '/media/{{ mid }}/edit?destination=/admin/content/media';
+    }
+  }
+  if ($view->id() == 'user_admin_people' && $view->isNew()) {
+    $display = &$view->getDisplay('default');
+
+    $fields = &$display['display_options']['fields'];
+    if (isset($fields['name'])) {
+      // Add the user ID as a hidden field at the top of the list, if it
+      // doesn't already exist, so we can use it as a token in the name field.
+      if (empty($fields['uid'])) {
+        $keys = array_keys($fields);
+        array_unshift($keys, 'uid');
+        $fields['uid'] = unserialize('a:37:{s:2:"id";s:3:"uid";s:5:"table";s:16:"users_field_data";s:5:"field";s:3:"uid";s:12:"relationship";s:4:"none";s:10:"group_type";s:5:"group";s:11:"admin_label";s:0:"";s:5:"label";s:7:"User ID";s:7:"exclude";b:1;s:5:"alter";a:26:{s:10:"alter_text";b:0;s:4:"text";s:0:"";s:9:"make_link";b:0;s:4:"path";s:0:"";s:8:"absolute";b:0;s:8:"external";b:0;s:14:"replace_spaces";b:0;s:9:"path_case";s:4:"none";s:15:"trim_whitespace";b:0;s:3:"alt";s:0:"";s:3:"rel";s:0:"";s:10:"link_class";s:0:"";s:6:"prefix";s:0:"";s:6:"suffix";s:0:"";s:6:"target";s:0:"";s:5:"nl2br";b:0;s:10:"max_length";i:0;s:13:"word_boundary";b:1;s:8:"ellipsis";b:1;s:9:"more_link";b:0;s:14:"more_link_text";s:0:"";s:14:"more_link_path";s:0:"";s:10:"strip_tags";b:0;s:4:"trim";b:0;s:13:"preserve_tags";s:0:"";s:4:"html";b:0;}s:12:"element_type";s:0:"";s:13:"element_class";s:0:"";s:18:"element_label_type";s:0:"";s:19:"element_label_class";s:0:"";s:19:"element_label_colon";b:1;s:20:"element_wrapper_type";s:0:"";s:21:"element_wrapper_class";s:0:"";s:23:"element_default_classes";b:1;s:5:"empty";s:0:"";s:10:"hide_empty";b:0;s:10:"empty_zero";b:0;s:16:"hide_alter_empty";b:1;s:17:"click_sort_column";s:5:"value";s:4:"type";s:14:"number_integer";s:8:"settings";a:2:{s:18:"thousand_separator";s:0:"";s:13:"prefix_suffix";b:1;}s:12:"group_column";s:5:"value";s:13:"group_columns";a:0:{}s:10:"group_rows";b:1;s:11:"delta_limit";i:0;s:12:"delta_offset";i:0;s:14:"delta_reversed";b:0;s:16:"delta_first_last";b:0;s:10:"multi_type";s:9:"separator";s:9:"separator";s:2:", ";s:17:"field_api_classes";b:0;s:11:"entity_type";s:4:"user";s:12:"entity_field";s:3:"uid";s:9:"plugin_id";s:5:"field";}');
+        Element::order($fields, $keys);
+      }
+
+      $fields['name']['settings']['link_to_entity'] = FALSE;
+      $fields['name']['alter']['make_link'] = TRUE;
+      $fields['name']['alter']['path'] = '/user/{{ uid }}/edit?destination=/admin/people';
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function headless_ui_form_taxonomy_overview_terms_alter(array &$form, FormStateInterface $form_state) {
+  $build_info = $form_state->getBuildInfo();
+
+  $url_options = [];
+  $url_options['query']['destination'] = $build_info['args'][0]->toUrl('overview-form')->getInternalPath();
+
+  foreach (RenderElement::children($form['terms']) as $key) {
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $form['terms'][$key]['term']['#url'] = $form['terms'][$key]['#term']->toUrl('edit-form', $url_options);
+  }
+}
 
 /**
  * Implements hook_page_attachments().
