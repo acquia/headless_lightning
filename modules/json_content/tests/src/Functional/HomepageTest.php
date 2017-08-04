@@ -21,9 +21,9 @@ class HomepageTest extends BrowserTestBase {
     // Anon users see login form on homepage
     $this->drupalGet('<front>');
     $assert->statusCodeEquals(200);
-    $assert->fieldExists('Username');
-    $assert->fieldExists('Password');
-    $assert->elementExists('css', '#user-login-form');
+    $form = $assert->elementExists('css', '#user-login-form');
+    $assert->fieldExists('Username', $form);
+    $assert->fieldExists('Password', $form);
 
     // Authenticated users without the "access content overview" permission are
     // not redirected from the homepage.
