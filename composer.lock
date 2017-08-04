@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9bcb623aa1ffebffdc3854510a9b8b1",
+    "content-hash": "c85576fe79913358f5fb710588cf3b2a",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
-                "reference": "6b25b138ac5b57f7b3461856b57d8ee917ea504b"
+                "reference": "735df7a227808cbc3499593bb8048ccf5837cb9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning/zipball/6b25b138ac5b57f7b3461856b57d8ee917ea504b",
-                "reference": "6b25b138ac5b57f7b3461856b57d8ee917ea504b",
+                "url": "https://api.github.com/repos/acquia/lightning/zipball/735df7a227808cbc3499593bb8048ccf5837cb9e",
+                "reference": "735df7a227808cbc3499593bb8048ccf5837cb9e",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
                 "GPL-2.0+"
             ],
             "description": "The best of Drupal, curated by Acquia",
-            "time": "2017-08-03 16:23:58"
+            "time": "2017-08-04 16:01:48"
         },
         {
             "name": "asm89/stack-cors",
@@ -7543,6 +7543,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "8.0.x-dev"
+                },
+                "patches_applied": {
+                    "2697 - Don't add profile dependencies to required_by array of modules": "https://patch-diff.githubusercontent.com/raw/drush-ops/drush/pull/2697.patch"
                 }
             },
             "autoload": {
