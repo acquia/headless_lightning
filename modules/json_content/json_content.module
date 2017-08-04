@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_toolbar().
+ */
+function json_content_toolbar_alter(array &$items) {
+  // The front page redirects to admin/content and content is generally not
+  // viewed outside of the API so this link makes no sense.
+  unset($items['home']);
+}
