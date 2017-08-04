@@ -1,3 +1,6 @@
 .toolbar-icon-admin-content-models:before {
   background-image: url('icons/brick.svg');
 }
+.toolbar-icon-admin-content-models:active:before, .toolbar-icon-admin-content-models.is-active:before {
+  background-image: url('icons/brick-active.svg');
+}
