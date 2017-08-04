@@ -1,0 +1,27 @@
+admin.content_models:
+  title: Content Models
+  description: 'Manage your content models.'
+  route_name: admin.content_models
+  parent: system.admin
+  weight: -9
+
+admin.content_model.node_type:
+  route_name: entity.node_type.collection
+  icon: css/icons/node_type.svg
+  weight: 1
+
+admin.content_model.media_bundle:
+  route_name: entity.media_bundle.collection
+  icon: css/icons/media_bundle.gif
+  weight: 2
+
+admin.content_model.taxonomy_vocabulary:
+  route_name: entity.taxonomy_vocabulary.collection
+  icon: css/icons/taxonomy_vocabulary.svg
+  weight: 3
+
+admin.content_model.user:
+  title: Users
+  route_name: entity.user.admin_form
+  icon: css/icons/user.svg
+  weight: 4

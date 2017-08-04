@@ -7,6 +7,7 @@ distribution:
   name: Headless Lightning
 dependencies:
   - block
+  - content_model_ui
   - headless_ui
   - json_content
 

@@ -1,0 +1,71 @@
+<?php
+
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function content_model_ui_library_info_alter(array &$libraries, $extension) {
+  if ($extension == 'toolbar') {
+    $path = drupal_get_path('module', 'content_model_ui') . '/css/toolbar.css';
+    $path = file_create_url($path);
+    $path = file_url_transform_relative($path);
+
+    $libraries['toolbar']['css']['component'][$path] = [];
+  }
+}
+
+/**
+ * Implements template_preprocess_admin_block_content().
+ */
+function content_model_ui_preprocess_admin_block_content(array &$variables) {
+  if ($variables['content']) {
+    foreach ($variables['content'] as &$item) {
+      if ($item['options']['attributes']) {
+        $item['attributes'] = new Attribute($item['options']['attributes']);
+      }
+    }
+  }
+  if (\Drupal::routeMatch()->getRouteName() == 'admin.content_models') {
+    $variables['attributes']['class'][] = 'grid with-icons';
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function content_model_ui_menu_links_discovered_alter(array &$links) {
+  foreach ($links as $id => &$link) {
+    if (strpos($id, 'admin.content_model.') === 0) {
+      $source_id = $link['route_name'];
+
+      if (isset($links[$source_id])) {
+        $link += [
+          'title' => $links[$source_id]['title'],
+          'description' => $links[$source_id]['description'],
+          'weight' => $links[$source_id]['weight'],
+        ];
+      }
+      $link['parent'] = 'admin.content_models';
+
+      if (isset($link['icon'])) {
+        $icon = drupal_get_path('module', $link['provider']) . '/' . $link['icon'];
+        $icon = file_create_url($icon);
+        $icon = file_url_transform_relative($icon);
+        $link['options']['attributes']['style'][] = "background-image: url($icon);";
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function content_model_ui_theme_registry_alter(array &$theme_registry) {
+  $hook = &$theme_registry['admin_block_content'];
+
+  $seven_path = drupal_get_path('theme', 'seven') . '/templates';
+  if ($hook['path'] == $seven_path) {
+    $hook['path'] = drupal_get_path('module', 'content_model_ui') . '/templates';
+  }
+}

@@ -88,24 +88,6 @@ function headless_ui_form_taxonomy_overview_terms_alter(array &$form, FormStateI
 }
 
 /**
- * Implements hook_page_attachments().
- */
-function headless_ui_page_attachments(array &$attachments) {
-  if (\Drupal::routeMatch()->getRouteName() == 'system.admin_structure') {
-    $attachments['#attached']['library'][] = 'headless_ui/icons';
-  }
-}
-
-/**
- * Implements template_preprocess_admin_block_content().
- */
-function headless_ui_preprocess_admin_block_content(array &$variables) {
-  if (\Drupal::routeMatch()->getRouteName() == 'system.admin_structure') {
-    $variables['attributes']['class'][] = 'grid with-icons';
-  }
-}
-
-/**
  * Implements hook_entity_operation_alter().
  */
 function headless_ui_entity_operation_alter(array &$operations) {
@@ -121,16 +103,6 @@ function headless_ui_local_tasks_alter(array &$local_tasks) {
       unset($local_tasks[$key]);
     }
   }
-}
-
-/**
- * Implements hook_menu_links_discovered_alter().
- */
-function headless_ui_menu_links_discovered_alter(array &$links) {
-  unset($links['field_ui.display_mode']);
-  unset($links['block.admin_display']);
-
-  $links['headless_ui.users']['description'] = $links['entity.user.admin_form']['description'];
 }
 
 /**
