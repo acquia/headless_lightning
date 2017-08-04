@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the JSON Content module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function headless_lightning_install() {
+  // Don't do anything else during config sync.
+  if (\Drupal::isConfigSyncing()) {
+    return;
+  }
+
+  if (\Drupal::moduleHandler()->moduleExists('json_content')) {
+    \Drupal::configFactory()
+      ->getEditable('system.site')
+      ->set('page.front', '/frontpage')
+      ->save();
+  }
+}

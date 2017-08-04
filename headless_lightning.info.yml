@@ -8,6 +8,7 @@ distribution:
 dependencies:
   - block
   - headless_ui
+  - json_content
 
 themes:
   - seven
