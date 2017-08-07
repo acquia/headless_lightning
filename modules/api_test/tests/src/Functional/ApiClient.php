@@ -20,10 +20,10 @@ class ApiClient extends BrowserTestBase {
     $client = \Drupal::httpClient();
 
     $options = [
-      'json' => [
+      'form_params' => [
         'grant_type' => 'password',
         'client_id' => 'api_test-oauth2-client',
-        'secret' => '',
+        'secret' => 'oursecret',
         'username' => 'api-test-user',
         'password' => 'admin',
       ],
@@ -31,8 +31,11 @@ class ApiClient extends BrowserTestBase {
 
     $url = $this->buildUrl('/oauth/token');
 
-    //$request = $client->post($url, $options);
-    // @todo process request response.
+    $request = $client->post($url, $options);
+
+    $body = $request->getBody();
+    // @todo: do something with the request response.
+
   }
 
 }

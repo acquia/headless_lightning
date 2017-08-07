@@ -28,8 +28,8 @@ function api_test_install() {
   $data = [
     'uuid' => 'api_test-oauth2-client',
     'label' => 'API Test Client',
-    'secret' => NULL,
-    'confidential' => 0,
+    'secret' => 'oursecret',
+    'confidential' => 1,
     'user_id' => $api_test_user_id,
     'roles' => 'page_creator',
   ];
