@@ -1,5 +1,0 @@
-services:
-  headless_ui.route_subscriber:
-    class: '\Drupal\headless_ui\Routing\RouteSubscriber'
-    tags:
-      - { name: event_subscriber }

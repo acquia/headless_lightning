@@ -2,7 +2,6 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element as RenderElement;
-use Drupal\Core\Url;
 use Drupal\lightning_core\Element;
 use Drupal\node\NodeTypeInterface;
 use Drupal\views\ViewEntityInterface;
@@ -97,37 +96,13 @@ function headless_ui_page_attachments(array &$attachments) {
   }
 }
 
-/**
- * Implements hook_theme_registry_alter().
- */
-function headless_ui_theme_registry_alter(array &$theme_registry) {
-  $hook = &$theme_registry['node_add_list'];
-
-  $hook['preprocess functions'] = array_diff(
-    $hook['preprocess functions'],
-    ['template_preprocess_node_add_list', 'seven_preprocess_node_add_list']
-  );
+function headless_ui_form_node_form_alter(array &$form) {
+  $form['#submit'][] = 'headless_ui_redirect_node_form';
+  $form['actions']['submit']['#submit'][] = 'headless_ui_redirect_node_form';
 }
 
-function headless_ui_preprocess_node_add_list(array &$variables) {
-  $to_link = function (NodeTypeInterface $node_type) {
-    $parameters = [
-      'node_type' => $node_type->id(),
-    ];
-    $options = [
-      'query' => [
-        'destination' => '/admin/content',
-      ],
-    ];
-    return [
-      'label' => $node_type->label(),
-      'url' => Url::fromRoute('node.add', $parameters, $options),
-      'description' => [
-        '#markup' => $node_type->getDescription(),
-      ],
-    ];
-  };
-  $variables['types'] = array_map($to_link, $variables['content']);
+function headless_ui_redirect_node_form(array &$form, FormStateInterface $form_state) {
+  $form_state->setRedirect('view.content.page_1');
 }
 
 /**
