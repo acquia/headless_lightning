@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Creates a OAuth2 Client with the Page Creator role scope and a related user.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\simple_oauth\Entity\Oauth2Client;
+
+/**
+ * Implements hook_install().
+ */
+function api_test_install() {
+  // Create a sample user to use with the client.
+  $edit = [
+    'name' => 'api-test-user',
+    'mail' => 'api-test-user@example.com',
+    'pass' => 'admin',
+    'status' => 1,
+  ];
+
+  $account = User::create($edit);
+  $account->addRole('page_creator');
+  $account->save();
+  $api_test_user_id = $account->id();
+
+  // Create an example client to use for testing.
+  $data = [
+    'uuid' => 'api_test-oauth2-client',
+    'label' => 'API Test Client',
+    'secret' => NULL,
+    'confidential' => 0,
+    'user_id' => $api_test_user_id,
+    'roles' => 'page_creator',
+  ];
+
+  $client = Oauth2Client::create($data);
+  $client->save();
+}

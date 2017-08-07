@@ -98,6 +98,9 @@
         <exec command="${drush} site-install ${profile.machine} --yes --site-name='${profile.human}' --account-pass=admin --db-url=${db.url}" dir="${docroot}" passthru="true" />
         <chmod file="${site}" mode="0755" />
 
+        <!-- Install API Test. -->
+        <exec command="${drush} pm-enable api_test --yes" dir="${docroot}" passthru="true" />
+
         <!-- Prepare PHPUnit. -->
         <mkdir dir="${docroot}/modules" />
         <mkdir dir="${docroot}/themes" />
