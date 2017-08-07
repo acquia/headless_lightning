@@ -96,6 +96,9 @@ function headless_ui_page_attachments(array &$attachments) {
   }
 }
 
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
 function headless_ui_form_node_form_alter(array &$form) {
   $form['#submit'][] = 'headless_ui_redirect_node_form';
   $form['actions']['submit']['#submit'][] = 'headless_ui_redirect_node_form';
