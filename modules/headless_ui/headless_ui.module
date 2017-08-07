@@ -97,6 +97,18 @@ function headless_ui_page_attachments(array &$attachments) {
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function headless_ui_form_node_form_alter(array &$form) {
+  $form['#submit'][] = 'headless_ui_redirect_node_form';
+  $form['actions']['submit']['#submit'][] = 'headless_ui_redirect_node_form';
+}
+
+function headless_ui_redirect_node_form(array &$form, FormStateInterface $form_state) {
+  $form_state->setRedirect('view.content.page_1');
+}
+
+/**
  * Implements template_preprocess_admin_block_content().
  */
 function headless_ui_preprocess_admin_block_content(array &$variables) {
