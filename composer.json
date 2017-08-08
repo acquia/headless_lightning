@@ -1,7 +1,7 @@
 {
     "name": "acquia/headless_lightning",
     "description": "Drupal Lightning as a backend for fully decoupled applications.",
-    "type": "project",
+    "type": "drupal-profile",
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "prefer-stable": true,
