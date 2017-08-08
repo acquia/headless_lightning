@@ -18,7 +18,7 @@ admin.content_models.media_type:
   description: 'Manage the types of media available and what additional fields they have.'
 
 admin.content_models.taxonomy:
-  title: Clients
+  title: Taxonomy
   route_name: entity.taxonomy_vocabulary.collection
   parent: admin.content_models
   description: 'Manage which tags and categories are available to structure and relate your content.'
