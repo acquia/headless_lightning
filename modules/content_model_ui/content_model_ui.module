@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function content_model_ui_menu_links_discovered_alter(array &$links) {
+  $links['system.admin_structure']['enabled'] = FALSE;
+}

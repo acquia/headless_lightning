@@ -127,3 +127,10 @@ function headless_ui_form_taxonomy_overview_terms_alter(array &$form) {
     $term['#markup'] = $term['#title'];
   }
 }
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function headless_ui_menu_links_discovered_alter(array &$links) {
+  $links['system.themes_page']['enabled'] = FALSE;
+}

@@ -12,3 +12,10 @@ function access_ui_help($route_name) {
       return NULL;
   }
 }
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function access_ui_menu_links_discovered_alter(array &$links) {
+  $links['entity.user.collection']['enabled'] = FALSE;
+}
