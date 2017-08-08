@@ -8,7 +8,6 @@ distribution:
 dependencies:
   - access_ui
   - block
-  - content_model_ui
   - headless_ui
   - json_content
 
