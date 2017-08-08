@@ -1,5 +1,5 @@
 admin.access_control:
-  title: Access Control
+  title: API Access
   description: 'Manage user accounts, API clients, and access tokens.'
   route_name: admin.access_control
   parent: system.admin
@@ -10,11 +10,6 @@ admin.access_control.users:
   route_name: view.user_admin_people.page_1
   parent: admin.access_control
   description: 'In addition to providing the ability to login to this site, users are employed to authenticate with the API. API users should be assigned the same role as the client they are using.'
-
-admin.access_control.permissions:
-  title: Permissions
-  route_name: user.admin_permissions
-  parent: admin.access_control
 
 admin.access_control.roles:
   title: Roles
