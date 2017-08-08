@@ -1,0 +1,30 @@
+admin.access_control:
+  title: API Access
+  description: 'Manage user accounts, API clients, and access tokens.'
+  route_name: admin.access_control
+  parent: system.admin
+  weight: -9
+
+admin.access_control.users:
+  title: Users
+  route_name: view.user_admin_people.page_1
+  parent: admin.access_control
+  description: 'In addition to providing the ability to login to this site, users are employed to authenticate with the API. API users should be assigned the same role as the client they are using.'
+
+admin.access_control.roles:
+  title: Roles
+  route_name: entity.user_role.collection
+  parent: admin.access_control
+  description: 'Roles are groups of permissions and can be assigned to regular users, API users, and clients (via scopes).'
+
+admin.access_control.clients:
+  title: Clients
+  route_name: entity.oauth2_client.collection
+  parent: admin.access_control
+  description: 'Clients allow API users to interact with content. Clients have relationships to one or more roles via scopes and inherit the permissions assigned to those roles.'
+
+admin.access_control.tokens:
+  title: Tokens
+  route_name: entity.oauth2_token.collection
+  parent: admin.access_control
+  description: 'Tokens are granted when an API user successfully authenticates with a client.'
