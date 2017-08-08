@@ -1,4 +1,0 @@
-headless_ui.users:
-  title: Users
-  parent: system.admin_structure
-  route_name: entity.user.admin_form
