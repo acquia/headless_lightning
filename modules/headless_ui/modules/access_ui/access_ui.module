@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * Implements template_preprocess_admin_block_content().
+ */
+function access_ui_preprocess_admin_block_content(array &$variables) {
+  if (\Drupal::routeMatch()->getRouteName() == 'admin.access_control') {
+    $variables['attributes']['class'][] = 'grid';
+  }
+}
+
+/**
  * Implements hook_help().
  */
 function access_ui_help($route_name) {
