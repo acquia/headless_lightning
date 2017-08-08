@@ -28,3 +28,9 @@ admin.access_control.tokens:
   route_name: entity.oauth2_token.collection
   parent: admin.access_control
   description: 'Tokens are granted when an API user successfully authenticates with a client.'
+
+admin.access_control.api_settings:
+  title: API Settings
+  route_name: oauth2_token.settings
+  parent: admin.access_control
+  description: 'Allows you to configure certain settings for the API, including token expiration and the location of your keys.'
