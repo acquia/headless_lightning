@@ -45,12 +45,12 @@ function api_test_uninstall() {
   // Delete the user created during install.
   $username = 'api-test-user';
   $storage = \Drupal::entityTypeManager()->getStorage('user');
-  $user = $storage->loadByProperties(['name' => $username]);
-  $storage->delete($user);
+  $users = $storage->loadByProperties(['name' => $username]);
+  $storage->delete($users);
 
   // Delete the Client created during install.
   $client_uuid = 'api_test-oauth2-client';
   $storage = \Drupal::entityTypeManager()->getStorage('oauth2_client');
-  $client = $storage->loadByProperties(['uuid' => $client_uuid]);
-  $storage->delete($client);
+  $clients = $storage->loadByProperties(['uuid' => $client_uuid]);
+  $storage->delete($clients);
 }

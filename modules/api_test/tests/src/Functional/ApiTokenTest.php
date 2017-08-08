@@ -26,7 +26,7 @@ class ApiTokenTest extends BrowserTestBase {
    *
    * @var array
    */
-  protected $entity_vars = [
+  protected $entityVars = [
     'client_id' => 'api_test-oauth2-client',
     'username' => 'api-test-user',
   ];
@@ -36,9 +36,9 @@ class ApiTokenTest extends BrowserTestBase {
     $options = [
       'form_params' => [
         'grant_type' => 'password',
-        'client_id' => $this->entity_vars['client_id'],
+        'client_id' => $this->entityVars['client_id'],
         'client_secret' => 'oursecret',
-        'username' => $this->entity_vars['username'],
+        'username' => $this->entityVars['username'],
         'password' => 'admin',
       ],
     ];
@@ -53,8 +53,8 @@ class ApiTokenTest extends BrowserTestBase {
 
     // The user and client should be removed on uninstall.
     \Drupal::service('module_installer')->uninstall(['api_test']);
-    $this->assertFalse(\Drupal::entityTypeManager()->getStorage('user')->loadByProperties(['name' => $this->entity_vars['username']]));
-    $this->assertFalse(\Drupal::entityTypeManager()->getStorage('oauth2_client')->loadByProperties(['uuid' => $this->entity_vars['client_id']]));
+    $this->assertSame(0, count(\Drupal::entityQuery('user')->condition('uid', 1, '>')->execute()));
+    $this->assertSame(0, count(\Drupal::entityQuery('oauth2_client')->execute()));
   }
 
 }
