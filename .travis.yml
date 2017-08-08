@@ -81,7 +81,7 @@ before_script:
   - sleep 5
 
 script:
-  - composer validate ./profiles/headless_lightning/composer.json --no-check-all --ansi
+  - composer validate ../composer.json --no-check-all --ansi --no-interaction
   - phpunit --configuration ./core --group headless
   - behat --strict --config ./sites/default/files/behat.yml --tags=headless
 
