@@ -42,6 +42,11 @@ class UiTest extends BrowserTestBase {
     $this->assertNoManageDisplayLink('/admin/config/people/accounts');
     $this->assertNoManageDisplayLinks('node_type');
     $this->assertNoManageDisplayLinks('media_bundle');
+
+    $this->drupalGet('/admin/structure');
+    $assert->statusCodeEquals(200);
+    $assert->linkNotExists('Block layout');
+    $assert->linkNotExists('Display modes');
   }
 
   protected function assertNoManageDisplayLinks($entity_type) {
