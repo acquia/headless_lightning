@@ -17,6 +17,7 @@ admin.access_control.roles:
   route_name: entity.user_role.collection
   parent: admin.access_control
   description: 'Roles are groups of permissions and can be assigned to regular users, API users, and clients (via scopes).'
+  icon: css/icons/roles.svg
 
 admin.access_control.clients:
   title: Clients
