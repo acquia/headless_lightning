@@ -2,7 +2,7 @@
   &:before {
     background-image: url(icons/toolbar.svg);
   }
-  &.is-active:before {
+  &.is-active:before, &:active:before {
     background-image: url(icons/toolbar.active.svg);
   }
 }
