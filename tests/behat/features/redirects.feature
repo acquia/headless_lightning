@@ -53,7 +53,7 @@ Feature: Entity form redirections
 
   Scenario: Creating a user account as an administrator
     Given I am logged in as a user with the administrator role
-    When I click "People"
+    When I visit "/admin/people"
     And I click "Add user"
     And I enter "---TESTING---" for "Username"
     And I enter "---TESTING---" for "Password"
@@ -65,7 +65,7 @@ Feature: Entity form redirections
 
   Scenario: Editing a user account as an administrator
     Given I am logged in as a user with the administrator role
-    When I click "People"
+    When I visit "/admin/people"
     And I click "Edit"
     And I press "Save"
     Then I should be on "/admin/people"
