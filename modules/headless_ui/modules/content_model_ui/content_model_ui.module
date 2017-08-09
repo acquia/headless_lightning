@@ -1,13 +1,14 @@
 <?php
 
+use Drupal\Core\Url;
+
 /**
  * Implements hook_library_info_alter().
  */
 function content_model_ui_library_info_alter(array &$libraries, $extension) {
   if ($extension == 'toolbar') {
-    $path = drupal_get_path('module', 'content_model_ui') . '/css/toolbar.css';
-    $url = file_create_url($path);
-    $url = file_url_transform_relative($url);
+    $path = drupal_get_path('module', 'content_model_ui');
+    $url = Url::fromUri("internal:/$path/css/toolbar.css")->toString();
 
     $libraries['toolbar']['css']['theme'][$url] = [];
   }
@@ -18,7 +19,7 @@ function content_model_ui_library_info_alter(array &$libraries, $extension) {
  */
 function content_model_ui_preprocess_admin_block_content(array &$variables) {
   if (\Drupal::routeMatch()->getRouteName() == 'admin.content_models') {
-    $variables['attributes']['class'][] = 'grid';
+    // $variables['attributes']['class'][] = 'grid';
   }
 }
 
