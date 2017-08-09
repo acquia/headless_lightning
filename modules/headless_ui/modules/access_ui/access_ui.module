@@ -1,16 +1,11 @@
 <?php
 
-use Drupal\Core\Url;
-
 /**
- * Implements hook_library_info_alter().
+ * Implements hook_toolbar_alter().
  */
-function access_ui_library_info_alter(array &$libraries, $extension) {
-  if ($extension == 'toolbar') {
-    $path = drupal_get_path('module', 'access_ui');
-    $url = Url::fromUri("internal:/$path/css/toolbar.css")->toString();
-
-    $libraries['toolbar']['css']['theme'][$url] = [];
+function access_ui_toolbar_alter(array &$items) {
+  if (isset($items['administration'])) {
+    $items['administration']['tray']['#attached']['library'][] = 'access_ui/toolbar';
   }
 }
 
