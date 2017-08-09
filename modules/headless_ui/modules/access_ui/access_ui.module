@@ -18,7 +18,7 @@ function access_ui_library_info_alter(array &$libraries, $extension) {
  */
 function access_ui_preprocess_admin_block_content(array &$variables) {
   if (\Drupal::routeMatch()->getRouteName() == 'admin.access_control') {
-    $variables['attributes']['class'][] = 'grid with-icons';
+    $variables['attributes']['class'][] = 'grid';
   }
 }
 
