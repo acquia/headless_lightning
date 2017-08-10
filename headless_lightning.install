@@ -24,7 +24,7 @@ function headless_lightning_install() {
 
   $config_factory
     ->getEditable('system.site')
-    ->set('pages.403', '/user/login')
+    ->set('page.403', '/user/login')
     ->save();
 
   if ($module_handler->moduleExists('json_content')) {
