@@ -9,7 +9,7 @@
  * Implements hook_install().
  */
 function headless_lightning_install() {
-  // Don't do anything else during config sync.
+  // Don't do anything during config sync.
   if (\Drupal::isConfigSyncing()) {
     return;
   }
@@ -17,16 +17,28 @@ function headless_lightning_install() {
   $module_handler = \Drupal::moduleHandler();
   $config_factory = \Drupal::configFactory();
 
+  $config_factory
+    ->getEditable('system.theme')
+    ->set('default', 'seven')
+    ->save();
+
   if ($module_handler->moduleExists('json_content')) {
+    // Use our special-sauce front page controller.
     $config_factory
       ->getEditable('system.site')
       ->set('page.front', '/frontpage')
       ->save();
   }
   if ($module_handler->moduleExists('lightning_api')) {
+    // Expose a 'View JSON' operation for all entities.
     $config_factory
       ->getEditable('lightning_api.settings')
       ->set('entity_json', TRUE)
       ->save();
   }
+
+  entity_get_form_display('oauth2_client', 'oauth2_client', 'default')
+    ->removeComponent('description')
+    ->removeComponent('image')
+    ->save();
 }

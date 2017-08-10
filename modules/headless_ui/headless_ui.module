@@ -2,6 +2,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 use Drupal\headless_ui\Redirect;
 use Drupal\node\NodeTypeInterface;
 use Drupal\views\ViewEntityInterface;
@@ -125,5 +126,52 @@ function headless_ui_form_taxonomy_overview_terms_alter(array &$form) {
 
     $term['#type'] = 'markup';
     $term['#markup'] = $term['#title'];
+  }
+}
+
+/**
+ * Implements template_preprocess_admin_block_content().
+ */
+function headless_ui_preprocess_admin_block_content(array &$variables) {
+  template_preprocess_admin_block_content($variables);
+
+  foreach ($variables['content'] as &$item) {
+    if (isset($item['options']['attributes'])) {
+      $item['attributes'] = new Attribute($item['options']['attributes']);
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function headless_ui_theme_registry_alter(array &$theme_registry) {
+  $hook = &$theme_registry['admin_block_content'];
+
+  $hook['preprocess functions'] = array_diff(
+    $hook['preprocess functions'],
+    ['template_preprocess_admin_block_content']
+  );
+
+  $seven_path = drupal_get_path('theme', 'seven') . '/templates';
+  if ($hook['path'] == $seven_path) {
+    $hook['path'] = drupal_get_path('module', 'headless_ui') . '/templates';
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function headless_ui_menu_links_discovered_alter(array &$links) {
+  $links['system.themes_page']['enabled'] = FALSE;
+
+  foreach ($links as &$link) {
+    if (isset($link['icon'])) {
+      $icon = drupal_get_path('module', $link['provider']) . '/' . $link['icon'];
+      $icon = file_create_url($icon);
+      $icon = file_url_transform_relative($icon);
+
+      $link['options']['attributes']['style'][] = "background-image: url($icon);";
+    }
   }
 }

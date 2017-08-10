@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function access_ui_toolbar_alter(array &$items) {
+  if (isset($items['administration'])) {
+    $items['administration']['tray']['#attached']['library'][] = 'access_ui/toolbar';
+  }
+}
+
+/**
+ * Implements template_preprocess_admin_block_content().
+ */
+function access_ui_preprocess_admin_block_content(array &$variables) {
+  if (\Drupal::routeMatch()->getRouteName() == 'admin.access_control') {
+    // $variables['attributes']['class'][] = 'grid';
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function access_ui_help($route_name) {
+  switch ($route_name) {
+    case 'admin.access_control':
+     return t('<p>Headless Lightning allows anonymous access to the API in the same way that Drupal allows anonymous access to content. Generally, published content is available while unpublished content is not. If your application needs more privileged access (for example, accessing unpublished or creating new content) you will need to authenticate. Authentication involves a client, which is associated with a role, and a user which is assigned the same role as the client. Once you have a client and user set up, you can obtain an access token like this:</p><pre><code>curl -X POST -d "grant_type=password&client_id=api_test{CLIENT_ID}&client_secret={SECRET}&username={USERNAME}&password={PASSWORD}" https://{YOURDOMAIN}/oauth/token</code></pre>');
+
+    default:
+      return NULL;
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function access_ui_menu_links_discovered_alter(array &$links) {
+  $links['entity.user.collection']['enabled'] = FALSE;
+}

@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function content_model_ui_toolbar_alter(array &$items) {
+  if (isset($items['administration'])) {
+    $items['administration']['tray']['#attached']['library'][] = 'content_model_ui/toolbar';
+  }
+}
+
+/**
+ * Implements template_preprocess_admin_block_content().
+ */
+function content_model_ui_preprocess_admin_block_content(array &$variables) {
+  if (\Drupal::routeMatch()->getRouteName() == 'admin.content_models') {
+    // $variables['attributes']['class'][] = 'grid';
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function content_model_ui_menu_links_discovered_alter(array &$links) {
+  $links['system.admin_structure']['enabled'] = FALSE;
+}
