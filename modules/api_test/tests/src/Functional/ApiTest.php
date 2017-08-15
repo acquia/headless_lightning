@@ -42,7 +42,7 @@ class ApiTest extends BrowserTestBase {
   ];
 
   /**
-   * Gets data as anon and authenticated user.
+   * Tests Getting data as anon and authenticated user.
    */
   public function testAllowed() {
     // Get data that is available anonymously.
@@ -97,7 +97,8 @@ class ApiTest extends BrowserTestBase {
   }
 
   /**
-   * Cannot get unauthorized data.
+   * Tests that authenticated and anonymous requests cannot get unauthorized
+   * data.
    */
   public function testNotAllowed() {
     // Cannot get unauthorized data (not in role/scope) even when authenticated.
