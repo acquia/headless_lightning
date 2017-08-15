@@ -7,28 +7,28 @@ admin.content_models:
 
 admin.content_models.node_type:
   title: Content Types
+  description: 'Create and manage fields and relationships for different types of content.'
   route_name: entity.node_type.collection
   parent: admin.content_models
-  description: 'Create and manage fields and relationships for different types of content.'
-  # icon: css/icons/node-type.svg
+  weight: 1
 
 admin.content_models.media_type:
   title: Media Types
+  description: 'Manage the types of media available and what additional fields they have.'
   route_name: entity.media_bundle.collection
   parent: admin.content_models
-  description: 'Manage the types of media available and what additional fields they have.'
-  # icon: css/icons/media-type.gif
+  weight: 2
 
 admin.content_models.taxonomy:
   title: Taxonomy
+  description: 'Manage which tags and categories are available to structure and relate your content.'
   route_name: entity.taxonomy_vocabulary.collection
   parent: admin.content_models
-  description: 'Manage which tags and categories are available to structure and relate your content.'
-  # icon: css/icons/taxonomy.svg
+  weight: 3
 
 admin.content_models.user:
   title: Users
+  description: 'Configure default user account settings, including fields, registration requirements, and email messages.'
   route_name: entity.user.admin_form
   parent: admin.content_models
-  description: 'Configure default user account settings, including fields, registration requirements, and email messages.'
-  # icon: css/icons/users.svg
+  weight: 4

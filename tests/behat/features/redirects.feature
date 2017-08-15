@@ -59,7 +59,7 @@ Feature: Entity form redirections
     And I enter "---TESTING---" for "Password"
     And I enter "---TESTING---" for "Confirm password"
     And I press "Create new account"
-    Then I should be on "/admin/people"
+    Then I should be on "/admin/access/users"
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message containing "Created a new user account for ---TESTING---."
 
@@ -68,6 +68,6 @@ Feature: Entity form redirections
     When I visit "/admin/people"
     And I click "Edit"
     And I press "Save"
-    Then I should be on "/admin/people"
+    Then I should be on "/admin/access/users"
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "The changes have been saved."
