@@ -25,10 +25,3 @@ admin.content_models.taxonomy:
   parent: admin.content_models
   description: 'Manage which tags and categories are available to structure and relate your content.'
   # icon: css/icons/taxonomy.svg
-
-admin.content_models.user:
-  title: Users
-  route_name: entity.user.admin_form
-  parent: admin.content_models
-  description: 'Configure default user account settings, including fields, registration requirements, and email messages.'
-  # icon: css/icons/users.svg
