@@ -22,6 +22,11 @@ function headless_lightning_install() {
     ->set('default', 'seven')
     ->save();
 
+  $config_factory
+    ->getEditable('system.site')
+    ->set('page.403', '/user/login')
+    ->save();
+
   if ($module_handler->moduleExists('json_content')) {
     // Use our special-sauce front page controller.
     $config_factory
