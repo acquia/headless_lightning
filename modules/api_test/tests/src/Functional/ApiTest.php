@@ -22,12 +22,32 @@ class ApiTest extends BrowserTestBase {
   protected static $modules = ['api_test'];
 
   /**
+   * The access token returned by the api.
+   *
+   * @var string
+   */
+  protected $accessToken;
+
+  /**
+   * URL strings for different endpoints.
+   *
+   * @var string[]
+   */
+  protected $paths = [
+    'page_published_get' => '/jsonapi/node/page/api_test-published-page-content',
+    'page_unpublished_get' => '/jsonapi/node/page/api_test-unpublished-page-content',
+    'page_post' => '/jsonapi/node/page',
+    'role_get' => '/jsonapi/user_role/user_role',
+    'token_get' => '/oauth/token',
+  ];
+
+  /**
    * Gets data as anon and authenticated user.
    */
-  public function testGet() {
+  public function testAllowed() {
     // Get data that is available anonymously.
     $client = \Drupal::httpClient();
-    $url = $this->buildUrl('/jsonapi/node/page/api_test-published-page-content');
+    $url = $this->buildUrl($this->paths['page_published_get']);
     $response = $client->get($url);
     $this->assertEquals(200, $response->getStatusCode());
     $body = Json::decode($response->getBody());
@@ -36,7 +56,7 @@ class ApiTest extends BrowserTestBase {
     // Get data that requires authentication.
     $client = \Drupal::httpClient();
     $token = $this->getToken();
-    $url = $this->buildUrl('/jsonapi/node/page/api_test-unpublished-page-content');
+    $url = $this->buildUrl($this->paths['page_unpublished_get']);
     $options = [
       'headers' => [
         'Authorization' => 'Bearer ' . $token,
@@ -46,18 +66,12 @@ class ApiTest extends BrowserTestBase {
     $response = $client->get($url, $options);
     $body = Json::decode($response->getBody());
     $this->assertEquals('Unpublished Page', $body['data']['attributes']['title']);
-  }
 
-  /**
-   * Post new content that requires authentication.
-   */
-  public function testPost() {
-    // Get a count of current nodes so we can assert one more has been created.
+    // Post new content that requires authentication.
     $count = count(\Drupal::entityQuery('node')->execute());
-
     $client = \Drupal::httpClient();
     $token = $this->getToken();
-    $url = $this->buildUrl('/jsonapi/node/page');
+    $url = $this->buildUrl($this->paths['page_post']);
     $options = [
       'headers' => [
         'Authorization' => 'Bearer ' . $token,
@@ -74,27 +88,22 @@ class ApiTest extends BrowserTestBase {
     ];
     $client->post($url, $options);
     $this->assertCount(($count + 1), \Drupal::entityQuery('node')->execute());
+
+    // The user, client, and content should be removed on uninstall.
+    \Drupal::service('module_installer')->uninstall(['api_test']);
+    $this->assertCount(0, \Drupal::entityQuery('user')->condition('uid', 1, '>')->execute());
+    $this->assertCount(0, \Drupal::entityQuery('oauth2_client')->execute());
+    $this->assertCount(0, \Drupal::entityQuery('node')->execute());
   }
 
   /**
-   * Cannot get privileged data anonymously.
+   * Cannot get unauthorized data.
    */
-  public function testNotAllowedAnon() {
-    // Cannot get privileged data anonymously.
-    $client = \Drupal::httpClient();
-    $url = $this->buildUrl('/jsonapi/node/page/api_test-unpublished-page-content');
-    $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'Client error: `GET ' . $url . '` resulted in a `403 Forbidden`');
-    $client->get($url);
-  }
-
-  /**
-   * Cannot get privileged data when authenticated if user isn't authorized.
-   */
-  public function testNotAllowedAuth() {
-    // Get data that requires authentication.
+  public function testNotAllowed() {
+    // Cannot get unauthorized data (not in role/scope) even when authenticated.
     $client = \Drupal::httpClient();
     $token = $this->getToken();
-    $url = $this->buildUrl('/jsonapi/user_role/user_role');
+    $url = $this->buildUrl($this->paths['role_get']);
     $options = [
       'headers' => [
         'Authorization' => 'Bearer ' . $token,
@@ -105,28 +114,36 @@ class ApiTest extends BrowserTestBase {
     $body = Json::decode($response->getBody());
     $this->assertArrayHasKey('errors', $body['meta']);
     foreach ($body['meta']['errors'] as $error) {
+      // This user/client should not have access to any of the roles' data. JSON
+      // API will still return a 200, but with a list of 403 errors in the body.
       $this->assertEquals(403, $error['status']);
     }
+
+    // Cannot get unauthorized data anonymously.
+    $client = \Drupal::httpClient();
+    $url = $this->buildUrl($this->paths['page_unpublished_get']);
+    // Unlike the roles test which requests a list, JSON API sends a 403 status
+    // code when requesting a specific unauthorized resource instead of list.
+    $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'Client error: `GET ' . $url . '` resulted in a `403 Forbidden`');
+    $client->get($url);
   }
 
   /**
-   * The user, client, and content should be removed on uninstall.
-   */
-  public function testCleanup() {
-    \Drupal::service('module_installer')->uninstall(['api_test']);
-    $this->assertCount(0, \Drupal::entityQuery('user')->condition('uid', 1, '>')->execute());
-    $this->assertCount(0, \Drupal::entityQuery('oauth2_client')->execute());
-    $this->assertCount(0, \Drupal::entityQuery('node')->execute());
-  }
-
-  /**
-   * Gets a token from the oauth endpoint.
+   * Gets a token from the oauth endpoint using the client and user created in
+   * the API Test module. The client and user have the "Basic page creator" role
+   * so requests that use the token generated here should inherit those
+   * permissions.
    *
    * @return string
    *   The OAuth2 password grant access token from the API.
    */
   protected function getToken() {
-    $client = \Drupal::httpClient();;
+    if ($this->accessToken) {
+      return $this->accessToken;
+    }
+    $client = \Drupal::httpClient();
+    // "api-test-user" user and "api_test-oauth2-client" oauth2_client have the
+    // "Basic page creator" role/scope.
     $options = [
       'form_params' => [
         'grant_type' => 'password',
@@ -136,7 +153,7 @@ class ApiTest extends BrowserTestBase {
         'password' => 'admin',
       ],
     ];
-    $url = $this->buildUrl('/oauth/token');
+    $url = $this->buildUrl($this->paths['token_get']);
 
     $response = $client->post($url, $options);
     $body = Json::decode($response->getBody());
@@ -144,6 +161,7 @@ class ApiTest extends BrowserTestBase {
     // The response should have an access token.
     $this->assertArrayHasKey('access_token', $body);
 
-    return $body['access_token'];
+    $this->accessToken = $body['access_token'];
+    return $this->accessToken;
   }
 }
