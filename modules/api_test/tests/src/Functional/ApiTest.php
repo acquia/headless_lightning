@@ -4,6 +4,7 @@ namespace Drupal\Tests\api_test\Functional;
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Tests\BrowserTestBase;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * @group headless
@@ -54,7 +55,6 @@ class ApiTest extends BrowserTestBase {
     $this->assertEquals('Published Page', $body['data']['attributes']['title']);
 
     // Get data that requires authentication.
-    $client = \Drupal::httpClient();
     $token = $this->getToken();
     $url = $this->buildUrl($this->paths['page_unpublished_get']);
     $options = [
@@ -64,12 +64,12 @@ class ApiTest extends BrowserTestBase {
       ],
     ];
     $response = $client->get($url, $options);
+    $this->assertEquals(200, $response->getStatusCode());
     $body = Json::decode($response->getBody());
     $this->assertEquals('Unpublished Page', $body['data']['attributes']['title']);
 
     // Post new content that requires authentication.
-    $count = count(\Drupal::entityQuery('node')->execute());
-    $client = \Drupal::httpClient();
+    $count = (int) \Drupal::entityQuery('node')->count()->execute();
     $token = $this->getToken();
     $url = $this->buildUrl($this->paths['page_post']);
     $options = [
@@ -87,7 +87,7 @@ class ApiTest extends BrowserTestBase {
       ]
     ];
     $client->post($url, $options);
-    $this->assertCount(($count + 1), \Drupal::entityQuery('node')->execute());
+    $this->assertSame(++$count, (int) \Drupal::entityQuery('node')->count()->execute());
 
     // The user, client, and content should be removed on uninstall.
     \Drupal::service('module_installer')->uninstall(['api_test']);
@@ -121,11 +121,10 @@ class ApiTest extends BrowserTestBase {
     }
 
     // Cannot get unauthorized data anonymously.
-    $client = \Drupal::httpClient();
     $url = $this->buildUrl($this->paths['page_unpublished_get']);
     // Unlike the roles test which requests a list, JSON API sends a 403 status
     // code when requesting a specific unauthorized resource instead of list.
-    $this->setExpectedException('GuzzleHttp\Exception\ClientException', 'Client error: `GET ' . $url . '` resulted in a `403 Forbidden`');
+    $this->setExpectedException(ClientException::class, 'Client error: `GET ' . $url . '` resulted in a `403 Forbidden`');
     $client->get($url);
   }
 
