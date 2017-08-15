@@ -23,7 +23,7 @@ class ApiTest extends BrowserTestBase {
   protected static $modules = ['api_test'];
 
   /**
-   * The access token returned by the api.
+   * The access token returned by the API.
    *
    * @var string
    */
