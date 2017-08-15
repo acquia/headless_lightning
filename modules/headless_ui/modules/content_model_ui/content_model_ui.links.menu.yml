@@ -25,10 +25,3 @@ admin.content_models.taxonomy:
   route_name: entity.taxonomy_vocabulary.collection
   parent: admin.content_models
   weight: 3
-
-admin.content_models.user:
-  title: Users
-  description: 'Configure default user account settings, including fields, registration requirements, and email messages.'
-  route_name: entity.user.admin_form
-  parent: admin.content_models
-  weight: 4
