@@ -6,7 +6,7 @@ use Acquia\Lightning\Composer\ReleaseVersion as BaseReleaseVersion;
 use Composer\Script\Event;
 
 /**
- * Updates the version number in Lightning's component info files.
+ * Updates the version number in Headless Lightning's component info files.
  */
 class ReleaseVersion extends BaseReleaseVersion {
 
