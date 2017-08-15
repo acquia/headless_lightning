@@ -1,5 +1,5 @@
 admin.access_control:
-  path: '/admin/access-control'
+  path: '/admin/access'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
     _title: API Access

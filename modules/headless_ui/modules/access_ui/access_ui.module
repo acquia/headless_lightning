@@ -10,15 +10,6 @@ function access_ui_toolbar_alter(array &$items) {
 }
 
 /**
- * Implements template_preprocess_admin_block_content().
- */
-function access_ui_preprocess_admin_block_content(array &$variables) {
-  if (\Drupal::routeMatch()->getRouteName() == 'admin.access_control') {
-    // $variables['attributes']['class'][] = 'grid';
-  }
-}
-
-/**
  * Implements hook_help().
  */
 function access_ui_help($route_name) {
@@ -35,5 +26,35 @@ function access_ui_help($route_name) {
  * Implements hook_menu_links_discovered_alter().
  */
 function access_ui_menu_links_discovered_alter(array &$links) {
-  $links['entity.user.collection']['enabled'] = FALSE;
+  $links['oauth2_token.admin.config.people.settings']['title'] = t('API Settings');
+  $links['oauth2_token.admin.config.people.settings']['parent'] = 'admin.access_control';
+  $links['oauth2_token.admin.config.people.settings']['description'] = t('Allows you to configure certain settings for the API, including token expiration and the location of your keys.');
+  $links['oauth2_token.admin.config.people.settings']['weight'] = 1;
+
+  $links['entity.user.collection']['title'] = t('Users');
+  $links['entity.user.collection']['parent'] = 'admin.access_control';
+  $links['entity.user.collection']['description'] = t('In addition to providing the ability to login to this site, users are employed to authenticate with the API. API users should be assigned the same role as the client they are using.');
+  $links['entity.user.collection']['weight'] = 5;
+}
+
+/**
+ * Implements hook_local_tasks_alter().
+ */
+function access_ui_local_tasks_alter(array &$local_tasks) {
+  $local_tasks['oauth2_token.settings_tab']['title'] = t('API Settings');
+  $local_tasks['oauth2_token.settings_tab']['base_route'] = 'admin.access_control';
+  $local_tasks['oauth2_token.settings_tab']['weight'] = 1;
+
+  $local_tasks['entity.oauth2_client.collection']['base_route'] = 'admin.access_control';
+  $local_tasks['entity.oauth2_client.collection']['weight'] = 2;
+
+  $local_tasks['entity.user_role.collection']['base_route'] = 'admin.access_control';
+  $local_tasks['entity.user_role.collection']['weight'] = 3;
+
+  $local_tasks['entity.oauth2_token.collection']['base_route'] = 'admin.access_control';
+  $local_tasks['entity.oauth2_token.collection']['weight'] = 4;
+
+  $local_tasks['entity.user.collection']['title'] = t('Users');
+  $local_tasks['entity.user.collection']['base_route'] = 'admin.access_control';
+  $local_tasks['entity.user.collection']['weight'] = 5;
 }
