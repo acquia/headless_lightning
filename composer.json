@@ -25,11 +25,9 @@
         "grasmash/yaml-cli": "^1.0"
     },
     "require": {
-        "composer/installers": "^1.0",
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "cweagans/composer-patches": "^1.6.0",
-        "acquia/lightning": "dev-8.x-2.x",
-        "league/oauth2-server": "5.1.4"
+        "acquia/lightning": "dev-8.x-2.x"
     },
     "repositories": [
         {
