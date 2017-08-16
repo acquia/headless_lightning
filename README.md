@@ -1,31 +1,27 @@
-[![Build Status](https://travis-ci.org/acquia/headless-lightning.svg?branch=master)](https://travis-ci.org/acquia/lightning)
+[![Build Status](https://travis-ci.org/acquia/headless-lightning.svg?branch=master)](https://travis-ci.org/acquia/headless-lightning)
 
 # Headless Lightning
-Headless Lightning is a more opinionated version of the [Lightning Drupal](https://github.com/acquia/lightning)
-distribution as a backend for decoupled applications.
+Headless Lightning is a more opinionated version of the [Lightning](https://github.com/acquia/lightning)
+Drupal distribution intended for use as a backend for decoupled applications.
 
 ## Quick Start
 To build the codebase:
 
-    composer create-project acquia/lightning-project:dev-headless --no-interaction
+    composer create-project acquia/lightning-project:dev-headless --no-interaction --stability dev
 
 This will create a new directory, `lightning-project` which contains a `docroot`
 folder. This is where you should point your web server.
 
-Just like any Drupal project, you will need a working [LAMP stack](https://www.drupal.org/node/2461571)
-and an available database within that stack. Once you have that setup, you can
-use Drush, DrupalConsole, or the web interface to install the site.
+Just like any Drupal project, you will need an environment in which Drupal can
+be run and an available database. Once you have that setup, you can use Drush,
+Drupal Console, or the web interface to install the site.
 
-**There is no need to clone or fork this project unless you want to contribute
+There is no need to clone or fork this project unless you want to contribute
 back. Use a scaffold project like Lightning Project, BLT, or Drupal Project to
-build a codebase for actual use.** See `composer create-project` command above.
-
-### Distribution
-Headless Lightning is currently distributed via [PHP Packagist](https://packagist.org/packages/acquia/headless_lightning)
-and is maintained on [GitHub](https://github.com/acquia/headless-lightning).
+build a codebase for actual use. See `composer create-project` command above.
 
 ## Contributing
-Headless Lightning provides some phing targets to aid in development. To take
+Headless Lightning provides some Phing targets to aid in development. To take
 advantage:
 
 1. Clone this project.
@@ -56,26 +52,26 @@ Presentation layer blanket that generally hides or redirects users from content
 rendered by the Drupal application.
 
 ### Headless UI
-User Interface opinions that make managing content without rendering
-implications more intuitive.
+Imposes UI opinions on the administrative backend, mainly to make it intuitive
+to create and manage content without worrying about how Drupal will render it.
 
 #### Headless UI Sub-components
 Headless UI Sub-components consolidate links and add relevant descriptions to
-common administrative tasks central to using Drupal as a decoupled backend.
+common administrative tasks central to using Drupal as a decoupled backend:
 
 * Access UI
 * Content Model UI
-
 
 ### Built on Drupal and Lightning
 Headless Lightning is built on Drupal and extends the Lightning distribution.
 That means you can create a sub-profile of Headless Lightning - just like
 Headless Lightning is a sub-profile of Lightning itself. It also means that
 applications built with Headless Lightning will get all of the features of and
-updates to Drupal and Lightning along with update paths, just like users of
-Lightning. So you don't have to worry about stuff like parts of Media going into
-core or Content Moderation versus Workflow Moderation. **You offload all of those
-responsibilities, even in your decoupled application, to Lightning.**
+updates to Drupal and Lightning along with update paths.
+
+So you don't have to worry about stuff like parts of Media going into core or
+Content Moderation versus Workflow Moderation. You offload those
+responsibilities, even in your decoupled application, to Lightning.
 
 ## Similar Projects
 *From which we have borrowed heavily and for which we are very thankful.*
@@ -91,6 +87,6 @@ responsibilities, even in your decoupled application, to Lightning.**
 * [Reservior](https://github.com/acquia/reservoir)  
   **A back end for your front end**  
   Key differences:
-    * Reservoir isn't maintained and has no test suite.
-    * Headless Lightning has fewer strong opinions about UI and access to
-      standard Drupal functonality.
+    * Reservoir is centered around Drupal nodes as the main type of content,
+      whereas Headless Lightning is less strongly opinionated.
+    * Headless Lightning has fewer strong opinions about the administrative UI.
