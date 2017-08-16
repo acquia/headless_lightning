@@ -12,16 +12,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
-                "reference": "8e47d03a7ff4797d44395cbbc52e92d49ebd6377"
+                "reference": "68041c10e00589283f4f2c1b219e1fd40f0ba076"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning/zipball/8e47d03a7ff4797d44395cbbc52e92d49ebd6377",
-                "reference": "8e47d03a7ff4797d44395cbbc52e92d49ebd6377",
+                "url": "https://api.github.com/repos/acquia/lightning/zipball/68041c10e00589283f4f2c1b219e1fd40f0ba076",
+                "reference": "68041c10e00589283f4f2c1b219e1fd40f0ba076",
                 "shasum": ""
             },
             "require": {
-                "composer/installers": "^1.2",
                 "cweagans/composer-patches": "^1.5.0",
                 "drupal-composer/drupal-scaffold": "^2.0.0",
                 "drupal/acquia_connector": "^1.1",
@@ -50,11 +49,12 @@
                 "drupal/pathauto": "^1.0",
                 "drupal/scheduled_updates": "1.0.0-alpha6",
                 "drupal/search_api": "^1.0",
-                "drupal/simple_oauth": "^2.0@RC",
+                "drupal/simple_oauth": "2.0.0-rc3",
                 "drupal/token": "^1.0",
                 "drupal/video_embed_field": "^1.0",
                 "drupal/views_infinite_scroll": "^1.1",
-                "drupal/workbench_moderation": "1.2.0"
+                "drupal/workbench_moderation": "1.2.0",
+                "oomphinc/composer-installers-extender": "^1.1"
             },
             "require-dev": {
                 "behat/behat": "^3.0",
@@ -82,12 +82,18 @@
             ],
             "type": "drupal-profile",
             "extra": {
+                "installer-types": [
+                    "bower-asset",
+                    "npm-asset"
+                ],
                 "installer-paths": {
                     "docroot/core": [
                         "type:drupal-core"
                     ],
                     "docroot/libraries/{$name}": [
-                        "type:drupal-library"
+                        "type:drupal-library",
+                        "type:bower-asset",
+                        "type:npm-asset"
                     ],
                     "docroot/profiles/lightning/modules/contrib/{$name}": [
                         "type:drupal-module"
@@ -124,6 +130,9 @@
                     "drupal/panels": {
                         "2878684 - Use String.match to correlate regions when switching Layouts in Panels IPE": "https://www.drupal.org/files/issues/panels-ipe-2878684-3.patch",
                         "2825034 - Form error messages do not appear in IPE": "https://www.drupal.org/files/issues/panels-ipe-propogate-errors-2825034-5.patch"
+                    },
+                    "drupal/simple_oauth": {
+                        "2901180 - thephpleague/oauth2-server now requires an EncryptionKey to be set on all instances of AuthorizationServer": "https://www.drupal.org/files/issues/2901180-8.patch"
                     }
                 }
             },
@@ -138,7 +147,7 @@
                 "GPL-2.0+"
             ],
             "description": "The best of Drupal, curated by Acquia",
-            "time": "2017-08-10T00:27:40+00:00"
+            "time": "2017-08-16T13:06:04+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -3143,7 +3152,14 @@
                 },
                 "drupal": {
                     "version": "8.x-2.0-rc3",
-                    "datestamp": "1499089742"
+                    "datestamp": "1499089742",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": {
+                    "2901180 - thephpleague/oauth2-server now requires an EncryptionKey to be set on all instances of AuthorizationServer": "https://www.drupal.org/files/issues/2901180-8.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4158,6 +4174,48 @@
                 "html"
             ],
             "time": "2016-07-25T17:07:32+00:00"
+        },
+        {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "composer/installers": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -7550,9 +7608,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "8.0.x-dev"
-                },
-                "patches_applied": {
-                    "2697 - Don't add profile dependencies to required_by array of modules": "https://patch-diff.githubusercontent.com/raw/drush-ops/drush/pull/2697.patch"
                 }
             },
             "autoload": {
