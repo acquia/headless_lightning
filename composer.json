@@ -38,16 +38,17 @@
         }
     ],
     "scripts": {
-      "post-install-cmd": [
-          "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-          "./bin/phing push",
-          "./bin/phing symlink"
-      ],
-      "post-update-cmd": [
-          "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-          "./bin/phing push",
-          "./bin/phing symlink"
-      ]
+        "post-install-cmd": [
+            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+            "./bin/phing push",
+            "./bin/phing symlink"
+        ],
+        "post-update-cmd": [
+            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+            "./bin/phing push",
+            "./bin/phing symlink"
+        ],
+        "release-version": "Acquia\\Lightning\\Composer\\ReleaseVersion::execute"
     },
     "config": {
         "bin-dir": "bin/"
