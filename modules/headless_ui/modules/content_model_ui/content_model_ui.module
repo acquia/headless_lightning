@@ -24,9 +24,6 @@ function content_model_ui_local_tasks_alter(&$local_tasks) {
   $local_tasks['entity.node_type.collection']['base_route'] = 'admin.content_models';
   $local_tasks['entity.node_type.collection']['weight'] = 1;
 
-  $local_tasks['field_ui.fields:overview_user']['parent_id'] = 'user.account_settings_tab';
-  $local_tasks['field_ui.fields:form_display_overview_user']['parent_id'] = 'user.account_settings_tab';
-
   $local_tasks['entity.media_bundle.collection']['title'] = t('Media Types');
   $local_tasks['entity.media_bundle.collection']['base_route'] = 'admin.content_models';
   $local_tasks['entity.media_bundle.collection']['weight'] = 2;
