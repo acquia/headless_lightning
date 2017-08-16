@@ -30,8 +30,4 @@ function content_model_ui_local_tasks_alter(&$local_tasks) {
   $local_tasks['entity.media_bundle.collection']['title'] = t('Media Types');
   $local_tasks['entity.media_bundle.collection']['base_route'] = 'admin.content_models';
   $local_tasks['entity.media_bundle.collection']['weight'] = 2;
-
-  $local_tasks['user.account_settings_tab']['title'] = t('Users');
-  $local_tasks['user.account_settings_tab']['base_route'] = 'admin.content_models';
-  $local_tasks['user.account_settings_tab']['weight'] = 4;
 }
