@@ -48,7 +48,7 @@
             "./bin/phing push",
             "./bin/phing symlink"
         ],
-        "release-version": "Acquia\\headless_lightning\\Composer\\ReleaseVersion::execute"
+        "release-version": "Acquia\\Lightning\\Composer\\ReleaseVersion::execute"
     },
     "config": {
         "bin-dir": "bin/"
@@ -73,10 +73,5 @@
         },
         "enable-patching": true,
         "patches": {}
-    },
-    "autoload": {
-        "psr-4": {
-            "Acquia\\headless_lightning\\": "src"
-        }
     }
 }
