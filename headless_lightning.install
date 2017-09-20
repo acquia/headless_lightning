@@ -42,7 +42,7 @@ function headless_lightning_install() {
       ->save();
   }
 
-  entity_get_form_display('oauth2_client', 'oauth2_client', 'default')
+  entity_get_form_display('consumer', 'consumer', 'default')
     ->removeComponent('description')
     ->removeComponent('image')
     ->save();
