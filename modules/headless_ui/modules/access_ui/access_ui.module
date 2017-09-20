@@ -45,8 +45,8 @@ function access_ui_local_tasks_alter(array &$local_tasks) {
   $local_tasks['oauth2_token.settings_tab']['base_route'] = 'admin.access_control';
   $local_tasks['oauth2_token.settings_tab']['weight'] = 1;
 
-  $local_tasks['entity.oauth2_client.collection']['base_route'] = 'admin.access_control';
-  $local_tasks['entity.oauth2_client.collection']['weight'] = 2;
+  $local_tasks['entity.consumer.collection']['base_route'] = 'admin.access_control';
+  $local_tasks['entity.consumer.collection']['weight'] = 2;
 
   $local_tasks['entity.user_role.collection']['base_route'] = 'admin.access_control';
   $local_tasks['entity.user_role.collection']['weight'] = 3;

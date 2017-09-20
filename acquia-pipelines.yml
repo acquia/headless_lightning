@@ -2,9 +2,11 @@
 # Headless Lightning and runs its functional tests. Upon success, an artifact is
 # deployed to the headlessnightly (f9b2254c-024f-4a28-bc14-fc1c06a495a6) sub on
 # Acquia cloud.
-version: 1.0.0
+version: 1.1.0
 services:
   - mysql
+  - php:
+      version: 7.1
 
 events:
   build:
@@ -34,6 +36,8 @@ events:
       - cleanup:
           type: script
           script:
-            # Setup settings file and codebase with minimum required for cloud.
             - cd $SOURCE_DIR
+            # Remove drush so our version doesn't interfere with cloud commands.
+            - composer remove drush/drush --dev
+            # Setup settings file and codebase with minimum required for cloud.
             - phing cloud-settings
