@@ -8,7 +8,7 @@ admin.access_control:
 admin.access_control.clients:
   title: Clients
   description: 'Clients allow API users to interact with content. Clients have relationships to one or more roles via scopes and inherit the permissions assigned to those roles.'
-  route_name: entity.oauth2_client.collection
+  route_name: entity.consumer.collection
   parent: admin.access_control
   weight: 2
 
