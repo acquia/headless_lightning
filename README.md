@@ -16,6 +16,8 @@ Just like any Drupal project, you will need an environment in which Drupal can
 be run and an available database. Once you have that setup, you can use Drush,
 Drupal Console, or the web interface to install the site.
 
+When it comes time to integrate with a frontend application, you will likely need to configure [Drupal CORS](https://www.drupal.org/node/2715637) to allow cross-origin requests and set up OAuth tokens.
+
 There is no need to clone or fork this project unless you want to contribute
 back. Use a scaffold project like Lightning Project, BLT, or Drupal Project to
 build a codebase for actual use. See `composer create-project` command above.
