@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbc11758b625aab0fa59e042ceca1c7f",
+    "content-hash": "e10791f3618e51054f7a83f8c95ccd65",
     "packages": [
         {
             "name": "acquia/lightning",
-            "version": "2.2.0-rc2",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
-                "reference": "306af270a2f9d7563f0f11331298c8db735e36eb"
+                "reference": "3888e6f6795d8deae5e7121a3635ceac00be69f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning/zipball/306af270a2f9d7563f0f11331298c8db735e36eb",
-                "reference": "306af270a2f9d7563f0f11331298c8db735e36eb",
+                "url": "https://api.github.com/repos/acquia/lightning/zipball/3888e6f6795d8deae5e7121a3635ceac00be69f2",
+                "reference": "3888e6f6795d8deae5e7121a3635ceac00be69f2",
                 "shasum": ""
             },
             "require": {
@@ -153,7 +153,7 @@
                 "GPL-2.0+"
             ],
             "description": "The best of Drupal, curated by Acquia",
-            "time": "2017-10-04T13:52:26+00:00"
+            "time": "2017-10-04T20:29:31+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1270,16 +1270,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.4.0-rc2",
+            "version": "8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "b2a6d61fe5752a7c8336611852f027f327e329d3"
+                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/b2a6d61fe5752a7c8336611852f027f327e329d3",
-                "reference": "b2a6d61fe5752a7c8336611852f027f327e329d3",
+                "url": "https://api.github.com/repos/drupal/core/zipball/d4be8e12d9e8b4db82ece760c632213247f56fa7",
+                "reference": "d4be8e12d9e8b4db82ece760c632213247f56fa7",
                 "shasum": ""
             },
             "require": {
@@ -1462,7 +1462,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-09-20T12:43:15+00:00"
+            "time": "2017-10-04T19:25:32+00:00"
         },
         {
             "name": "drupal/crop",
