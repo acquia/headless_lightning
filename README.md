@@ -61,8 +61,9 @@ to create and manage content without worrying about how Drupal will render it.
 Headless UI Sub-components consolidate links and add relevant descriptions to
 common administrative tasks central to using Drupal as a decoupled backend:
 
-* Access UI
-* Content Model UI
+* **Access UI**: Consolidates API configuration and access.
+* **Content Model UI**: Consolidates configuring content types and related
+  entities.
 
 ### Built on Drupal and Lightning
 Headless Lightning is built on Drupal and extends the Lightning distribution.
@@ -70,10 +71,6 @@ That means you can create a sub-profile of Headless Lightning - just like
 Headless Lightning is a sub-profile of Lightning itself. It also means that
 applications built with Headless Lightning will get all of the features of and
 updates to Drupal and Lightning along with update paths.
-
-So you don't have to worry about stuff like parts of Media going into core or
-Content Moderation versus Workflow Moderation. You offload those
-responsibilities, even in your decoupled application, to Lightning.
 
 ## Similar Projects
 *From which we have borrowed heavily and for which we are very thankful.*
