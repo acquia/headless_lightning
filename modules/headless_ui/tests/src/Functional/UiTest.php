@@ -8,6 +8,7 @@ use Drupal\Tests\BrowserTestBase;
 /**
  * @group headless
  * @group headless_ui
+ * @group foo
  */
 class UiTest extends BrowserTestBase {
 
@@ -32,6 +33,11 @@ class UiTest extends BrowserTestBase {
     $assert->fieldNotExists('options[promote]');
     $assert->fieldNotExists('options[sticky]');
     $assert->fieldNotExists('preview_mode');
+
+    $this->drupalGet('/node/add/page');
+    $assert->statusCodeEquals(200);
+    $assert->fieldNotExists('options[promote]');
+    $assert->fieldNotExists('options[sticky]');
 
     $this->assertNoManageDisplayLink(
       Url::fromRoute('entity.node_type.collection')

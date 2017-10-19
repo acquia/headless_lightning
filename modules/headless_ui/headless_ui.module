@@ -55,6 +55,11 @@ function headless_ui_view_presave(ViewEntityInterface $view) {
  */
 function headless_ui_form_node_form_alter(array &$form, FormStateInterface $form_state) {
   Redirect::entityForm($form, $form_state);
+
+  // Remove the Promote and Sticky checkboxes.
+  //$options = &$form;
+  //\Drupal::service('lightning.form_helper')->applyStandardProcessing($options);
+  //$options['#process'][] = 'headless_ui_process_node_type_workflow_options';
 }
 
 /**
