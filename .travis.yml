@@ -68,6 +68,7 @@ install:
   - composer global require phing/phing
   # Build the Lightning code base.
   - composer install
+  - composer install
   # Install Acquia Publish cleanly so that settings.php will be created properly.
   - phing install -Ddb.database=drupal -Ddb.user=drupal -Ddb.password=drupal -Ddb.host=127.0.0.1 -Durl=http://127.0.0.1:8080
 
