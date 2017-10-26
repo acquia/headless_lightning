@@ -78,8 +78,8 @@ install:
   - phing recall -Dversion=$VERSION -Ddb.database=drupal -Ddb.user=drupal -Ddb.password=drupal -Ddb.host=127.0.0.1
   # Execute any database and manual updates
   - cd $TRAVIS_BUILD_DIR/docroot
-  - drupal cache:rebuild --no-interaction
-  - drupal update:execute
+  - drush cache-rebuild
+  - drupal updatedb --yes
   - drupal update:lightning --no-interaction
 
 before_script:
