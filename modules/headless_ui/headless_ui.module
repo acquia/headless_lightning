@@ -33,9 +33,6 @@ function headless_ui_view_presave(ViewEntityInterface $view) {
         if (isset($fields['name'])) {
           $fields['name']['settings']['link_to_entity'] = FALSE;
         }
-        if (isset($fields['uid'])) {
-          $fields['uid']['settings']['link_to_entity'] = FALSE;
-        }
         break;
 
       case 'user_admin_people':
