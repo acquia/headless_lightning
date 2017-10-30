@@ -81,7 +81,6 @@ install:
 
   # Execute any database and manual updates
   - cd $TRAVIS_BUILD_DIR/docroot
-  - drush cache-rebuild
   - drush updatedb --yes
   - drupal update:lightning --no-interaction
 
