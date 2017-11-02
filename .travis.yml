@@ -70,16 +70,18 @@ install:
 
   # We need Phing to execute our build steps.
   - composer global require phing/phing
+
   # Build the Lightning code base.
   - composer install
-  - composer install
+
   # Install Acquia Publish cleanly so that settings.php will be created properly.
   - phing install -Ddb.database=drupal -Ddb.user=drupal -Ddb.password=drupal -Ddb.host=127.0.0.1 -Durl=http://127.0.0.1:8080
   # Import the fixture, if it exists.
   - phing recall -Dversion=$VERSION -Ddb.database=drupal -Ddb.user=drupal -Ddb.password=drupal -Ddb.host=127.0.0.1
+
   # Execute any database and manual updates
   - cd $TRAVIS_BUILD_DIR/docroot
-  - drupal update:execute
+  - drush updatedb --yes
   - drupal update:lightning --no-interaction
 
 before_script:

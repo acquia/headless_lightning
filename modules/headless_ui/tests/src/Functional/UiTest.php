@@ -37,11 +37,11 @@ class UiTest extends BrowserTestBase {
       Url::fromRoute('entity.node_type.collection')
     );
     $this->assertNoManageDisplayLink(
-      Url::fromRoute('entity.media_bundle.collection')
+      Url::fromRoute('entity.media_type.collection')
     );
     $this->assertNoManageDisplayLink('/admin/config/people/accounts');
     $this->assertNoManageDisplayLinks('node_type');
-    $this->assertNoManageDisplayLinks('media_bundle');
+    $this->assertNoManageDisplayLinks('media_type');
   }
 
   protected function assertNoManageDisplayLinks($entity_type) {

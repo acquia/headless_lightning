@@ -44,12 +44,14 @@
         <exec command="which rsync" outputProperty="rsync" />
         <exec command="which bzip2" outputProperty="bzip2" />
         <exec command="which bunzip2" outputProperty="bunzip2" />
+        <exec command="which drupal" outputProperty="drupal" />
 
         <echo message="Found Drush: ${drush}" />
         <echo message="Found Composer: ${composer}" />
         <echo message="Found rsync: ${rsync}" />
         <echo message="Found bzip2: ${bzip2}" />
         <echo message="Found bunzip2: ${bunzip2}" />
+        <echo message="Found DrupalConsole: ${drupal}" />
     </target>
 
     <!-- Syncs the Headless Lightning profile into the Drupal code base. -->
@@ -95,11 +97,11 @@
     <!-- Installs Headless Lightning and sets it up for development. -->
     <target name="install" depends="env">
         <!-- Use passthru() when executing drush site-install so that we'll know if errors occur. -->
-        <exec command="${drush} site-install ${profile.machine} --yes --site-name='${profile.human}' --account-pass=admin --db-url=${db.url}" dir="${docroot}" passthru="true" />
+        <exec command="${drupal} site:install ${profile.machine} --db-type=${db.type} --db-host=${db.host} --db-name=${db.database} --db-user=${db.user} --db-pass=${db.password} --no-interaction --force" passthru="true" />
         <chmod file="${site}" mode="0755" />
 
         <!-- Install API Test. -->
-        <exec command="${drush} pm-enable api_test --yes" dir="${docroot}" passthru="true" />
+        <exec command="${drupal} module:install api_test --no-interaction" dir="${docroot}" passthru="true" />
 
         <!-- Prepare PHPUnit. -->
         <mkdir dir="${docroot}/modules" />

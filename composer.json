@@ -12,7 +12,6 @@
         "mikey179/vfsStream": "~1.2",
         "phpunit/phpunit": "~4.8",
         "symfony/css-selector": "~2.8",
-        "drush/drush": "^9.0",
         "drupal/drupal-extension": "~3.3.0",
         "behat/behat": "^3.3",
         "drupal/coder": "~8.2.0",
@@ -27,8 +26,9 @@
     "require": {
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "cweagans/composer-patches": "^1.6.0",
-        "acquia/lightning": "~2.2.0",
-        "drupal/core": "~8.4.0"
+        "acquia/lightning": "2.2.3",
+        "drupal/core": "~8.4.0",
+        "drush/drush": "9.0.0-beta7"
     },
     "repositories": {
         "drupal": {
