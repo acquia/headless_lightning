@@ -5,4 +5,4 @@ description: 'Strong user interface opinions for Headless Lightning.'
 components:
   - access_ui
   - content_model_ui
-version: '1.1.0-dev'
+version: '1.1.0-alpha2'
