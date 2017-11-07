@@ -36,8 +36,7 @@ class UiTest extends BrowserTestBase {
 
     $this->drupalGet('/node/add/page');
     $assert->statusCodeEquals(200);
-    $assert->fieldNotExists('options[promote]');
-    $assert->fieldNotExists('options[sticky]');
+    $assert->pageTextNotContains('Promotion options');
 
     $this->assertNoManageDisplayLink(
       Url::fromRoute('entity.node_type.collection')
