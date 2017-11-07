@@ -12,6 +12,11 @@ cache:
 php:
   - 7.0
 
+env:
+  - VERSION=HEAD
+  - VERSION=1.1.0-alpha2
+  - VERSION=1.1.0-alpha1
+
 addons:
   apt:
     packages:
@@ -66,13 +71,22 @@ install:
 
   # We need Phing to execute our build steps.
   - composer global require phing/phing
+
   # Build the Lightning code base.
   - composer install
+
   # Install Acquia Publish cleanly so that settings.php will be created properly.
   - phing install -Ddb.database=drupal -Ddb.user=drupal -Ddb.password=drupal -Ddb.host=127.0.0.1 -Durl=http://127.0.0.1:8080
+  # Import the fixture, if it exists.
+  - phing recall -Dversion=$VERSION -Ddb.database=drupal -Ddb.user=drupal -Ddb.password=drupal -Ddb.host=127.0.0.1
+
+  # Execute any database and manual updates
+  - cd $TRAVIS_BUILD_DIR/docroot
+  - drush updatedb --yes
+  - drupal update:lightning --no-interaction
 
 before_script:
-  - cd ./docroot
+  - cd $TRAVIS_BUILD_DIR/docroot
   - drush runserver --default-server=builtin 8080 &>/dev/null &
   - jdk_switcher use oraclejdk8
   # Start Selenium and dump its ginormous log into a temporary file.
