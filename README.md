@@ -77,15 +77,6 @@ updates to Drupal and Lightning along with update paths.
 
 * [Contenta CMS](https://github.com/contentacms)  
   **Contenta makes your content happy**  
-  Key differences:
-    * Contenta has an emphasis on OOTB ingestion examples and opinions, where
-      Lightning is agnostic about implementation.
-    * Headless Lightning provides more OOTB features like Media and Workflow -
-      and provides an update/upgrade path for those features as they mature via
-      Lightning.
+
 * [Reservior](https://github.com/acquia/reservoir)  
   **A back end for your front end**  
-  Key differences:
-    * Reservoir is centered around Drupal nodes as the main type of content,
-      whereas Headless Lightning is less strongly opinionated.
-    * Headless Lightning has fewer strong opinions about the administrative UI.
