@@ -10,6 +10,7 @@
     <property name="bzip2" value="/usr/bin/bzip2" />
     <property name="bunzip2" value="/usr/bin/bunzip2" />
     <property name="yaml-cli" value="${project.basedir}/bin/yaml-cli" />
+    <property name="drupal" value="${project.basedir}/bin/drupal" />
 
     <!-- Database credentials. -->
     <property name="db.type" value="mysql" />
@@ -44,7 +45,6 @@
         <exec command="which rsync" outputProperty="rsync" />
         <exec command="which bzip2" outputProperty="bzip2" />
         <exec command="which bunzip2" outputProperty="bunzip2" />
-        <exec command="which drupal" outputProperty="drupal" />
 
         <echo message="Found Drush: ${drush}" />
         <echo message="Found Composer: ${composer}" />
@@ -97,7 +97,7 @@
     <!-- Installs Headless Lightning and sets it up for development. -->
     <target name="install" depends="env">
         <!-- Use passthru() when executing drush site-install so that we'll know if errors occur. -->
-        <exec command="${drupal} site:install ${profile.machine} --db-type=${db.type} --db-host=${db.host} --db-name=${db.database} --db-user=${db.user} --db-pass=${db.password} --no-interaction --force" passthru="true" />
+        <exec command="${drush} site-install headless_lightning --yes --account-pass=admin --db-url=${db.url}" passthru="true" />
         <chmod file="${site}" mode="0755" />
 
         <!-- Install API Test. -->
@@ -119,9 +119,9 @@
         </if>
 
         <!-- Generate Behat configuration. -->
-        <exec command="${project.basedir}/bin/drupal behat:init ${url} --merge=${project.basedir}/docroot/profiles/contrib/lightning/tests/behat.yml" dir="${docroot}" />
-        <exec command="${project.basedir}/bin/drupal behat:include ${project.basedir}/docroot/profiles/contrib/lightning/tests/features --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/tests/features/bootstrap --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/src/LightningExtension/Context" dir="${docroot}" />
-        <exec command="${project.basedir}/bin/drupal behat:include ../tests/behat/features" dir="${docroot}/../" passthru="true" />
+        <exec command="${drupal} behat:init ${url} --merge=${project.basedir}/docroot/profiles/contrib/lightning/tests/behat.yml" dir="${docroot}" />
+        <exec command="${drupal} behat:include ${project.basedir}/docroot/profiles/contrib/lightning/tests/features --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/tests/features/bootstrap --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/src/LightningExtension/Context" dir="${docroot}" />
+        <exec command="${drupal} behat:include ../tests/behat/features" dir="${docroot}/../" passthru="true" />
     </target>
 
     <!-- Destroys the Drupal installation, but leaves the code base intact. -->
