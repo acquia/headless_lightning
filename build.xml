@@ -122,13 +122,6 @@
         <exec command="${project.basedir}/bin/drupal behat:init ${url} --merge=${project.basedir}/docroot/profiles/contrib/lightning/tests/behat.yml" dir="${docroot}" />
         <exec command="${project.basedir}/bin/drupal behat:include ${project.basedir}/docroot/profiles/contrib/lightning/tests/features --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/tests/features/bootstrap --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/src/LightningExtension/Context" dir="${docroot}" />
         <exec command="${project.basedir}/bin/drupal behat:include ../tests/behat/features" dir="${docroot}/../" passthru="true" />
-
-        <if>
-            <isset property="www.group" />
-            <then>
-                <chown file="${site}/files" user="${env.USER}" group="${www.group}" />
-            </then>
-        </if>
     </target>
 
     <!-- Destroys the Drupal installation, but leaves the code base intact. -->
@@ -198,6 +191,7 @@
 
     <!-- Replaces the existing settings file if it exists with the default and adds minimum necessary settings for cloud. -->
     <target name="cloud-settings">
+        <chmod file="${docroot}/sites/default" mode="0664" />
         <delete file="${docroot}/sites/default/settings.php" />
         <copy file="${docroot}/sites/default/default.settings.php" tofile="${docroot}/sites/default/settings.php" />
         <append destFile="${docroot}/sites/default/settings.php" text="${line.separator}if (file_exists('/var/www/site-php')) {${line.separator}  require '/var/www/site-php/${cloud.subscription}/${cloud.subscription}-settings.inc';${line.separator}}${line.separator}" />
