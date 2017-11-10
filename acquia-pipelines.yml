@@ -25,6 +25,14 @@ events:
             - cd $SOURCE_DIR
             - mysql -u root -proot -e 'CREATE DATABASE drupal;'
             - phing install -Ddb.password=root -Ddb.database=drupal -Durl=http://127.0.0.1:8080
+      - test:
+          type: script
+          script:
+            - cd $SOURCE_DIR/docroot
+            - drush runserver --default-server=builtin 8080 &>/dev/null &
+            - sleep 10
+            - phpunit --configuration ./core --group headless
+            - behat --stop-on-failure --config ./sites/default/files/behat.yml --tags=headless --tags=~javascript
       - cleanup:
           type: script
           script:
