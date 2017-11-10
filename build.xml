@@ -193,6 +193,7 @@
     <target name="cloud-settings">
         <exec command="whoami" passthru="true" />
         <exec command="ls -la ${docroot}/sites/default/" passthru="true" />
+        <exec command="ls -ls ${docroot}/sites/" passthru="true" />
 
         <chmod file="${docroot}/sites/default/settings.php" mode="0644" />
         <exec command="whoami" passthru="true" />
