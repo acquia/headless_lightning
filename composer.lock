@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cb1b763dbe1aa8e4616bf99a1f12813",
+    "content-hash": "2dba3fda26705f256f1d99bee988cfc8",
     "packages": [
         {
             "name": "acquia/lightning",
-            "version": "2.2.4-beta1",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
-                "reference": "a10dd5d7956100a2fda5e65cbc33ba01f54659ff"
+                "reference": "da581c8eb076df90cef4cdb2b6b7da5d88fe85aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning/zipball/a10dd5d7956100a2fda5e65cbc33ba01f54659ff",
-                "reference": "a10dd5d7956100a2fda5e65cbc33ba01f54659ff",
+                "url": "https://api.github.com/repos/acquia/lightning/zipball/da581c8eb076df90cef4cdb2b6b7da5d88fe85aa",
+                "reference": "da581c8eb076df90cef4cdb2b6b7da5d88fe85aa",
                 "shasum": ""
             },
             "require": {
@@ -35,7 +35,7 @@
                 "drupal/dropzonejs": "2.0.0-alpha2",
                 "drupal/embed": "^1.0",
                 "drupal/entity_block": "1.0.0-alpha2",
-                "drupal/entity_browser": "2.0.0-alpha1",
+                "drupal/entity_browser": "2.0.0-alpha2",
                 "drupal/entity_embed": "1.0.0-beta2",
                 "drupal/features": "^3.0",
                 "drupal/image_widget_crop": "^2.1",
@@ -169,7 +169,7 @@
                 "GPL-2.0+"
             ],
             "description": "The best of Drupal, curated by Acquia",
-            "time": "2017-12-04T21:06:21+00:00"
+            "time": "2017-12-06T15:05:57+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -2077,17 +2077,17 @@
         },
         {
             "name": "drupal/entity_browser",
-            "version": "2.0.0-alpha1",
+            "version": "2.0.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/entity_browser",
-                "reference": "8.x-2.0-alpha1"
+                "reference": "8.x-2.0-alpha2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-2.0-alpha1.zip",
-                "reference": "8.x-2.0-alpha1",
-                "shasum": "f9053d4ab947a4870dcf90946e730b2a3a1e22d4"
+                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-2.0-alpha2.zip",
+                "reference": "8.x-2.0-alpha2",
+                "shasum": "f31ad069e5c5e95db9b9410a4d71038ac0c5b370"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2105,8 +2105,8 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha1",
-                    "datestamp": "1507712945",
+                    "version": "8.x-2.0-alpha2",
+                    "datestamp": "1512118387",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -6783,16 +6783,16 @@
         },
         {
             "name": "chi-teck/drupal-code-generator",
-            "version": "1.20.0",
+            "version": "1.21.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Chi-teck/drupal-code-generator.git",
-                "reference": "492e511a8284607ed9c2321d30596c7bfdb28b93"
+                "reference": "c195b2e8174f99303b3bbf22d1349a53ccd06179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/492e511a8284607ed9c2321d30596c7bfdb28b93",
-                "reference": "492e511a8284607ed9c2321d30596c7bfdb28b93",
+                "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/c195b2e8174f99303b3bbf22d1349a53ccd06179",
+                "reference": "c195b2e8174f99303b3bbf22d1349a53ccd06179",
                 "shasum": ""
             },
             "require": {
@@ -6818,7 +6818,7 @@
                 "GPL2"
             ],
             "description": "Drupal code generator",
-            "time": "2017-10-22T14:18:04+00:00"
+            "time": "2017-12-06T09:31:07+00:00"
         },
         {
             "name": "composer/ca-bundle",
