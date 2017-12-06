@@ -13,9 +13,10 @@ php:
   - 7.0
 
 env:
-  - VERSION=HEAD
-  - VERSION=1.1.0-alpha2
-  - VERSION=1.1.0-alpha1
+  - VERSION=HEAD SINCE=2.2.4
+  - VERSION=1.1.0-alpha3 SINCE=2.2.3
+  - VERSION=1.1.0-alpha2 SINCE=2.2.2
+  - VERSION=1.1.0-alpha1 SINCE=2.1.8
 
 addons:
   apt:
@@ -83,7 +84,7 @@ install:
   # Execute any database and manual updates
   - cd $TRAVIS_BUILD_DIR/docroot
   - drush updatedb --yes
-  - drupal update:lightning --no-interaction
+  - drupal update:lightning --since=$SINCE --no-interaction
 
 before_script:
   - cd $TRAVIS_BUILD_DIR/docroot
