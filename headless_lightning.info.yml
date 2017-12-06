@@ -1,7 +1,7 @@
 name: 'Headless Lightning'
 type: profile
 description: 'Drupal Lightning as a backend for fully decoupled applications.'
-version: '1.0.0-dev'
+version: '1.1.0-alpha3'
 core: 8.x
 distribution:
   name: 'Headless Lightning'
