@@ -14,7 +14,6 @@ php:
 
 env:
   - VERSION=HEAD SINCE=2.2.5
-  - VERSION=1.1.0-alpha4 SINCE=2.2.4
   - VERSION=1.1.0-alpha3 SINCE=2.2.3
   - VERSION=1.1.0-alpha2 SINCE=2.2.2
   - VERSION=1.1.0-alpha1 SINCE=2.1.8
