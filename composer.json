@@ -19,16 +19,15 @@
         "drupal/devel": "^1.0",
         "squizlabs/php_codesniffer": "2.*",
         "se/selenium-server-standalone": "^2.53",
-        "drupal/console": "1.0.1",
+        "drupal/console": "^1.0.0",
         "composer/composer": "^1.4",
         "grasmash/yaml-cli": "^1.0",
         "drush/drush": "9.0.0-beta7"
     },
     "require": {
         "drupal-composer/drupal-scaffold": "^2.0.0",
-        "cweagans/composer-patches": "^1.6.0",
-        "acquia/lightning": "2.2.4",
-        "drupal/core": "~8.4.0"
+        "cweagans/composer-patches": "^1.6.4",
+        "acquia/lightning": "2.2.5"
     },
     "repositories": {
         "drupal": {
