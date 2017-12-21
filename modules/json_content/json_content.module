@@ -23,5 +23,12 @@ function json_content_menu_local_tasks_alter(&$data, $route_name) {
     $url = lightning_api_entity_json($entity);
     $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['url'] = $url;
     $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['title'] = t('View JSON');
+    if (isset($data['tabs'][0]['content_moderation.workflows:node.latest_version_tab'])) {
+      // JSON API isn't capable of showing specific revisions, so we need to
+      // remove the Latest Revision tab if it exists. Once this issue is
+      // resolved we should be able to provide a link to the latest revision:
+      // https://www.drupal.org/project/jsonapi/issues/2795279
+      $data['tabs'][0]['content_moderation.workflows:node.latest_version_tab']['#access'] = FALSE;
+    }
   }
 }
