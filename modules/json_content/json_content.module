@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Routing\RouteMatchInterface;
+
 /**
  * Implements hook_toolbar().
  */
@@ -7,4 +9,19 @@ function json_content_toolbar_alter(array &$items) {
   // The front page redirects to admin/content and content is generally not
   // viewed outside of the API so this link makes no sense.
   unset($items['home']);
+}
+
+/**
+ * Implements  hook_menu_local_tasks_alter().
+ */
+function json_content_menu_local_tasks_alter(&$data, $route_name) {
+  if (preg_match('/^entity\.(\S*)\.edit_form$/', $route_name, $matches)) {
+    // Override the "View" tab on entity edit forms so that it points to the
+    // JSON rendered version of the entity.
+    $entity_type = $matches[1];
+    $entity = \Drupal::routeMatch()->getParameter($entity_type);
+    $url = lightning_api_entity_json($entity);
+    $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['url'] = $url;
+    $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['title'] = t('View JSON');
+  }
 }
