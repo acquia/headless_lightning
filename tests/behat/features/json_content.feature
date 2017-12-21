@@ -11,17 +11,16 @@ Feature: When content is shown, it should be shown in JSON, not rendered.
       | type | title | moderation_state | path  |
       | page | Foo  | draft             | /page |
     When I visit "/<path>"
-    And I visit the edit form
+    And I click "Edit"
     Then I should see "View JSON"
-    And I should not see a "View" link
 
     Examples:
       | path  |
-      | tweet |
       | page  |
+      | tweet |
 
   @43e31c96 @issue-#2795279
-  Scenario Outline: Entity edit pages should not show links to Latest Revision
+  Scenario: Entity edit pages should not show links to Latest Revision when unpublished edits are present.
     Given I am logged in as a user with the "administrator" role
     And media entities:
       | bundle    | name             | embed_code                                                  | status | path   |
@@ -29,15 +28,10 @@ Feature: When content is shown, it should be shown in JSON, not rendered.
     And node entities:
       | type | title | moderation_state | path  |
       | page | Foo  | draft             | /page |
-    When I visit "/<path>"
-    And I visit the edit form
+    When I visit "/page"
+    And I click "Edit"
     And I select "draft" from "moderation_state[0][state]"
     And I press "Save"
-    When I visit "/<path>"
-    And I visit the edit form
+    When I visit "/page"
+    And I click "Edit"
     Then I should not see a "Latest version" link
-
-    Examples:
-      | path  |
-      | tweet |
-      | page  |
