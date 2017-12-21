@@ -1,0 +1,4 @@
+json_content.view_json:
+  deriver: 'Drupal\json_content\Plugin\Derivative\EntityLocalTasks'
+  title: 'View JSON'
+  weight: 100

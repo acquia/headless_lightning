@@ -10,27 +10,19 @@ function json_content_toolbar_alter(array &$items) {
 }
 
 /**
- * Implements  hook_menu_local_tasks_alter().
+ * Implements  hook_local_tasks_alter().
  */
-function json_content_menu_local_tasks_alter(&$data, $route_name) {
-  if (isset($data['tabs'][0])) {
-    foreach ($data['tabs'][0] as $name => $tab) {
-      if (preg_match('/^entity\.(\S*)\.canonical$/', $name, $matches)) {
-        // If there is a link to the canonical view of an entity, override it so
-        // that it points to the JSON rendered version of the entity.
-        $entity_type = $matches[1];
-        $entity = \Drupal::routeMatch()->getParameter($entity_type);
-        $url = lightning_api_entity_json($entity);
-        $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['url'] = $url;
-        $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['title'] = t('View JSON');
-      }
-      if (preg_match('/^content_moderation\.workflows\:(\S*)\.latest_version_tab$/', $name, $matches)) {
-        // JSON API isn't capable of showing specific revisions, so we need to
-        // remove the Latest Revision tab if it exists. Once this issue is
-        // resolved we should be able to provide a link to the latest revision:
-        // https://www.drupal.org/project/jsonapi/issues/2795279
-        $data['tabs'][0]['content_moderation.workflows:' . $matches[1] . '.latest_version_tab']['#access'] = FALSE;
-      }
+function json_content_local_tasks_alter(&$local_tasks) {
+  foreach ($local_tasks as $plugin_id => $definition) {
+    if (preg_match('/^entity\.(\S*)\.canonical$/', $plugin_id)) {
+      // Remove the local task that points to the rendered version of an entity.
+      unset($local_tasks[$plugin_id]);
     }
+    if (preg_match('/^content_moderation\.workflows\:(\S*)\.latest_version_tab$/', $plugin_id)) {
+      // Remove the local task that points to the rendered version of the latest
+      // revision of an entity.
+      unset($local_tasks[$plugin_id]);
+    }
+
   }
 }
