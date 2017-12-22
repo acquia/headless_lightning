@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\json_content\EntityJsonTask;
+
 /**
  * Implements hook_toolbar().
  */
@@ -7,4 +9,37 @@ function json_content_toolbar_alter(array &$items) {
   // The front page redirects to admin/content and content is generally not
   // viewed outside of the API so this link makes no sense.
   unset($items['home']);
+}
+
+/**
+ * Implements hook_local_tasks_alter().
+ */
+function json_content_local_tasks_alter(array &$local_tasks) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  foreach ($local_tasks as $id => $definition) {
+    $matches = [];
+
+    if (preg_match('/^entity\.([a-z0-9_]+)\.canonical$/', $id, $matches)) {
+      $entity_type = $entity_type_manager->getDefinition($matches[1]);
+
+      $bundle_entity_type = $entity_type->getBundleEntityType();
+      if ($bundle_entity_type) {
+        $bundles = $entity_type_manager
+          ->getStorage($bundle_entity_type)
+          ->getQuery()
+          ->execute();
+
+        foreach ($bundles as $bundle) {
+          $task_id = 'entity.' . $entity_type->id() . ".json:$bundle";
+          $definition['title'] = t('View JSON');
+          $definition['route_name'] = 'jsonapi.' . $entity_type->id() . "--$bundle.individual";
+          $definition['class'] = EntityJsonTask::class;
+          $definition['entity_type'] = $entity_type->id();
+          $local_tasks[$task_id] = $definition;
+        }
+      }
+      unset($local_tasks[$id]);
+    }
+  }
 }
