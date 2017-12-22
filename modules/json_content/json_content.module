@@ -23,6 +23,6 @@ function json_content_local_tasks_alter(&$local_tasks) {
       // revision of an entity.
       unset($local_tasks[$plugin_id]);
     }
-
   }
+  $
 }

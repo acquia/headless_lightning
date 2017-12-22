@@ -1,4 +1,17 @@
-json_content.view_json:
+json_content.node.view_json:
   deriver: 'Drupal\json_content\Plugin\Derivative\EntityLocalTasks'
   title: 'View JSON'
+  base_route: 'entity.node.canonical'
+  weight: 100
+
+json_content.media.view_json:
+  deriver: 'Drupal\json_content\Plugin\Derivative\EntityLocalTasks'
+  title: 'View JSON'
+  base_route: 'entity.media.canonical'
+  weight: 100
+
+json_content.term.view_json:
+  deriver: 'Drupal\json_content\Plugin\Derivative\EntityLocalTasks'
+  title: 'View JSON'
+  base_route: 'entity.term.canonical'
   weight: 100

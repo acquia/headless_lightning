@@ -5,6 +5,7 @@ namespace Drupal\json_content\Plugin\Derivative;
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
+use Psr\Log\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -36,8 +37,9 @@ class EntityLocalTasks extends DeriverBase implements ContainerDeriverInterface 
    * {@inheritdoc}
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
-    $raw_parameter_keys = $this->routeMatch->getRawParameters()->keys();
-    $entity_type = reset($raw_parameter_keys);
+    $this->derivatives = [];
+
+    $entity_type = $this->getEntityType($base_plugin_definition['base_route']);
     /* @var $entity \Drupal\Core\Entity\Entity */
     $entity = $this->routeMatch->getParameter($entity_type);
 
@@ -45,11 +47,17 @@ class EntityLocalTasks extends DeriverBase implements ContainerDeriverInterface 
       return;
     }
 
-    $this->derivatives['json_content.task_id'] = $base_plugin_definition;
-    $this->derivatives['json_content.task_id']['route_name'] = 'jsonapi.' . $entity_type . '--' . $entity->bundle() . '.individual';
-    $this->derivatives['json_content.task_id']['route_parameters'] = [$entity_type => $entity->uuid()];
-    $this->derivatives['json_content.task_id']['base_route'] = 'entity.' . $entity_type . '.canonical';
-    return $this->derivatives;
+    $this->derivatives['json_content.' . $entity_type . '.view_json'] = $base_plugin_definition;
+    $this->derivatives['json_content.' . $entity_type . '.view_json']['route_name'] = 'jsonapi.' . $entity_type . '--' . $entity->bundle() . '.individual';
+    $this->derivatives['json_content.' . $entity_type . '.view_json']['route_parameters'] = [$entity_type => $entity->uuid()];
+    return parent::getDerivativeDefinitions($base_plugin_definition);
+  }
+
+  protected function getEntityType($base_route) {
+    if (preg_match('/^entity\.(\S*)\.canonical$/', $base_route, $matches)) {
+      return $matches[1];
+    }
+    throw new InvalidArgumentException('Expected base_route to be in "entity.{TYPE}.cononical" format. Actual: ' . $base_route);
   }
 
 }
