@@ -36,8 +36,8 @@ class EntityLocalTasks extends DeriverBase implements ContainerDeriverInterface 
    * {@inheritdoc}
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
-    $raw_parameters = $this->routeMatch->getRawParameters();
-    $entity_type = reset($raw_parameters->keys());
+    $raw_parameter_keys = $this->routeMatch->getRawParameters()->keys();
+    $entity_type = reset($raw_parameter_keys);
     /* @var $entity \Drupal\Core\Entity\Entity */
     $entity = $this->routeMatch->getParameter($entity_type);
 
