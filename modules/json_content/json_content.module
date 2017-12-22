@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\json_content\EntityJsonTask;
 
 /**
@@ -9,6 +10,17 @@ function json_content_toolbar_alter(array &$items) {
   // The front page redirects to admin/content and content is generally not
   // viewed outside of the API so this link makes no sense.
   unset($items['home']);
+}
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function json_content_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  if (isset($operations['edit'])) {
+    $operations['edit']['attributes']['title'] = t('Edit "@title"', [
+      '@title' => $entity->label(),
+    ]);
+  }
 }
 
 /**
