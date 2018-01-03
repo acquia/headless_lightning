@@ -8,3 +8,21 @@ function json_content_toolbar_alter(array &$items) {
   // viewed outside of the API so this link makes no sense.
   unset($items['home']);
 }
+
+/**
+ * Implements  hook_local_tasks_alter().
+ */
+function json_content_local_tasks_alter(&$local_tasks) {
+  foreach ($local_tasks as $plugin_id => $definition) {
+    if (preg_match('/^entity\.(\S*)\.canonical$/', $plugin_id)) {
+      // Remove the local task that points to the rendered version of an entity.
+      unset($local_tasks[$plugin_id]);
+    }
+    if (preg_match('/^content_moderation\.workflows\:(\S*)\.latest_version_tab$/', $plugin_id)) {
+      // Remove the local task that points to the rendered version of the latest
+      // revision of an entity.
+      unset($local_tasks[$plugin_id]);
+    }
+  }
+  $
+}
