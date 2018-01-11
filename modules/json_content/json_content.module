@@ -33,7 +33,9 @@ function json_content_menu_local_tasks_alter(array &$data, $route_name) {
     foreach ($data['tabs'][0] as $name => $tab) {
       if (preg_match('/^entity\.(\S*)\.canonical$/', $name, $matches)) {
         // If there is a link to the canonical view of an entity, override it so
-        // that it points to the JSON rendered version of the entity.
+        // that it points to the JSON rendered version of the entity. We tried
+        // doing this with hook_local_tasks_alter, but ended up with links to
+        // other bundles of the same entity types.
         $entity_type = $matches[1];
         $entity = \Drupal::routeMatch()->getParameter($entity_type);
         $url = lightning_api_entity_json($entity);
