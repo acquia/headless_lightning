@@ -8,3 +8,17 @@ function json_content_toolbar_alter(array &$items) {
   // viewed outside of the API so this link makes no sense.
   unset($items['home']);
 }
+
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function json_content_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  if (isset($operations['edit'])) {
+    // Add the title of the node to the Edit link so our tests have something to
+    // target.
+    $operations['edit']['attributes']['title'] = t('Edit @title', [
+      '@title' => $entity->label(),
+    ]);
+  }
+}
