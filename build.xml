@@ -120,7 +120,7 @@
 
         <!-- Generate Behat configuration. -->
         <exec command="${drupal} behat:init ${url} --merge=${project.basedir}/docroot/profiles/contrib/lightning/tests/behat.yml" dir="${docroot}" />
-        <exec command="${drupal} behat:include ${project.basedir}/docroot/profiles/contrib/lightning/tests/features --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/tests/features/bootstrap --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/src/LightningExtension/Context" dir="${docroot}" />
+        <exec command="${drupal} behat:include ${project.basedir}/docroot/profiles/contrib/lightning/tests/features --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/tests/features/bootstrap --with-subcontexts=${project.basedir}/docroot/profiles/contrib/lightning/src/LightningExtension/Context --with-subcontexts=${project.basedir}/tests/behat/features/bootstrap" dir="${docroot}" />
         <exec command="${drupal} behat:include ../tests/behat/features" dir="${docroot}/../" passthru="true" />
     </target>
 
