@@ -2,7 +2,7 @@
     "name": "acquia/headless_lightning",
     "description": "Drupal Lightning as a backend for fully decoupled applications.",
     "type": "drupal-profile",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
@@ -20,7 +20,6 @@
         "squizlabs/php_codesniffer": "2.*",
         "se/selenium-server-standalone": "^2.53",
         "drupal/console": "^1.0.0",
-        "composer/composer": "^1.4",
         "grasmash/yaml-cli": "^1.0",
         "drush/drush": "9.0.0-beta7"
     },
