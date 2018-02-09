@@ -5,6 +5,7 @@ Feature: Entity form redirections
     Given I am logged in as a user with the administrator role
     When I click "Content"
     And I click "Add content"
+    And I click "Basic page"
     And I enter "---TESTING---" for "Title"
     And I press "Save"
     Then I should be on "/admin/content"
@@ -15,6 +16,7 @@ Feature: Entity form redirections
     Given I am logged in as a user with the administrator role
     When I click "Content"
     And I click "Add content"
+    And I click "Basic page"
     And I enter "---TESTING---" for "Title"
     And I press "Save"
     And I click "Edit"
