@@ -6,22 +6,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "behat/mink": "~1.7",
-        "behat/mink-goutte-driver": "~1.2",
-        "jcalderonzumba/gastonjs": "~1.0.2",
-        "mikey179/vfsStream": "~1.2",
-        "phpunit/phpunit": "~4.8",
-        "symfony/css-selector": "~2.8",
-        "drupal/drupal-extension": "~3.3.0",
-        "behat/behat": "^3.3",
-        "drupal/coder": "~8.2.0",
-        "phing/phing": "^2.14",
         "drupal/devel": "^1.0",
-        "squizlabs/php_codesniffer": "2.*",
-        "se/selenium-server-standalone": "^2.53",
         "drupal/console": "^1.0.0",
-        "grasmash/yaml-cli": "^1.0",
-        "drush/drush": "9.0.0-beta7"
+        "acquia/lightning_dev": "dev-8.x-1.x"
     },
     "require": {
         "drupal-composer/drupal-scaffold": "^2.0.0",
@@ -36,25 +23,34 @@
         "asset-packagist": {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        "dev": {
+            "type": "vcs",
+            "url": "https://github.com/acquia/lightning-dev"
         }
     },
     "scripts": {
         "post-install-cmd": [
-            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-            "./bin/phing push",
-            "./bin/phing symlink"
+            "@drupal-scaffold",
+            "@push",
+            "ln -s -f git-hooks/pre-commit .git/hooks/pre-commit"
         ],
         "post-update-cmd": [
-            "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-            "./bin/phing push",
-            "./bin/phing symlink"
+            "@drupal-scaffold",
+            "@push",
+            "ln -s -f git-hooks/pre-commit .git/hooks/pre-commit"
         ],
-        "release-version": "Acquia\\Lightning\\Composer\\ReleaseVersion::execute"
-    },
-    "config": {
-        "bin-dir": "bin/"
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "release-version": "Acquia\\Lightning\\Composer\\ReleaseVersion::execute",
+        "nuke": "rm -r -f docroot vendor",
+        "pull": "Acquia\\Lightning\\Commands\\FileCommands::pull",
+        "push": "Acquia\\Lightning\\Commands\\FileCommands::push"
     },
     "extra": {
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
         "installer-paths": {
             "docroot/core": [
                 "type:drupal-core"
@@ -68,19 +64,12 @@
             "docroot/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
-            "drush/contrib/{$name}": [
-                "type:drupal-drush"
-            ],
             "docroot/libraries/{$name}": [
+                "type:drupal-library",
                 "type:bower-asset",
                 "type:npm-asset"
             ]
         },
-        "enable-patching": true,
-        "patches": [],
-        "installer-types": [
-            "bower-asset",
-            "npm-asset"
-        ]
+        "enable-patching": true
     }
 }
