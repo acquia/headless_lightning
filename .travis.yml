@@ -13,9 +13,10 @@ php:
   - 7.0
 
 env:
-  - VERSION=HEAD SINCE=3.0.1
-  - VERSION=1.2.0-alpha2 SINCE=3.0.0
-  - VERSION=1.2.0-alpha1 SINCE=2.2.5
+  - VERSION=HEAD
+  - VARSION=1.2.0-alpha3
+  - VERSION=1.2.0-alpha2
+  - VERSION=1.2.0-alpha1
 
 addons:
   apt:
