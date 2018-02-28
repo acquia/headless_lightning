@@ -80,7 +80,7 @@ install:
   # Execute any database and manual updates
   - cd $TRAVIS_BUILD_DIR/docroot
   - drush updatedb --yes
-  - drupal update:lightning $SINCE --no-interaction
+  - drush update:lightning --no-interaction
 
 before_script:
   - cd $TRAVIS_BUILD_DIR/docroot
