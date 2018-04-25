@@ -83,6 +83,7 @@ install:
   - cd $TRAVIS_BUILD_DIR/docroot
   - drush updatedb --yes
   - drush update:lightning --no-interaction
+  - drush cache:rebuild
 
 before_script:
   - cd $TRAVIS_BUILD_DIR/docroot
