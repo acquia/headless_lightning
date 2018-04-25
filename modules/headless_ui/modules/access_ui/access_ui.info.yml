@@ -1,4 +1,4 @@
 name: 'Access Control UI'
 core: 8.x
 type: module
-version: '1.3.0-beta3'
+version: '1.x-dev'
