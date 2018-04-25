@@ -38,7 +38,9 @@ events:
           type: script
           script:
             - cd $SOURCE_DIR
+            - chmod +w docroot/sites/default/settings.php
             # Setup settings file and codebase with minimum required for cloud.
             - lightning configure:cloud headlessnightly headless_lightning
             # Remove dev tools from the Cloud build.
-            - composer remove acquia/lightning_dev --dev
+            - composer require drush/drush:"8.1.16 as 9.2.1" --no-update
+            - composer update drush/drush --with-all-dependencies
