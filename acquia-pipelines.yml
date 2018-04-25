@@ -30,7 +30,6 @@ events:
           script:
             - cd $SOURCE_DIR/docroot
             - drush runserver --default-server=builtin 8080 &>/dev/null &
-            - phantomjs --webdriver=4444 > /dev/null &
             - sleep 10
             - phpunit --configuration ./core --group headless
             - cd $SOURCE_DIR
@@ -43,4 +42,3 @@ events:
             - lightning configure:cloud headlessnightly headless_lightning
             # Remove dev tools from the Cloud build.
             - composer remove acquia/lightning_dev --dev
-
