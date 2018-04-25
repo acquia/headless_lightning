@@ -18,7 +18,7 @@ events:
             # running our installed versions of Drush, PHPCS, Behat, etc.
             - export PATH="$HOME/.composer/vendor/bin:$SOURCE_DIR/vendor/bin:$PATH"
             - composer validate --no-check-all --ansi
-            - composer install
+            - composer update
       - install:
           type: script
           script:
@@ -30,6 +30,7 @@ events:
           script:
             - cd $SOURCE_DIR/docroot
             - drush runserver --default-server=builtin 8080 &>/dev/null &
+            - phantomjs --webdriver=4444 > /dev/null &
             - sleep 10
             - phpunit --configuration ./core --group headless
             - cd $SOURCE_DIR
@@ -38,9 +39,8 @@ events:
           type: script
           script:
             - cd $SOURCE_DIR
-            - chmod +w docroot/sites/default/settings.php
             # Setup settings file and codebase with minimum required for cloud.
             - lightning configure:cloud headlessnightly headless_lightning
             # Remove dev tools from the Cloud build.
-            - composer require drush/drush:"8.1.16 as 9.2.1" --no-update
-            - composer update drush/drush --with-all-dependencies
+            - composer remove acquia/lightning_dev --dev
+
