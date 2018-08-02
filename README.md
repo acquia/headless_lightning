@@ -23,14 +23,14 @@ back. Use a scaffold project like Lightning Project, BLT, or Drupal Project to
 build a codebase for actual use. See `composer create-project` command above.
 
 ## Contributing
-Headless Lightning provides some Phing targets to aid in development. To take
-advantage:
+Headless Lightning provides some Robo and Composer commands to aid in
+development. To take advantage:
 
 1. Clone this project.
 2. Build working codebase (`composer install`).
-3. Install dev environment (`phing install` - common options: `-Ddb.database={DB_NAME} -Ddb.user{DB_USER} -Ddb.password={DB_PASS} -Durl=http://{LOCAL_ENV}`)
+3. Install dev environment (`lightning install 'mysql\://{DB_USER}:{DB_PASS}@127.0.0.1/{DB_NAME}' headless_lightning 'http://127.0.0.1:8080'` 
 4. Make changes in `/docroot/profiles/headless_lightning`.
-5. Once you're happy with changes, use `phing pull` to move your changes back
+5. Once you're happy with changes, use `composer pull` to move your changes back
    into the top-level repository to be committed or submitted as a PR or patch.
    
 Please file issues in our [GitHub Issue Queue](https://github.com/acquia/headless-lightning/issues).
