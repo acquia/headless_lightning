@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "319203c4f471e7f28adabc40d2524421",
+    "content-hash": "df6949b99d875683769819c25a70e1cc",
     "packages": [
         {
             "name": "acquia/lightning",
-            "version": "dev-8.x-3.x",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning.git",
@@ -11863,7 +11863,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "acquia/lightning": 20,
         "acquia/lightning_dev": 20
     },
     "prefer-stable": true,
