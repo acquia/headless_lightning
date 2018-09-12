@@ -1,11 +1,11 @@
 name: 'Headless Lightning'
 type: profile
 description: 'Drupal Lightning as a backend for fully decoupled applications.'
-version: '1.3.x-dev'
+version: '1.4.x-dev'
 core: 8.x
 distribution:
   name: 'Headless Lightning'
-dependencies:
+install:
   - access_ui
   - block
   - content_model_ui
@@ -13,6 +13,18 @@ dependencies:
   - json_content
 themes:
   - seven
-'base profile':
-  name: lightning
-  excluded_dependencies: [block_content, breakpoint, contextual, quickedit, history, rdf, menu_ui, metatag, lightning_layout, lightning_contact_form, lightning_search, lightning_landing_page, views_ui]
+'base profile': lightning
+exclude:
+  - block_content
+  - breakpoint
+  - contextual
+  - quickedit
+  - history
+  - rdf
+  - menu_ui
+  - metatag
+  - lightning_layout
+  - lightning_contact_form
+  - lightning_search
+  - lightning_landing_page
+  - views_ui
