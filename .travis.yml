@@ -1,4 +1,3 @@
-sudo: required
 dist: trusty
 language: php
 
@@ -14,36 +13,17 @@ php:
 
 env:
   - VERSION=HEAD
-  - VERSION=1.4.0-beta1
+  - VERSION=1.4.0-beta2
   - VERSION=1.2.0-alpha2
 
 addons:
-  apt:
-    packages:
-    # Dependencies for Chrome.
-    - libappindicator1
-    - fonts-liberation
+  chrome: stable
 
 before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update
   - composer --version
-
-  # Download Chrome Driver
-  - LATEST_CHROMEDRIVER=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-  - wget http://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip
-  - chmod +x chromedriver
-  - mkdir -p $HOME/.composer/vendor/bin
-  - mv -f chromedriver $HOME/.composer/vendor/bin/
-  - rm chromedriver_linux64.zip
-
-  # Update Chrome.
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome-stable_current_amd64.deb
-  - rm google-chrome-stable_current_amd64.deb
-  - google-chrome --version
+  - google-chrome-stable --version
 
 install:
   # Add Composer's local bin directory to the PATH so that we will be running
