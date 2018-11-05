@@ -14,7 +14,7 @@ Feature: User login
     And I enter "admin" for "Username"
     And I enter "admin" for "Password"
     And I press "Log in"
-    Then I should be on "/admin/content"
+    Then I should be on "/user/1/moderation/dashboard"
     And I should not see a "Username" field
     And I should not see a "Password" field
     And the response status code should be 200
