@@ -47,3 +47,17 @@ function headless_lightning_install() {
     ->removeComponent('image')
     ->save();
 }
+
+/**
+ * Implements hook_update_dependencies().
+ */
+function headless_lightning_update_dependencies() {
+  // TODO: Move this logic into Lightning itself.
+  return [
+    'lightning_media' => [
+      8019 => [
+        'lightning_api' => 8300,
+      ],
+    ],
+  ];
+}
