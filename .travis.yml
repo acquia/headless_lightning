@@ -71,6 +71,7 @@ install:
   # Import the fixture and update from it, if it exists.
   - lightning update $VERSION
   - drush cache:rebuild
+  - drush config:set moderation_dashboard.settings redirect_on_login 1 --yes
 
 before_script:
   - cd $TRAVIS_BUILD_DIR/docroot
