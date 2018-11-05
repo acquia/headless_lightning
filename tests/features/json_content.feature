@@ -15,9 +15,9 @@ Feature: Links to content should point to JSON Content, not rendered HTML.
     Then I should see "View JSON"
 
     Examples:
-      | type  | title          |
-      |       | Page 3af3400a  |
-      | media | Tweet 3af3400a |
+      | type        | title          |
+      |             | Page 3af3400a  |
+      | media-table | Tweet 3af3400a |
 
   @43e31c96 @issue-#2795279
   Scenario Outline: Entity edit pages should not show links to Latest Revision when unpublished edits are present.
