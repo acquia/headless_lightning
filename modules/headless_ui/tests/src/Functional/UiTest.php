@@ -8,7 +8,6 @@ use Drupal\Tests\BrowserTestBase;
 /**
  * @group headless
  * @group headless_ui
- * @group foo
  */
 class UiTest extends BrowserTestBase {
 
