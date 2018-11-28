@@ -27,4 +27,5 @@ exclude:
   - lightning_contact_form
   - lightning_search
   - lightning_landing_page
+  - lightning_media_slideshow
   - views_ui

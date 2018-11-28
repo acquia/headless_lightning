@@ -8,14 +8,13 @@ use Drupal\Tests\BrowserTestBase;
 /**
  * @group headless
  * @group headless_ui
- * @group foo
  */
 class UiTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
    */
-  protected $profile = 'lightning_headless';
+  protected $profile = 'headless_lightning';
 
   public function test() {
     $assert = $this->assertSession();
