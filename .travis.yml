@@ -61,7 +61,7 @@ script:
   - composer validate ../composer.json --no-check-all --ansi --no-interaction
   - phpunit --configuration ./core --group headless
   - cd ..
-  - behat --strict --config .behat.yml --tags=headless
+  - behat --strict --tags=headless
 
 matrix:
   fast_finish: true
