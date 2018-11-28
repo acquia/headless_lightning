@@ -15,7 +15,7 @@ class UiTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $profile = 'lightning_headless';
+  protected $profile = 'headless_lightning';
 
   public function test() {
     $assert = $this->assertSession();
