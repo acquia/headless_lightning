@@ -14,7 +14,7 @@
     "require": {
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "cweagans/composer-patches": "^1.6.4",
-        "acquia/lightning": "8.x-3.x-dev"
+        "acquia/lightning": "3.2.3"
     },
     "repositories": {
         "drupal": {
