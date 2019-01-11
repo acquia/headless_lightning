@@ -71,12 +71,3 @@ That means you can create a sub-profile of Headless Lightning - just like
 Headless Lightning is a sub-profile of Lightning itself. It also means that
 applications built with Headless Lightning will get all of the features of and
 updates to Drupal and Lightning along with update paths.
-
-## Similar Projects
-*From which we have borrowed heavily and for which we are very thankful.*
-
-* [Contenta CMS](https://github.com/contentacms)  
-  **Contenta makes your content happy**  
-
-* [Reservior](https://github.com/acquia/reservoir)  
-  **A back end for your front end**  
