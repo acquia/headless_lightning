@@ -2,7 +2,7 @@
 Feature: Entity form redirections
 
   Scenario: Creating content as an administrator
-    Given I am logged in as a user with the administrator role
+    Given I am logged in as an administrator
     When I visit "/node/add/page"
     And I enter "---TESTING---" for "Title"
     And I press "Save"
@@ -11,7 +11,7 @@ Feature: Entity form redirections
     # And I should see the success message "Basic page ---TESTING--- has been created."
 
   Scenario: Editing content as an administrator
-    Given I am logged in as a user with the administrator role
+    Given I am logged in as an administrator
     When I visit "/node/add/page"
     And I enter "---TESTING---" for "Title"
     And I press "Save"
@@ -22,7 +22,7 @@ Feature: Entity form redirections
     # And I should see the success message "Basic page ---TESTING--- has been updated."
 
   Scenario: Creating media as an administrator
-    Given I am logged in as a user with the administrator role
+    Given I am logged in as an administrator
     When I click "Content"
     And I click "Media"
     And I click "Add media"
@@ -35,7 +35,7 @@ Feature: Entity form redirections
     # And I should see the success message "Video ---TESTING--- has been created."
 
   Scenario: Editing media as an administrator
-    Given I am logged in as a user with the administrator role
+    Given I am logged in as an administrator
     When I click "Content"
     And I click "Media"
     And I click "Add media"
@@ -50,7 +50,7 @@ Feature: Entity form redirections
     # And I should see the success message "Video ---TESTING--- has been updated."
 
   Scenario: Creating a user account as an administrator
-    Given I am logged in as a user with the administrator role
+    Given I am logged in as an administrator
     When I visit "/admin/people"
     And I click "Add user"
     And I enter "---TESTING---" for "Username"
@@ -62,7 +62,7 @@ Feature: Entity form redirections
     # And I should see the success message containing "Created a new user account for ---TESTING---."
 
   Scenario: Editing a user account as an administrator
-    Given I am logged in as a user with the administrator role
+    Given I am logged in as an administrator
     When I visit "/admin/people"
     And I click "Edit"
     And I press "Save"

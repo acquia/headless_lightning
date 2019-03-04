@@ -8,7 +8,7 @@ use Drupal\block\BlockInterface;
 function headless_lightning_install_tasks() {
   $tasks = [];
 
-  $tasks['headless_lightning_set_default_theme'] = [];
+  $tasks['headless_lightning_set_default_themes'] = [];
   $tasks['headless_lightning_set_403_page'] = [];
   $tasks['headless_lightning_set_default_front_page'] = [];
   $tasks['headless_lightning_set_api_settings'] = [];
@@ -18,12 +18,13 @@ function headless_lightning_install_tasks() {
 }
 
 /**
- * Sets the default theme.
+ * Sets the default and administration themes.
  */
-function headless_lightning_set_default_theme() {
+function headless_lightning_set_default_themes() {
   Drupal::configFactory()
     ->getEditable('system.theme')
     ->set('default', 'seven')
+    ->set('admin', 'seven')
     ->save();
 }
 
