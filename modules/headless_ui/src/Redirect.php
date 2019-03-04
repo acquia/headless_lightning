@@ -12,10 +12,12 @@ class Redirect {
     /** @var \Drupal\Core\Entity\EntityFormInterface $form_object */
     $form_object = $form_state->getFormObject();
 
-    $redirect = [
-      static::class,
-      Inflector::camelize($form_object->getBaseFormId()),
-    ];
+    if ($form_object->getBaseFormId()) {
+      $redirect = [
+        static::class,
+        Inflector::camelize($form_object->getBaseFormId()),
+      ];
+    }
 
     if (is_callable($redirect)) {
       static::applyHandler($form['actions'], $redirect);
