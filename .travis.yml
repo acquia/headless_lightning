@@ -3,13 +3,12 @@ language: php
 
 cache:
   bundler: true
-  apt: true
   directories:
     - "$HOME/.composer/cache"
     - "$HOME/.drush/cache"
     - "$HOME/.npm"
 php:
-  - 7.0
+  - 7.1
 
 env:
   - VERSION=HEAD
@@ -47,13 +46,14 @@ install:
   - composer install
 
   # Install Acquia Publish cleanly so that settings.php will be created properly.
-  - lightning install 'sqlite\://db.sqlite' headless_lightning 'http://127.0.0.1:8080'
+  - lightning install --no-dev --from-config 'sqlite\://db.sqlite' headless_lightning
   # Import the fixture and update from it, if it exists.
   - lightning update $VERSION
   - drush cache:rebuild
   - drush config:set moderation_dashboard.settings redirect_on_login 1 --yes
 
 before_script:
+  - cp -f phpunit.xml docroot/core
   - cd $TRAVIS_BUILD_DIR/docroot
   - drush runserver --default-server=builtin 8080 &>/dev/null &
 
