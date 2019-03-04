@@ -1,10 +1,8 @@
 name: 'Headless Lightning'
 type: profile
 description: 'Drupal Lightning as a backend for fully decoupled applications.'
-version: '1.4.0-beta1'
+version: '1.4.x-dev'
 core: 8.x
-distribution:
-  name: 'Headless Lightning'
 install:
   - access_ui
   - block

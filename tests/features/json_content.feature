@@ -1,37 +1,36 @@
 @api @headless
 Feature: Links to content should point to JSON Content, not rendered HTML.
 
-  @3af3400a
-  Scenario Outline: Entity edit pages should provide links to the JSON representation.
-    Given I am logged in as a user with the "administrator" role
-    And node entities:
-      | type | title          | moderation_state | path  |
-      | page | Page 3af3400a  | draft            | /page3af3400a |
-    And media entities:
-      | bundle    | name           | embed_code                                                  | status | path   |
-      | tweet     | Tweet 3af3400a | https://twitter.com/50NerdsofGrey/status/757319527151636480 | 1      | /tweet3af3400a |
-    When I visit "/admin/content/<type>"
-    And I edit the item named "<title>"
+  @3af3400a @orca_public
+  Scenario: Content forms should provide links to the JSON representation
+    Given I am logged in as an administrator
+    And page content:
+      | title          | moderation_state |
+      | Page 3af3400a  | draft            |
+    When I visit "/admin/content"
+    And I click "Edit Page 3af3400a"
     Then I should see "View JSON"
 
-    Examples:
-      | type        | title          |
-      |             | Page 3af3400a  |
-      | media-table | Tweet 3af3400a |
+  @11163335 @orca_public
+  Scenario: Media forms should provide links to the JSON representation
+    Given I am logged in as an administrator
+    And media items:
+      | bundle    | name           | embed_code                                                  | status |
+      | tweet     | Tweet 11163335 | https://twitter.com/50NerdsofGrey/status/757319527151636480 | 1      |
+    When I visit "/admin/content/media-table"
+    And I click "Edit Tweet 11163335"
+    Then I should see "View JSON"
 
-  @43e31c96 @issue-#2795279
-  Scenario Outline: Entity edit pages should not show links to Latest Revision when unpublished edits are present.
-    Given I am logged in as a user with the "administrator" role
-    And node entities:
-      | type | title          | moderation_state | path  |
-      | page | Page 43e31c96  | published            | /page43e31c96 |
-    When I visit "/admin/content/<type>"
-    And I edit the item named "<title>"
+  @43e31c96
+  # See http://drupal.org/node/2795279
+  Scenario: Edit forms should not show links to the latest version when unpublished edits exist
+    Given I am logged in as an administrator
+    And page content:
+      | title         | moderation_state |
+      | Page 43e31c96 | published        |
+    When I visit "/admin/content"
+    And I click "Edit Page 43e31c96"
     And I select "draft" from "moderation_state[0][state]"
     And I press "Save"
-    And I edit the item named "<title>"
+    And I click "Edit Page 43e31c96"
     Then I should not see a "Latest version" link
-
-    Examples:
-      | type  | title          |
-      |       | Page 43e31c96  |
