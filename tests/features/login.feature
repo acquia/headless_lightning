@@ -1,7 +1,6 @@
 @api @headless
 Feature: User login
 
-  @f713207a
   Scenario: Redirecting users to a login form from a 403 response
     Given I am an anonymous user
     When I go to "/admin/content"
@@ -9,7 +8,7 @@ Feature: User login
     And I should see a "Username" field
     And I should see a "Password" field
 
-  @9abd646c @orca_public
+  @orca_public
   Scenario: Logging in from a 403 response should send the user to the page they were trying to access
     Given I am an anonymous user
     When I go to "/admin/content"
