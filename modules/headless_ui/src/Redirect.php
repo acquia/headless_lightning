@@ -11,10 +11,11 @@ class Redirect {
   public static function entityForm(array &$form, FormStateInterface $form_state) {
     /** @var \Drupal\Core\Entity\EntityFormInterface $form_object */
     $form_object = $form_state->getFormObject();
+    $form_id = $form_object->getBaseFormId() ?: $form_object->getFormId();
 
     $redirect = [
       static::class,
-      Inflector::camelize($form_object->getBaseFormId()),
+      Inflector::camelize($form_id),
     ];
 
     if (is_callable($redirect)) {
