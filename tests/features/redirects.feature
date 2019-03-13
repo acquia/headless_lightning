@@ -1,6 +1,7 @@
 @api @headless
 Feature: Entity form redirections
 
+  @435dae22
   Scenario: Creating content as an administrator
     Given I am logged in as an administrator
     When I visit "/node/add/page"
@@ -10,6 +11,7 @@ Feature: Entity form redirections
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "Basic page ---TESTING--- has been created."
 
+  @7fa85cde
   Scenario: Editing content as an administrator
     Given I am logged in as an administrator
     When I visit "/node/add/page"
@@ -21,6 +23,7 @@ Feature: Entity form redirections
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "Basic page ---TESTING--- has been updated."
 
+  @de269bb0
   Scenario: Creating media as an administrator
     Given I am logged in as an administrator
     When I click "Content"
@@ -34,6 +37,7 @@ Feature: Entity form redirections
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "Video ---TESTING--- has been created."
 
+  @32dfc1b9
   Scenario: Editing media as an administrator
     Given I am logged in as an administrator
     When I click "Content"
@@ -49,6 +53,7 @@ Feature: Entity form redirections
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "Video ---TESTING--- has been updated."
 
+  @c15ed287
   Scenario: Creating a user account as an administrator
     Given I am logged in as an administrator
     When I visit "/admin/people"
@@ -61,6 +66,7 @@ Feature: Entity form redirections
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message containing "Created a new user account for ---TESTING---."
 
+  @05fff2e6
   Scenario: Editing a user account as an administrator
     Given I am logged in as an administrator
     When I visit "/admin/people"

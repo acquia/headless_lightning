@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "659301892c4f90e0ce1f4b03c97fa622",
+    "content-hash": "3331422078969d18847222eb077619db",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -208,6 +208,42 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "brumann/polyfill-unserialize",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dbrumann/polyfill-unserialize.git",
+                "reference": "844d7e44b62a1a3d5c68cfb7ebbd59c17ea0fd7b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dbrumann/polyfill-unserialize/zipball/844d7e44b62a1a3d5c68cfb7ebbd59c17ea0fd7b",
+                "reference": "844d7e44b62a1a3d5c68cfb7ebbd59c17ea0fd7b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brumann\\Polyfill\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Brumann",
+                    "email": "denis.brumann@sensiolabs.de"
+                }
+            ],
+            "description": "Backports unserialize options introduced in PHP 7.0 to older PHP versions.",
+            "time": "2017-02-03T09:55:47+00:00"
         },
         {
             "name": "caxy/php-htmldiff",
@@ -1261,12 +1297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "2ea175e4455e26de9fb2d77b104d455815c00606"
+                "reference": "e5da90b828f7805ab05a614849753185c0802315"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/2ea175e4455e26de9fb2d77b104d455815c00606",
-                "reference": "2ea175e4455e26de9fb2d77b104d455815c00606",
+                "url": "https://api.github.com/repos/drupal/core/zipball/e5da90b828f7805ab05a614849753185c0802315",
+                "reference": "e5da90b828f7805ab05a614849753185c0802315",
                 "shasum": ""
             },
             "require": {
@@ -1309,7 +1345,7 @@
                 "symfony/translation": "~3.4.0",
                 "symfony/validator": "~3.4.0",
                 "symfony/yaml": "~3.4.5",
-                "twig/twig": "^1.35.0",
+                "twig/twig": "^1.38.2",
                 "typo3/phar-stream-wrapper": "^2.0.1",
                 "zendframework/zend-diactoros": "^1.1",
                 "zendframework/zend-feed": "^2.4"
@@ -1500,7 +1536,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2019-03-04T09:51:02+00:00"
+            "time": "2019-03-13T13:25:21+00:00"
         },
         {
             "name": "drupal/crop",
@@ -1582,7 +1618,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742",
+                    "datestamp": "1549603381",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1665,7 +1701,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0",
-                    "datestamp": "1493401742",
+                    "datestamp": "1549603381",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2370,7 +2406,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.3",
-                    "datestamp": "1550692492",
+                    "datestamp": "1550761645",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2472,7 +2508,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/lightning_api",
-                "reference": "d75dbadded81136311395f07617e5cf575103e11"
+                "reference": "3a6916430d9fe0a8297f116fcf5bfbe20f038afe"
             },
             "require": {
                 "cweagans/composer-patches": "^1.6.4",
@@ -2480,7 +2516,7 @@
                 "drupal/consumers": "^1.9",
                 "drupal/core": "~8.0",
                 "drupal/jsonapi": "^2.3",
-                "drupal/lightning_core": "2.x-dev || 3.x-dev",
+                "drupal/lightning_core": "2.x-dev || 3.x-dev || 4.x-dev",
                 "drupal/openapi": "^1.0-beta2",
                 "drupal/openapi_ui_redoc": "^1.0",
                 "drupal/openapi_ui_swagger": "^1.0",
@@ -2496,11 +2532,12 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-3.x": "3.x-dev"
+                    "dev-3.x": "3.x-dev",
+                    "dev-8.x-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.4+1-dev",
-                    "datestamp": "1550696584",
+                    "version": "8.x-3.4+2-dev",
+                    "datestamp": "1551188588",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2578,7 +2615,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/lightning_api"
             },
-            "time": "2019-02-25T16:55:11+00:00"
+            "time": "2019-03-05T16:49:35+00:00"
         },
         {
             "name": "drupal/lightning_core",
@@ -2618,8 +2655,8 @@
                     "dev-8.x-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.7+4-dev",
-                    "datestamp": "1551199085",
+                    "version": "8.x-3.7+5-dev",
+                    "datestamp": "1551371584",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2722,7 +2759,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/lightning_layout",
-                "reference": "74a0340446a7fb5bba30514b25894dde17ec6758"
+                "reference": "e513053b4e12ddf300f221671be90c994ddc2baa"
             },
             "require": {
                 "cweagans/composer-patches": "^1.6.4",
@@ -2730,7 +2767,7 @@
                 "drupal/core": "~8.0",
                 "drupal/ctools": "3.0",
                 "drupal/entity_block": "^1.0",
-                "drupal/lightning_core": "1.x-dev || 2.x-dev || 3.x-dev",
+                "drupal/lightning_core": "1.x-dev || 2.x-dev || 3.x-dev || 4.x-dev",
                 "drupal/panelizer": "^4.1",
                 "drupal/panelizer_quickedit": "*",
                 "drupal/panels": "4.3",
@@ -2747,8 +2784,8 @@
                     "dev-8.x-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.6+8-dev",
-                    "datestamp": "1551196688",
+                    "version": "8.x-1.6+9-dev",
+                    "datestamp": "1551373984",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2834,7 +2871,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/lightning_layout"
             },
-            "time": "2019-02-28T16:59:18+00:00"
+            "time": "2019-03-05T16:14:40+00:00"
         },
         {
             "name": "drupal/lightning_media",
@@ -2842,7 +2879,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/lightning_media",
-                "reference": "086e9adef2da0598a1247988fd2776a11665759e"
+                "reference": "f34d3c14b74c7e7054fc44be47730deb8efe6aae"
             },
             "require": {
                 "bower-asset/cropper": "^2.3",
@@ -2859,7 +2896,7 @@
                 "drupal/image_widget_crop": "^2.1",
                 "drupal/inline_entity_form": "^1.0",
                 "drupal/libraries": "3.0-alpha1",
-                "drupal/lightning_core": "3.x-dev",
+                "drupal/lightning_core": "3.x-dev || 4.x-dev",
                 "drupal/media_entity_instagram": "2.0.0-alpha2",
                 "drupal/media_entity_twitter": "2.0.0-alpha2",
                 "drupal/slick_entityreference": "^1.1",
@@ -2886,8 +2923,8 @@
                     "dev-8.x-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.6+6-dev",
-                    "datestamp": "1550860380",
+                    "version": "8.x-3.7+1-dev",
+                    "datestamp": "1551992285",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2973,7 +3010,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/lightning_media"
             },
-            "time": "2019-02-26T15:57:04+00:00"
+            "time": "2019-03-07T20:55:41+00:00"
         },
         {
             "name": "drupal/lightning_workflow",
@@ -2981,14 +3018,14 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/lightning_workflow",
-                "reference": "0d04bc1512060ee6059edb049132a6c2c5bb3b3a"
+                "reference": "8380151bd49211931d4ec1048a9b0c7df8612a85"
             },
             "require": {
                 "cweagans/composer-patches": "^1.6.4",
                 "drupal-composer/drupal-scaffold": "^2.0.0",
                 "drupal/core": "*",
                 "drupal/diff": "^1.0",
-                "drupal/lightning_core": "3.x-dev",
+                "drupal/lightning_core": "3.x-dev || 4.x-dev",
                 "drupal/moderation_dashboard": "^1.0",
                 "drupal/moderation_sidebar": "^1.0",
                 "oomphinc/composer-installers-extender": "^1.1"
@@ -3007,8 +3044,8 @@
                     "dev-8.x-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.4+4-dev",
-                    "datestamp": "1550588287",
+                    "version": "8.x-3.4+5-dev",
+                    "datestamp": "1550596690",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3085,7 +3122,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/lightning_workflow"
             },
-            "time": "2019-02-19T17:13:51+00:00"
+            "time": "2019-03-05T14:06:17+00:00"
         },
         {
             "name": "drupal/media_entity_instagram",
@@ -3473,7 +3510,7 @@
                     "datestamp": "1532303581",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -4187,17 +4224,17 @@
         },
         {
             "name": "drupal/search_api",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api",
-                "reference": "8.x-1.11"
+                "reference": "8.x-1.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.11.zip",
-                "reference": "8.x-1.11",
-                "shasum": "d2bf92afa2ee760977dde1fadcb5bb64a4c2d7c1"
+                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.12.zip",
+                "reference": "8.x-1.12",
+                "shasum": "db203e2fdd669d6e9ff2c99688c0816d248a1fff"
             },
             "require": {
                 "drupal/core": "^8.5"
@@ -4217,8 +4254,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.11",
-                    "datestamp": "1542564480",
+                    "version": "8.x-1.12",
+                    "datestamp": "1552334285",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4293,7 +4330,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.2",
-                    "datestamp": "1545483044",
+                    "datestamp": "1549962207",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5127,16 +5164,16 @@
         },
         {
             "name": "kub-at/php-simple-html-dom-parser",
-            "version": "1.7.1",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kub-AT/php-simple-html-dom-parser.git",
-                "reference": "7a745b20157efb0f1be3021394769bd6b8e9ed4e"
+                "reference": "6db1e01db320040024cd1f74b0e1483aa2670720"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kub-AT/php-simple-html-dom-parser/zipball/7a745b20157efb0f1be3021394769bd6b8e9ed4e",
-                "reference": "7a745b20157efb0f1be3021394769bd6b8e9ed4e",
+                "url": "https://api.github.com/repos/Kub-AT/php-simple-html-dom-parser/zipball/6db1e01db320040024cd1f74b0e1483aa2670720",
+                "reference": "6db1e01db320040024cd1f74b0e1483aa2670720",
                 "shasum": ""
             },
             "require": {
@@ -5169,7 +5206,7 @@
                 "dom",
                 "html"
             ],
-            "time": "2019-01-02T14:33:28+00:00"
+            "time": "2019-03-05T14:12:22+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -5219,7 +5256,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -6618,7 +6655,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -6859,16 +6896,16 @@
         },
         {
             "name": "symfony/psr-http-message-bridge",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/psr-http-message-bridge.git",
-                "reference": "53c15a6a7918e6c2ab16ae370ea607fb40cab196"
+                "reference": "921f8669c36ea0148d2520c0bb7838cda14879e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/53c15a6a7918e6c2ab16ae370ea607fb40cab196",
-                "reference": "53c15a6a7918e6c2ab16ae370ea607fb40cab196",
+                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/921f8669c36ea0148d2520c0bb7838cda14879e0",
+                "reference": "921f8669c36ea0148d2520c0bb7838cda14879e0",
                 "shasum": ""
             },
             "require": {
@@ -6877,12 +6914,11 @@
                 "symfony/http-foundation": "^2.3.42 || ^3.4 || ^4.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^3.4 || 4.0"
+                "nyholm/psr7": "^1.1",
+                "symfony/phpunit-bridge": "^3.4 || ^4.0"
             },
             "suggest": {
-                "psr/http-factory-implementation": "To use the PSR-17 factory",
-                "psr/http-message-implementation": "To use the HttpFoundation factory",
-                "zendframework/zend-diactoros": "To use the Zend Diactoros factory"
+                "nyholm/psr7": "For a super lightweight PSR-7/17 implementation"
             },
             "type": "symfony-bridge",
             "extra": {
@@ -6893,7 +6929,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Bridge\\PsrHttpMessage\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6914,9 +6953,10 @@
             "keywords": [
                 "http",
                 "http-message",
+                "psr-17",
                 "psr-7"
             ],
-            "time": "2018-08-30T16:28:28+00:00"
+            "time": "2019-03-11T15:23:15+00:00"
         },
         {
             "name": "symfony/routing",
@@ -7288,16 +7328,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.37.1",
+            "version": "v1.38.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "66be9366c76cbf23e82e7171d47cbfa54a057a62"
+                "reference": "874adbd9222f928f6998732b25b01b41dff15b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/66be9366c76cbf23e82e7171d47cbfa54a057a62",
-                "reference": "66be9366c76cbf23e82e7171d47cbfa54a057a62",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/874adbd9222f928f6998732b25b01b41dff15b0c",
+                "reference": "874adbd9222f928f6998732b25b01b41dff15b0c",
                 "shasum": ""
             },
             "require": {
@@ -7312,7 +7352,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.37-dev"
+                    "dev-master": "1.38-dev"
                 }
             },
             "autoload": {
@@ -7350,23 +7390,26 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-01-14T14:59:29+00:00"
+            "time": "2019-03-12T18:45:24+00:00"
         },
         {
             "name": "typo3/phar-stream-wrapper",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3/phar-stream-wrapper.git",
-                "reference": "0469d9fefa0146ea4299d3b11cfbb76faa7045bf"
+                "reference": "b7a21f0859059ed5d9754af8c11f852d43762334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3/phar-stream-wrapper/zipball/0469d9fefa0146ea4299d3b11cfbb76faa7045bf",
-                "reference": "0469d9fefa0146ea4299d3b11cfbb76faa7045bf",
+                "url": "https://api.github.com/repos/TYPO3/phar-stream-wrapper/zipball/b7a21f0859059ed5d9754af8c11f852d43762334",
+                "reference": "b7a21f0859059ed5d9754af8c11f852d43762334",
                 "shasum": ""
             },
             "require": {
+                "brumann/polyfill-unserialize": "^1.0",
+                "ext-fileinfo": "*",
+                "ext-json": "*",
                 "php": "^5.3.3|^7.0"
             },
             "require-dev": {
@@ -7390,7 +7433,7 @@
                 "security",
                 "stream-wrapper"
             ],
-            "time": "2018-10-18T08:46:28+00:00"
+            "time": "2019-03-01T17:43:52+00:00"
         },
         {
             "name": "vardot/blazy",
@@ -7573,16 +7616,16 @@
         },
         {
             "name": "zendframework/zend-feed",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-feed.git",
-                "reference": "5248e9fffa760e5c36092aeff02c3797e4a8a690"
+                "reference": "d926c5af34b93a0121d5e2641af34ddb1533d733"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-feed/zipball/5248e9fffa760e5c36092aeff02c3797e4a8a690",
-                "reference": "5248e9fffa760e5c36092aeff02c3797e4a8a690",
+                "url": "https://api.github.com/repos/zendframework/zend-feed/zipball/d926c5af34b93a0121d5e2641af34ddb1533d733",
+                "reference": "d926c5af34b93a0121d5e2641af34ddb1533d733",
                 "shasum": ""
             },
             "require": {
@@ -7613,8 +7656,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev",
-                    "dev-develop": "2.12.x-dev"
+                    "dev-master": "2.12.x-dev",
+                    "dev-develop": "2.13.x-dev"
                 }
             },
             "autoload": {
@@ -7632,7 +7675,7 @@
                 "feed",
                 "zf"
             ],
-            "time": "2019-01-29T21:37:15+00:00"
+            "time": "2019-03-05T20:08:49+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
@@ -8431,16 +8474,16 @@
         },
         {
             "name": "consolidation/annotated-command",
-            "version": "2.11.2",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/annotated-command.git",
-                "reference": "004af26391cd7d1cd04b0ac736dc1324d1b4f572"
+                "reference": "512a2e54c98f3af377589de76c43b24652bcb789"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/004af26391cd7d1cd04b0ac736dc1324d1b4f572",
-                "reference": "004af26391cd7d1cd04b0ac736dc1324d1b4f572",
+                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/512a2e54c98f3af377589de76c43b24652bcb789",
+                "reference": "512a2e54c98f3af377589de76c43b24652bcb789",
                 "shasum": ""
             },
             "require": {
@@ -8523,7 +8566,7 @@
                 }
             ],
             "description": "Initialize Symfony Console commands from annotated command class methods.",
-            "time": "2019-02-02T02:29:53+00:00"
+            "time": "2019-03-08T16:55:03+00:00"
         },
         {
             "name": "consolidation/config",
