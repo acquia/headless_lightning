@@ -1,7 +1,7 @@
 @api @headless
 Feature: Links to content should point to JSON Content, not rendered HTML.
 
-  @3af3400a @orca_public
+  @3af3400a
   Scenario: Content forms should provide links to the JSON representation
     Given I am logged in as an administrator
     And page content:
@@ -11,7 +11,7 @@ Feature: Links to content should point to JSON Content, not rendered HTML.
     And I click "Edit Page 3af3400a"
     Then I should see "View JSON"
 
-  @11163335 @orca_public
+  @11163335
   Scenario: Media forms should provide links to the JSON representation
     Given I am logged in as an administrator
     And media items:
