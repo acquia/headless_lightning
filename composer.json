@@ -58,6 +58,9 @@
         "push": "Acquia\\Lightning\\Commands\\FileCommands::push"
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
         "installer-types": [
             "bower-asset",
             "npm-asset"
