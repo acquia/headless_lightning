@@ -1,0 +1,5 @@
+{
+  "name": "drupal/headless_ui",
+  "type": "drupal-module",
+  "description": "Strong user interface opinions for Headless Lightning"
+}

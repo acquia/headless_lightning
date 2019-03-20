@@ -1,0 +1,5 @@
+{
+  "name": "drupal/access_ui",
+  "type": "drupal-module",
+  "description": "An administrative interface for configuring access to your API."
+}

@@ -1,0 +1,5 @@
+{
+  "name": "drupal/json_content",
+  "type": "drupal-module",
+  "description": "Presentation layer blanket for content that is only consumed via an API."
+}

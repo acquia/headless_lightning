@@ -1,4 +1,5 @@
 name: 'Content Modeling UI'
 core: 8.x
 type: module
-version: '1.4.0-beta1'
+description: 'An administrative interface to build data and content models for your API.'
+version: '1.4.0-beta6'
