@@ -1,5 +1,6 @@
 {
-  "name": "drupal/headless_ui",
-  "type": "drupal-module",
-  "description": "Strong user interface opinions for Headless Lightning"
+    "name": "drupal/headless_ui",
+    "type": "drupal-module",
+    "description": "Strong user interface opinions for Headless Lightning",
+    "license": "GPL-2.0-or-later"
 }

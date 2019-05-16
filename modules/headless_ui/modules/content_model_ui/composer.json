@@ -1,5 +1,6 @@
 {
-  "name": "drupal/content_model_ui",
-  "type": "drupal-module",
-  "description": "An administrative interface to build data and content models for your API."
+    "name": "drupal/content_model_ui",
+    "type": "drupal-module",
+    "description": "An administrative interface to build data and content models for your API.",
+    "license": "GPL-2.0-or-later"
 }
