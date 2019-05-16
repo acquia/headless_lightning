@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\block\BlockInterface;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 
 /**
  * Implements hook_install_tasks().
@@ -63,7 +64,7 @@ function headless_lightning_set_api_settings() {
  * Modifies the default form display for consumer entities.
  */
 function headless_lightning_prepare_consumer_form_display() {
-  entity_get_form_display('consumer', 'consumer', 'default')
+  headless_lightning_entity_get_form_display('consumer', 'consumer')
     ->removeComponent('description')
     ->removeComponent('image')
     ->save();
@@ -76,4 +77,48 @@ function headless_lightning_block_insert(BlockInterface $block) {
   if ($block->id() == 'seven_login') {
     $block->delete();
   }
+}
+
+/**
+ * Returns the entity form display associated with a bundle and form mode.
+ *
+ * This is an exact copy of the deprecated entity_get_form_display() from Core
+ * 8.6.x except for one change: the default value of the $form_mode parameter.
+ *
+ * @todo Eliminate this in favor of
+ *   \Drupal::service('entity_display.repository')->getFormDisplay() in Core
+ *   8.8.x once that is the lowest supported version.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param string $bundle
+ *   The bundle.
+ * @param string $form_mode
+ *   The form mode.
+ *
+ * @return \Drupal\Core\Entity\Display\EntityFormDisplayInterface
+ *   The entity form display associated with the given form mode.
+ *
+ * @see \Drupal\Core\Entity\EntityStorageInterface::create()
+ * @see \Drupal\Core\Entity\EntityStorageInterface::load()
+ */
+function headless_lightning_entity_get_form_display($entity_type, $bundle, $form_mode = 'default') {
+  // Try loading the entity from configuration.
+  $entity_form_display = EntityFormDisplay::load($entity_type . '.' . $bundle . '.' . $form_mode);
+
+  // If not found, create a fresh entity object. We do not preemptively create
+  // new entity form display configuration entries for each existing entity type
+  // and bundle whenever a new form mode becomes available. Instead,
+  // configuration entries are only created when an entity form display is
+  // explicitly configured and saved.
+  if (!$entity_form_display) {
+    $entity_form_display = EntityFormDisplay::create([
+      'targetEntityType' => $entity_type,
+      'bundle' => $bundle,
+      'mode' => $form_mode,
+      'status' => TRUE,
+    ]);
+  }
+
+  return $entity_form_display;
 }

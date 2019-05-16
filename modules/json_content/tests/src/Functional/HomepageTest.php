@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\headless_ui\Functional;
+namespace Drupal\Tests\json_content\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 
