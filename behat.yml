@@ -9,6 +9,7 @@ default:
       contexts:
         - '\Drupal\DrupalExtension\Context\DrupalContext'
         - '\Drupal\DrupalExtension\Context\MinkContext'
+        - '\Drupal\Tests\lightning_core\FixtureContext'
   extensions:
     Drupal\DrupalExtension:
       subcontexts:

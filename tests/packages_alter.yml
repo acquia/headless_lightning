@@ -1,0 +1,25 @@
+---
+acquia/headless_lightning:
+  type: drupal-profile
+  url: ../headless-lightning
+  version_dev: 1.x-dev
+
+drupal/lightning_api:
+  version: "*"
+  version_dev: "*"
+
+drupal/lightning_core:
+  version: "*"
+  version_dev: "*"
+
+drupal/lightning_layout:
+  version: "*"
+  version_dev: "*"
+
+drupal/lightning_media:
+  version: "*"
+  version_dev: "*"
+
+drupal/lightning_workflow:
+  version: "*"
+  version_dev: "*"

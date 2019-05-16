@@ -1,5 +1,6 @@
 {
-  "name": "drupal/access_ui",
-  "type": "drupal-module",
-  "description": "An administrative interface for configuring access to your API."
+    "name": "drupal/access_ui",
+    "type": "drupal-module",
+    "description": "An administrative interface for configuring access to your API.",
+    "license": "GPL-2.0-or-later"
 }
