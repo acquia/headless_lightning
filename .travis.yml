@@ -16,7 +16,7 @@ env:
   global:
     - ORCA_SUT_NAME=acquia/headless_lightning
     - ORCA_SUT_BRANCH=master
-    - ORCA_VERSION=v1.0.0-alpha17
+    - ORCA_VERSION=v1.0.0-alpha18
     - ORCA_PACKAGES_CONFIG_ALTER=../headless_lightning/tests/packages_alter.yml
     - ORCA_FIXTURE_PROFILE=headless_lightning
 
@@ -40,6 +40,8 @@ matrix:
     - env: ORCA_JOB=ISOLATED_DEV
     - env: ORCA_JOB=INTEGRATED_DEV
     - env: ORCA_JOB=CORE_NEXT
+    # Temporary allowances.
+    - env: ORCA_JOB=STATIC_CODE_ANALYSIS
 
 before_install:
   - git clone --branch ${ORCA_VERSION} --depth 1 https://github.com/acquia/orca.git ../orca
@@ -55,4 +57,10 @@ script:
   - ../orca/bin/travis/script.sh
   - ./tests/travis/script.sh
 
+before_cache: ../orca/bin/travis/before_cache.sh
+
+after_success: ../orca/bin/travis/after_success.sh
+
 after_failure: ../orca/bin/travis/after_failure.sh
+
+after_script: ../orca/bin/travis/after_script.sh
