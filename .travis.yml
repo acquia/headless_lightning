@@ -17,7 +17,7 @@ env:
     - ORCA_SUT_NAME=acquia/headless_lightning
     - ORCA_SUT_BRANCH=master
     - ORCA_VERSION=v1.0.0-alpha17
-    - ORCA_PACKAGES_CONFIG_ALTER=../headless-lightning/tests/packages_alter.yml
+    - ORCA_PACKAGES_CONFIG_ALTER=../headless_lightning/tests/packages_alter.yml
     - ORCA_FIXTURE_PROFILE=headless_lightning
 
 matrix:
