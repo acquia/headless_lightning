@@ -1,7 +1,7 @@
 ---
 acquia/headless_lightning:
   type: drupal-profile
-  url: ../headless-lightning
+  url: ../headless_lightning
   version_dev: 1.x-dev
 
 drupal/lightning_api:
