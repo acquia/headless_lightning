@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/acquia/headless-lightning.svg?branch=master)](https://travis-ci.org/acquia/headless-lightning)
+[![Build Status](https://travis-ci.org/acquia/headless_lightning.svg?branch=master)](https://travis-ci.org/acquia/headless_lightning)
 
 # Headless Lightning
 Headless Lightning is a more opinionated version of the [Lightning](https://github.com/acquia/lightning)
@@ -33,7 +33,7 @@ development. To take advantage:
 5. Once you're happy with changes, use `composer pull` to move your changes back
    into the top-level repository to be committed or submitted as a PR or patch.
    
-Please file issues in our [GitHub Issue Queue](https://github.com/acquia/headless-lightning/issues).
+Please file issues in our [GitHub Issue Queue](https://github.com/acquia/headless_lightning/issues).
 
 ## Goals
 **Headless Lightning aims to provide a standard backend content repository that
