@@ -2,4 +2,3 @@ name: 'Access Control UI'
 core: 8.x
 type: module
 description: 'An administrative interface for configuring access to your API.'
-version: '1.4.0-beta6'

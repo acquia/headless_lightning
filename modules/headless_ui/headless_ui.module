@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains hook implementations for headless_ui.
+ */
+
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
@@ -109,10 +114,19 @@ function headless_ui_form_node_type_add_form_alter(array &$form) {
   $form['submission']['preview_mode']['#access'] = FALSE;
 
   $options = &$form['workflow']['options'];
-  \Drupal::service('lightning.form_helper')->applyStandardProcessing($options);
+  Drupal::service('lightning.form_helper')->applyStandardProcessing($options);
   $options['#process'][] = 'headless_ui_process_node_type_workflow_options';
 }
 
+/**
+ * Modifies workflow options on a node type form.
+ *
+ * @param array $element
+ *   The element containing the workflow options.
+ *
+ * @return array
+ *   The modified element.
+ */
 function headless_ui_process_node_type_workflow_options(array $element) {
   $element['promote']['#access'] = FALSE;
   $element['sticky']['#access'] = FALSE;

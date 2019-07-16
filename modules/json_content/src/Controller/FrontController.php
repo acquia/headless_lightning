@@ -5,6 +5,9 @@ namespace Drupal\json_content\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\json_content\Form\UserLoginForm;
 
+/**
+ * Defines a controller for the front page of the site.
+ */
 class FrontController extends ControllerBase {
 
   /**

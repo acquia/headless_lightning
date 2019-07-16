@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains installation tasks for the headless_lightning profile.
+ */
+
 use Drupal\block\BlockInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 

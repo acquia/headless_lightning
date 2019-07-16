@@ -1,0 +1,7 @@
+services:
+  json_content.config_subscriber:
+    class: 'Drupal\json_content\Event\ConfigSubscriber'
+    arguments:
+      - '@plugin.manager.menu.local_task'
+    tags:
+      - { name: event_subscriber }

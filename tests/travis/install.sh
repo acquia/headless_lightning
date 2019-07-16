@@ -18,6 +18,10 @@ orca fixture:init --force --sut ${ORCA_SUT_NAME} --sut-only --no-site-install
 
 cd "$ORCA_FIXTURE_DIR/docroot"
 
+# Ensure the files directory exists so that the default user avatar can be
+# copied into it.
+mkdir -p ./sites/default/files
+
 DB="$TRAVIS_BUILD_DIR/tests/fixtures/$DB_FIXTURE.php.gz"
 
 php core/scripts/db-tools.php import ${DB}
@@ -27,7 +31,7 @@ drush php:script "$TRAVIS_BUILD_DIR/tests/update.php"
 drush updatedb --yes
 drush update:lightning --no-interaction --yes
 
-orca fixture:enable-modules
+orca fixture:enable-extensions
 
 # Reinstall from exported configuration to prove that it's coherent.
 drush config:export --yes

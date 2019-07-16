@@ -1,6 +1,12 @@
 <?php
 
+/**
+ * @file
+ * Contains hook implementations for json_content.
+ */
+
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\json_content\Menu\ViewJsonTask;
 
 /**
  * Implements hook_toolbar().
@@ -10,7 +16,6 @@ function json_content_toolbar_alter(array &$items) {
   // viewed outside of the API so this link makes no sense.
   unset($items['home']);
 }
-
 
 /**
  * Implements hook_entity_operation_alter().
@@ -26,29 +31,36 @@ function json_content_entity_operation_alter(array &$operations, EntityInterface
 }
 
 /**
- * Implements  hook_menu_local_tasks_alter().
+ * Implements hook_local_tasks_alter().
  */
-function json_content_menu_local_tasks_alter(array &$data, $route_name) {
-  if (isset($data['tabs'][0])) {
-    foreach ($data['tabs'][0] as $name => $tab) {
-      if (preg_match('/^entity\.(\S*)\.canonical$/', $name, $matches)) {
-        // If there is a link to the canonical view of an entity, override it so
-        // that it points to the JSON rendered version of the entity. We tried
-        // doing this with hook_local_tasks_alter, but ended up with links to
-        // other bundles of the same entity types.
-        $entity_type = $matches[1];
-        $entity = \Drupal::routeMatch()->getParameter($entity_type);
-        $url = lightning_api_entity_json($entity);
-        $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['url'] = $url;
-        $data['tabs'][0]['entity.' . $entity_type . '.canonical']['#link']['title'] = t('View JSON');
-      }
-      if (preg_match('/^content_moderation\.workflows\:(\S*)\.latest_version_tab$/', $name, $matches)) {
-        // JSON API isn't capable of showing specific revisions, so we need to
-        // remove the Latest Revision tab if it exists. Once this issue is
-        // resolved we should be able to provide a link to the latest revision:
-        // https://www.drupal.org/project/jsonapi/issues/2795279
-        $data['tabs'][0]['content_moderation.workflows:' . $matches[1] . '.latest_version_tab']['#access'] = FALSE;
-      }
+function json_content_local_tasks_alter(array &$local_tasks) {
+  $entity_json = Drupal::config('lightning_api.settings')->get('entity_json');
+  $media_url = Drupal::config('media.settings')->get('standalone_url');
+
+  foreach (array_keys($local_tasks) as $id) {
+    $matches = [];
+
+    // JSON:API is not capable of showing specific revisions, so we need to
+    // remove the Latest Revision tab if it exists. Once
+    // https://www.drupal.org/project/jsonapi/issues/2795279 is resolved, we
+    // should be able to provide a link to the latest revision.
+    if (preg_match('/^content_moderation\.workflows\:(\S*)\.latest_version_tab$/', $id)) {
+      unset($local_tasks[$id]);
+    }
+    // If standalone URLs are not enabled for media items, the "canonical" route
+    // is actually the edit form, so don't modify the corresponding local task.
+    elseif ($id === 'media.tasks:entity.media.canonical' && empty($media_url)) {
+      continue;
+    }
+    // If there is a link to the canonical view of an entity, override it so
+    // that it points to its JSON:API representation instead. The 'media.tasks:'
+    // prefix accounts for the fact that Media module exposes the canonical
+    // route conditionally based on a config switch, and therefore creates the
+    // Edit and View tasks with a deriver (which is why it's prefixed).
+    elseif (preg_match('/^(media\.tasks:)?entity\.(\S*)\.canonical$/', $id, $matches) && $entity_json) {
+      $local_tasks[$id]['title'] = t('View JSON');
+      $local_tasks[$id]['class'] = ViewJsonTask::class;
+      $local_tasks[$id]['entity_type_id'] = $matches[2];
     }
   }
 }

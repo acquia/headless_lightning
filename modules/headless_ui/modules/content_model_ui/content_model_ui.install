@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Contains installation and update routines for content_model_ui.
+ */
+
+/**
  * Implements hook_install().
  */
 function content_model_ui_install() {

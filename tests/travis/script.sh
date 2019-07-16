@@ -12,4 +12,4 @@
 cd "$(dirname "$0")"; source _includes.sh
 
 orca fixture:status
-orca tests:run --sut ${ORCA_SUT_NAME} --sut-only
+orca qa:automated-tests --sut ${ORCA_SUT_NAME} --sut-only

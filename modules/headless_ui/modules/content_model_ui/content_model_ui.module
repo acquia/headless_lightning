@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Contains hook implementations for content_model_ui.
+ */
+
+/**
  * Implements hook_toolbar_alter().
  */
 function content_model_ui_toolbar_alter(array &$items) {

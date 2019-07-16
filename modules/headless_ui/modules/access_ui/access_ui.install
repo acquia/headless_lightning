@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Contains installation and update routines for access_ui.
+ */
+
+/**
  * Implements hook_install().
  */
 function access_ui_install() {
