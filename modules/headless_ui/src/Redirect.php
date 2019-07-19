@@ -8,6 +8,11 @@ use Drupal\Core\Render\Element;
 
 /**
  * Provides helper methods to redirect various forms.
+ *
+ * @internal
+ *   This is an internal part of Headless Lightning and may be changed or
+ *   removed at any time without warning. External code should not extend or
+ *   use this class in any way!
  */
 class Redirect {
 

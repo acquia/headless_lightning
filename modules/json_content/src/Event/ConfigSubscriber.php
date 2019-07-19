@@ -9,6 +9,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Reacts to config-related events.
+ *
+ * @internal
+ *   This is an internal part of Headless Lightning and may be changed or
+ *   removed at any time without warning. External code should not extend or
+ *   use this class in any way!
  */
 final class ConfigSubscriber implements EventSubscriberInterface {
 

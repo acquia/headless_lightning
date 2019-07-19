@@ -11,6 +11,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines the logic for "View JSON" local tasks.
+ *
+ * @internal
+ *   This is an internal part of Headless Lightning and may be changed or
+ *   removed at any time without warning. External code should not extend or
+ *   use this class in any way!
  */
 final class ViewJsonTask extends LocalTaskDefault implements ContainerFactoryPluginInterface {
 
