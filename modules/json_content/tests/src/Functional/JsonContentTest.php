@@ -24,6 +24,14 @@ class JsonContentTest extends BrowserTestBase {
    */
   protected static $modules = ['media_test_source'];
 
+  /**
+   * {@inheritdoc}
+   */
+  protected static $configSchemaCheckerExclusions = [
+    // @todo Remove when requiring Lightning Layout 2.2 or later.
+    'core.entity_view_display.block_content.banner.default',
+  ];
+
   protected function setUp() {
     parent::setUp();
     $this->createMediaType('test', ['id' => 'test']);

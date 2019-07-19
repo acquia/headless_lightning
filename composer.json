@@ -4,7 +4,7 @@
     "description": "Drupal Lightning as a backend for fully decoupled applications.",
     "license": "GPL-2.0-or-later",
     "require": {
-        "acquia/lightning": "dev-8.x-3.x",
+        "acquia/lightning": "~4.0.3",
         "cweagans/composer-patches": "^1.6.4",
         "drupal-composer/drupal-scaffold": "^2.0.0"
     },
@@ -62,11 +62,6 @@
         "asset-packagist": {
             "type": "composer",
             "url": "https://asset-packagist.org"
-        },
-        "dev": {
-            "type": "github",
-            "url": "https://github.com/acquia/lightning-dev",
-            "no-api": true
         }
     },
     "minimum-stability": "dev",
@@ -83,11 +78,6 @@
             "ln -s -f git-hooks/pre-commit .git/hooks/pre-commit"
         ],
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-        "install-drupal": [
-            "rm -f ./docroot/sites/default/settings.php",
-            "drush site:install headless_lightning --config drush.yml --yes",
-            "chmod +w ./docroot/sites/default ./docroot/sites/default/settings.php"
-        ],
         "nuke": "rm -r -f docroot vendor",
         "pull": "cp -R -f ./docroot/profiles/contrib/headless_lightning/* .",
         "push": [
@@ -96,7 +86,6 @@
             "@composer archive --file headless_lightning",
             "tar -x -f headless_lightning.tar -C ./docroot/profiles/contrib/headless_lightning",
             "rm headless_lightning.tar"
-        ],
-        "release-version": "Acquia\\Lightning\\Composer\\ReleaseVersion::execute"
+        ]
     }
 }
