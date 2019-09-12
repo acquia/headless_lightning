@@ -26,10 +26,7 @@ Feature: Entity form redirections
   @fbdd54ba
   Scenario: Creating media as an administrator
     Given I am logged in as an administrator
-    When I click "Content"
-    And I click "Media"
-    And I click "Add media"
-    And I click "Video"
+    When I visit "/media/add/video"
     And I enter "---TESTING---" for "Name"
     And I enter "https://www.youtube.com/watch?v=N2_HkWs7OM0" for "Video URL"
     And I press "Save"
@@ -40,10 +37,7 @@ Feature: Entity form redirections
   @ec951c88
   Scenario: Editing media as an administrator
     Given I am logged in as an administrator
-    When I click "Content"
-    And I click "Media"
-    And I click "Add media"
-    And I click "Video"
+    When I visit "/media/add/video"
     And I enter "---TESTING---" for "Name"
     And I enter "https://www.youtube.com/watch?v=N2_HkWs7OM0" for "Video URL"
     And I press "Save"
