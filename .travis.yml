@@ -1,7 +1,7 @@
 ---
 language: php
 
-php: "7.1"
+php: "7.2"
 
 addons:
   chrome: stable
@@ -10,15 +10,16 @@ cache:
   directories:
     - "$HOME/.composer/cache"
     - "$HOME/.drush/cache"
-    - "$TMPDIR/phpstan/cache"
+    - "${TMPDIR:-/tmp}/phpstan/cache"
 
 env:
   global:
     - ORCA_SUT_NAME=acquia/headless_lightning
     - ORCA_SUT_BRANCH=master
-    - ORCA_VERSION=v1.0.0-alpha18
+    - ORCA_VERSION=master
     - ORCA_PACKAGES_CONFIG_ALTER=../headless_lightning/tests/packages_alter.yml
     - ORCA_FIXTURE_PROFILE=headless_lightning
+    - ORCA_TELEMETRY_ENABLE=TRUE
 
 matrix:
   fast_finish: true

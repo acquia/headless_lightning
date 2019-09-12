@@ -2,8 +2,8 @@
 
 namespace Drupal\json_content\Form;
 
-use Drupal\user\Form\UserLoginForm as BaseUserLoginForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Form\UserLoginForm as BaseUserLoginForm;
 
 /**
  * Defines a user login form with specialized redirect handling.
