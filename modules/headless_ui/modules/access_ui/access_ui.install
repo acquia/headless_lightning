@@ -5,16 +5,23 @@
  * Contains installation and update routines for access_ui.
  */
 
+use Drupal\path_alias\Entity\PathAlias;
+
 /**
  * Implements hook_install().
  */
 function access_ui_install() {
-  /** @var \Drupal\Core\Path\AliasStorageInterface $storage */
-  $storage = \Drupal::service('path.alias_storage');
-
-  $storage->save('/admin/config/people/simple_oauth', '/admin/access/settings');
-  $storage->save('/admin/config/people/simple_oauth/oauth2_client', '/admin/access/clients');
-  $storage->save('/admin/people/roles', '/admin/access/roles');
-  $storage->save('/admin/config/people/simple_oauth/oauth2_token', '/admin/access/tokens');
-  $storage->save('/admin/people', '/admin/access/users');
+  $aliases = [
+    '/admin/config/people/simple_oauth' => '/admin/access/settings',
+    '/admin/config/people/simple_oauth/oauth2_client' => '/admin/access/clients',
+    '/admin/people/roles' => '/admin/access/roles',
+    '/admin/config/people/simple_oauth/oauth2_token' => '/admin/access/tokens',
+    '/admin/people' => '/admin/access/users',
+  ];
+  foreach ($aliases as $path => $alias) {
+    PathAlias::create([
+      'path' => $path,
+      'alias' => $alias,
+    ])->save();
+  }
 }

@@ -30,7 +30,8 @@ Feature: Entity form redirections
     And I enter "---TESTING---" for "Name"
     And I enter "https://www.youtube.com/watch?v=N2_HkWs7OM0" for "Video URL"
     And I press "Save"
-    Then I should be on "/admin/content/media-table"
+    Then I should see a ".view-media" element
+    # Then I should be on "/admin/content/media"
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "Video ---TESTING--- has been created."
 
@@ -43,7 +44,8 @@ Feature: Entity form redirections
     And I press "Save"
     And I click "Edit"
     And I press "Save"
-    Then I should be on "/admin/content/media-table"
+    Then I should see a ".view-media" element
+    # Then I should be on "/admin/content/media"
     # TODO: Restore when Lightning sets success_message_selector in behat.yml.
     # And I should see the success message "Video ---TESTING--- has been updated."
 
