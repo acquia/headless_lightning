@@ -14,7 +14,8 @@
         "drupal/core-composer-scaffold": "*",
         "drupal/core-dev": "*",
         "drush/drush": ">=9.7",
-        "zaporylie/composer-drupal-optimizations": "^1.1"
+        "zaporylie/composer-drupal-optimizations": "^1.1",
+        "oomphinc/composer-installers-extender": "^1.1"
     },
     "config": {
         "preferred-install": {
