@@ -2,3 +2,8 @@
 acquia/headless_lightning:
   type: drupal-profile
   version_dev: 1.x-dev
+
+drupal/lightning_media:
+  type: drupal-module
+  version: 3.*
+  version_dev: 3.x-dev

@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\json_content\Functional;
 
+use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
@@ -95,7 +96,7 @@ class JsonContentTest extends BrowserTestBase {
       'name' => 'Testing',
       'field_media_test' => $this->randomString(),
     ])->save();
-    $this->drupalGet('/admin/content/media-table');
+    $this->drupalGet(Url::fromRoute('entity.media.collection'));
     $assert_session->statusCodeEquals(200);
     $page->clickLink('Edit Testing');
     $assert_session->statusCodeEquals(200);

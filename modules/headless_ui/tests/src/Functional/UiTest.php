@@ -78,16 +78,21 @@ class UiTest extends BrowserTestBase {
     $assert_session->pageTextContains('Basic page Testing has been updated.');
 
     // Test redirects when creating and editing media.
+    $overview_url = Url::fromRoute('entity.media.collection')->toString();
     $this->drupalGet('/media/add/' . $media_type->id());
     $page->fillField('Name', 'Testing');
     $page->fillField('field_media_test[0][value]', $this->randomString());
     $page->pressButton('Save');
-    $assert_session->addressEquals('/admin/content/media-table');
+    // @todo Use $assert_session->addressEquals($overview_url) when Lightning
+    // Media 3.x is no longer supported.
+    $this->assertStringStartsWith($overview_url, parse_url($this->getUrl(), PHP_URL_PATH));
     $assert_session->pageTextContains($media_type->label() . ' Testing has been created.');
 
     $this->drupalGet('/media/1/edit');
     $page->pressButton('Save');
-    $assert_session->addressEquals('/admin/content/media-table');
+    // @todo Use $assert_session->addressEquals($overview_url) when Lightning
+    // Media 3.x is no longer supported.
+    $this->assertStringStartsWith($overview_url, parse_url($this->getUrl(), PHP_URL_PATH));
     $assert_session->pageTextContains($media_type->label() . ' Testing has been updated.');
 
     // Test redirects when creating and editing user accounts.
