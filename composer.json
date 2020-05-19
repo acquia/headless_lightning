@@ -16,9 +16,6 @@
         "drush/drush": ">=9.7"
     },
     "config": {
-        "platform": {
-            "php": "7.0.8"
-        },
         "preferred-install": {
             "drupal/core": "dist"
         }
