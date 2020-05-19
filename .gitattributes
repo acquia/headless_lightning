@@ -2,7 +2,6 @@
 /tests export-ignore
 /*.sh export-ignore
 /acquia-pipelines.yml export-ignore
-/behat.yml export-ignore
 /drush.yml export-ignore
 /phpunit.xml export-ignore
 /settings.local.php export-ignore
