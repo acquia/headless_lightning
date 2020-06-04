@@ -1,4 +1,4 @@
 name: 'JSON Content'
 type: module
-core: 8.x
+core_version_requirement: '^8.8 || ^9'
 description: 'Presentation layer blanket for content that is only consumed via an API.'
