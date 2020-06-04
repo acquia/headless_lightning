@@ -1,7 +1,7 @@
 ---
 language: php
 
-php: "7.2"
+php: "7.3"
 
 addons:
   chrome: stable
@@ -23,6 +23,7 @@ env:
     - ORCA_VERSION=dev-master
     - ORCA_PACKAGES_CONFIG_ALTER=../headless_lightning/tests/packages_alter.yml
     - ORCA_FIXTURE_PROFILE=headless_lightning
+    - ORCA_FIXTURE_PROJECT_TEMPLATE=acquia/drupal-recommended-project
     - ORCA_TELEMETRY_ENABLE=TRUE
 
 matrix:
@@ -30,7 +31,10 @@ matrix:
   include:
     # Standard ORCA jobs.
     - { name: "Static code analysis", env: ORCA_JOB=STATIC_CODE_ANALYSIS }
-    - { name: "Deprecated code scan", env: ORCA_JOB=DEPRECATED_CODE_SCAN_SUT }
+    # This job disabled since the SUT's support requirements preclude Drupal 8,
+    # when this job was meaningful (i.e., tested for pre-Drupal 9 deprecations,
+    # and it is not desirable to test for D9 deprecations at this time.
+    # - { name: "Deprecated code scan", env: ORCA_JOB=DEPRECATED_CODE_SCAN_SUT }
     - { name: "Isolated test w/ recommended package versions", env: ORCA_JOB=ISOLATED_RECOMMENDED }
     - { name: "Integrated test w/ recommended package versions", env: ORCA_JOB=INTEGRATED_RECOMMENDED }
     # The previous version of Drupal Core at any time is not currently
@@ -50,9 +54,7 @@ before_install:
   - composer create-project --no-dev acquia/orca ../orca "$ORCA_VERSION"
   - ../orca/bin/travis/before_install.sh
 
-install:
-  - ../orca/bin/travis/install.sh
-  - ./tests/travis/install.sh
+install: ./tests/travis/install.sh
 
 before_script: ../orca/bin/travis/before_script.sh
 
