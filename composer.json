@@ -20,9 +20,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "1.x-dev"
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "docroot/"
