@@ -21,7 +21,7 @@ env:
     # string.
     # @see https://getcomposer.org/doc/articles/versions.md
     - ORCA_VERSION=dev-master
-    # - ORCA_PACKAGES_CONFIG_ALTER=../headless_lightning/tests/packages_alter.yml
+    - ORCA_PACKAGES_CONFIG_ALTER=../headless_lightning/tests/packages_alter.yml
     - ORCA_FIXTURE_PROFILE=headless_lightning
     - ORCA_FIXTURE_PROJECT_TEMPLATE=acquia/drupal-recommended-project
     - ORCA_TELEMETRY_ENABLE=TRUE
