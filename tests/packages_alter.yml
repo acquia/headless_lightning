@@ -2,6 +2,11 @@
 acquia/headless_lightning:
   type: drupal-profile
 
+# Remove drupal/acquia_search because it depends on the
+# search_api_solr module, which is not yet compatible with
+# Drupal 9 and therefore breaks the ORCA fixture build.
+drupal/acquia_search: ~
+
 # Let Lightning manage its own components.
 drupal/lightning_api: ~
 drupal/lightning_core: ~
