@@ -31,7 +31,7 @@ esac
 # Exit early if no DB fixture is specified.
 [[ "$DB_FIXTURE" ]] || exit 0
 
-orca fixture:init --force --sut "$ORCA_SUT_NAME" --sut-only --no-site-install --core="$CURRENT_DEV"
+orca fixture:init --force --sut "$ORCA_SUT_NAME" --sut-only --no-site-install --core="$CURRENT_DEV" --dev
 
 cd "$ORCA_FIXTURE_DIR/docroot" || exit 0
 
