@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f074623f139261526e7c8c10b5ef3645",
+    "content-hash": "b20fa6361c718e6ae942aed92ed9cd59",
     "packages": [
         {
             "name": "acquia/lightning",
@@ -206,16 +206,16 @@
         },
         {
             "name": "bower-asset/dropzone",
-            "version": "v5.7.0",
+            "version": "v5.7.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:enyo/dropzone.git",
-                "reference": "5b82186d5f18540a1d13b6f4914fdc6220617ef5"
+                "url": "https://github.com/enyo/dropzone.git",
+                "reference": "b2a50bc61c55ff4f22663a6754020d967305c973"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enyo/dropzone/zipball/5b82186d5f18540a1d13b6f4914fdc6220617ef5",
-                "reference": "5b82186d5f18540a1d13b6f4914fdc6220617ef5"
+                "url": "https://api.github.com/repos/enyo/dropzone/zipball/b2a50bc61c55ff4f22663a6754020d967305c973",
+                "reference": "b2a50bc61c55ff4f22663a6754020d967305c973"
             },
             "type": "bower-asset"
         },
@@ -1217,17 +1217,17 @@
         },
         {
             "name": "drupal/contact_storage",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/contact_storage.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/contact_storage-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "2138da92bdd71bc8429178c19ab75549295f81a1"
+                "url": "https://ftp.drupal.org/files/projects/contact_storage-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "3560a3eb06daa5f5156c0986989a0b5deadd9de1"
             },
             "require": {
                 "drupal/core": "^8.7.7 || ^9",
@@ -1236,8 +1236,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1578466387",
+                    "version": "8.x-1.1",
+                    "datestamp": "1591811491",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7149,16 +7149,16 @@
         },
         {
             "name": "swagger-api/swagger-ui",
-            "version": "v3.25.5",
+            "version": "v3.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swagger-api/swagger-ui.git",
-                "reference": "28b7d7c54866f3581f0f703f3971422a09ebd649"
+                "reference": "b9064157e710d0c56d4459b5a7c16751ad0ae72c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/28b7d7c54866f3581f0f703f3971422a09ebd649",
-                "reference": "28b7d7c54866f3581f0f703f3971422a09ebd649",
+                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/b9064157e710d0c56d4459b5a7c16751ad0ae72c",
+                "reference": "b9064157e710d0c56d4459b5a7c16751ad0ae72c",
                 "shasum": ""
             },
             "type": "library",
@@ -7202,7 +7202,7 @@
                 "swagger",
                 "ui"
             ],
-            "time": "2020-05-28T17:37:47+00:00"
+            "time": "2020-06-05T00:57:11+00:00"
         },
         {
             "name": "symfony-cmf/routing",
