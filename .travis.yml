@@ -44,7 +44,7 @@ matrix:
     - { name: "Integrated test w/ dev package versions", env: ORCA_JOB=INTEGRATED_DEV }
     - { name: "Integrated test w/ dev package versions & next minor dev version of Drupal core", env: ORCA_JOB=CORE_NEXT }
     # Custom job.
-    - { name: "Upgrade test", env: DB_FIXTURE=1.2.0-alpha1 }
+    - { name: "Upgrade test", env: ORCA_JOB=CUSTOM ORCA_CUSTOM_FIXTURE_INIT_ARGS="--no-site-install" ORCA_CUSTOM_TESTS_RUN_ARGS="--sut-only" DB_FIXTURE=1.2.0-alpha1 }
   allow_failures:
     - env: ORCA_JOB=ISOLATED_DEV
     - env: ORCA_JOB=INTEGRATED_DEV
