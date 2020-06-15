@@ -60,7 +60,6 @@ before_script: ../orca/bin/travis/before_script.sh
 
 script:
   - ../orca/bin/travis/script.sh
-  - ./tests/travis/script.sh
 
 before_cache: ../orca/bin/travis/before_cache.sh
 
