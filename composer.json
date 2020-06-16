@@ -4,7 +4,7 @@
     "description": "Drupal Lightning as a backend for fully decoupled applications.",
     "license": "GPL-2.0-or-later",
     "require": {
-        "acquia/lightning": "~4.1.0",
+        "acquia/lightning": "~5.0.0",
         "cweagans/composer-patches": "^1.6.4"
     },
     "require-dev": {
@@ -20,9 +20,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "1.x-dev"
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "docroot/"
