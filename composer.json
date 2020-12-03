@@ -8,11 +8,10 @@
         "cweagans/composer-patches": "^1.6.4"
     },
     "require-dev": {
+        "composer/installers": "^1.9",
         "drupal/core-composer-scaffold": "*",
         "drupal/core-dev": "*",
-        "drush/drush": ">=9.7",
-        "oomphinc/composer-installers-extender": "^1.1",
-        "zaporylie/composer-drupal-optimizations": "^1.1"
+        "drush/drush": ">=9.7"
     },
     "config": {
         "preferred-install": {

@@ -2,7 +2,6 @@
 
 namespace Drupal\headless_ui;
 
-use Doctrine\Common\Inflector\Inflector;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 
@@ -31,7 +30,7 @@ class Redirect {
 
     $redirect = [
       static::class,
-      Inflector::camelize($form_id),
+      static::camelize($form_id),
     ];
 
     if (is_callable($redirect)) {
@@ -93,6 +92,21 @@ class Redirect {
    */
   public static function userForm(array &$form, FormStateInterface $form_state) {
     $form_state->setRedirect('view.user_admin_people.page_1');
+  }
+
+  /**
+   * Converts a word to camelCase.
+   *
+   * @param string $word
+   *   The word to convert.
+   *
+   * @return string
+   *   The word, converted to camelCase.
+   */
+  private static function camelize(string $word) : string {
+    $word = ucwords($word, ' _-');
+    $word = str_replace([' ', '_', '-'], '', $word);
+    return lcfirst($word);
   }
 
 }
