@@ -20,9 +20,11 @@ exclude:
   - rdf
   - menu_ui
   - metatag
-  - lightning_layout
+  - lightning_banner_block
   - lightning_contact_form
-  - lightning_search
   - lightning_landing_page
+  - lightning_layout
+  - lightning_map_block
   - lightning_media_slideshow
+  - lightning_search
   - views_ui
