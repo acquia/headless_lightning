@@ -59,9 +59,12 @@ function headless_ui_form_node_form_alter(array &$form, FormStateInterface $form
   Redirect::entityForm($form, $form_state);
 
   // Remove the Promote and Sticky checkboxes.
-  $options = &$form;
-  \Drupal::service('lightning.form_helper')->applyStandardProcessing($options);
-  $options['#process'][] = 'headless_ui_process_node_type_workflow_options';
+  if (isset($form['#type'])) {
+    $form += [
+      '#process' => Drupal::service('element_info')->getInfoProperty($form['#type'], '#process', []),
+    ];
+  }
+  $form['#process'][] = 'headless_ui_process_node_type_workflow_options';
 }
 
 /**
@@ -114,7 +117,11 @@ function headless_ui_form_node_type_add_form_alter(array &$form) {
   $form['submission']['preview_mode']['#access'] = FALSE;
 
   $options = &$form['workflow']['options'];
-  Drupal::service('lightning.form_helper')->applyStandardProcessing($options);
+  if (isset($options['#type'])) {
+    $options += [
+      '#process' => Drupal::service('element_info')->getInfoProperty($options['#type'], '#process', []),
+    ];
+  }
   $options['#process'][] = 'headless_ui_process_node_type_workflow_options';
 }
 
