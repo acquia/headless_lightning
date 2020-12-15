@@ -14,17 +14,26 @@ class Login403Test extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
-
-  /**
-   * {@inheritdoc}
-   */
   protected $profile = 'headless_lightning';
 
   /**
    * Tests that a 403 redirects to the user login page.
    */
   public function testLogin403() {
+    $config = $this->config('system.theme');
+    $this->assertSame('seven', $config->get('admin'));
+    $this->assertSame('seven', $config->get('default'));
+    $config = $this->config('system.site');
+    $this->assertSame('/user/login', $config->get('page.403'));
+    $this->assertSame('/frontpage', $config->get('page.front'));
+    $this->assertTrue($this->config('lightning_api.settings')->get('entity_json'));
+
+    /** @var \Drupal\Core\Entity\Display\EntityDisplayInterface $display */
+    $display = $this->container->get('entity_display.repository')
+      ->getFormDisplay('consumer', 'consumer');
+    $this->assertNull($display->getComponent('description'));
+    $this->assertNull($display->getComponent('image'));
+
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
 
