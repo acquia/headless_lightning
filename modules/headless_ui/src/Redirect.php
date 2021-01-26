@@ -48,7 +48,7 @@ class Redirect {
    * @param string $handler_type
    *   (optional) The handler type. Defaults to '#submit'.
    *
-   * @TODO Make this public in \Drupal\lightning\FormHelper.
+   * @todo Make this public in \Drupal\lightning\FormHelper.
    */
   protected static function applyHandler(array &$actions, callable $handler, $handler_type = '#submit') {
     foreach (Element::children($actions) as $key) {
