@@ -21,27 +21,32 @@
     },
     "extra": {
         "drupal-scaffold": {
-            "locations": {
-                "web-root": "docroot/"
-            },
             "file-mapping": {
-                "[project-root]/.gitattributes": false,
                 "[project-root]/.editorconfig": false,
-                "[web-root]/example.gitignore": false,
+                "[project-root]/.gitattributes": false,
                 "[web-root]/.csslintrc": false,
+                "[web-root]/INSTALL.txt": false,
+                "[web-root]/example.gitignore": false,
                 "[web-root]/modules/README.txt": false,
                 "[web-root]/profiles/README.txt": false,
+                "[web-root]/robots.txt": false,
                 "[web-root]/sites/README.txt": false,
                 "[web-root]/themes/README.txt": false,
-                "[web-root]/INSTALL.txt": false,
-                "[web-root]/robots.txt": false,
                 "[web-root]/web.config": false
+            },
+            "locations": {
+                "web-root": "docroot/"
             }
         },
         "enable-patching": true,
         "installer-paths": {
             "docroot/core": [
                 "type:drupal-core"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
             ],
             "docroot/modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -51,11 +56,6 @@
             ],
             "docroot/themes/contrib/{$name}": [
                 "type:drupal-theme"
-            ],
-            "docroot/libraries/{$name}": [
-                "type:drupal-library",
-                "type:bower-asset",
-                "type:npm-asset"
             ]
         },
         "installer-types": [
