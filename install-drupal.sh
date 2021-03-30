@@ -12,7 +12,8 @@ if [[ -f $SETTINGS ]]; then
 fi
 
 # Install Drupal.
-drush site:install headless_lightning --yes --config ./drush.yml --account-pass admin --db-url $DB_URL
+drush site:install standard --yes --account-pass admin --db-url $DB_URL
+drush pm:enable headless_ui access_ui content_model_ui json_content
 
 # Make settings writable.
 chmod +w $SITE_DIR $SETTINGS
