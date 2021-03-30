@@ -22,19 +22,14 @@ class UiTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $profile = 'headless_lightning';
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = ['media_test_source'];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $configSchemaCheckerExclusions = [
-    // @todo Remove when requiring Lightning Layout 2.2 or later.
-    'core.entity_view_display.block_content.banner.default',
+  protected static $modules = [
+    'access_ui',
+    'block',
+    'headless_ui',
+    'media',
+    'media_test_source',
+    'node',
+    'views',
   ];
 
   public function test() {
@@ -43,6 +38,8 @@ class UiTest extends BrowserTestBase {
 
     $this->drupalLogin($this->rootUser);
 
+    $this->drupalPlaceBlock('local_actions_block');
+    $this->drupalCreateContentType(['type' => 'page', 'name' => 'Basic page']);
     $media_type = $this->createMediaType('test');
 
     $node_type = $this->drupalCreateContentType();
