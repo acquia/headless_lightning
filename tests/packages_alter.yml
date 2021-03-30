@@ -1,6 +1,6 @@
 ---
 acquia/headless_lightning:
-  type: drupal-profile
+  type: drupal-module
 
 # Remove drupal/acquia_search because it depends on the
 # search_api_solr module, which is not yet compatible with
