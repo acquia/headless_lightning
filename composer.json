@@ -5,7 +5,8 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "cweagans/composer-patches": "^1.6.4",
-        "drupal/core": "^8.8 || ^9"
+        "drupal/core": "^8.8 || ^9",
+        "drupal/lightning_api": "^4.6"
     },
     "require-dev": {
         "composer/installers": "^1.9",

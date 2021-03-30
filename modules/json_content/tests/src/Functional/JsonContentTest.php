@@ -5,7 +5,9 @@ namespace Drupal\Tests\json_content\Functional;
 use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
 use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
+use Drupal\workflows\Entity\Workflow;
 
 /**
  * @group headless
@@ -13,6 +15,7 @@ use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
  */
 class JsonContentTest extends BrowserTestBase {
 
+  use ContentModerationTestTrait;
   use MediaTypeCreationTrait;
 
   /**
@@ -23,21 +26,20 @@ class JsonContentTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $profile = 'headless_lightning';
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = ['media_test_source'];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $configSchemaCheckerExclusions = [
-    // @todo Remove when requiring Lightning Layout 2.2 or later.
-    'core.entity_view_display.block_content.banner.default',
+  protected static $modules = [
+    'block',
+    'content_moderation',
+    'json_content',
+    'media',
+    'media_test_source',
+    'node',
+    'toolbar',
+    'views',
   ];
 
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp() {
     parent::setUp();
     $this->createMediaType('test', ['id' => 'test']);
@@ -46,6 +48,21 @@ class JsonContentTest extends BrowserTestBase {
   public function test() {
     $assert_session = $this->assertSession();
     $page = $this->getSession()->getPage();
+
+    $this->config('system.site')->set('page.front', '/frontpage')->save();
+    $this->config('lightning_api.settings')
+      ->set('entity_json', TRUE)
+      ->save();
+    $this->drupalPlaceBlock('local_tasks_block');
+    $this->drupalCreateContentType(['type' => 'page']);
+    $this->createEditorialWorkflow();
+
+    /** @var \Drupal\workflows\WorkflowInterface $workflow */
+    $workflow = Workflow::load('editorial');
+    /** @var \Drupal\content_moderation\Plugin\WorkflowType\ContentModerationInterface $plugin */
+    $plugin = $workflow->getTypePlugin();
+    $plugin->addEntityTypeAndBundle('node', 'page');
+    $workflow->save();
 
     // Anonymous users see login form on homepage.
     $this->drupalGet('<front>');
