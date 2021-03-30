@@ -1,0 +1,4 @@
+name: 'Headless Lightning'
+type: module
+description: 'Drupal Lightning as a backend for fully decoupled applications.'
+core_version_requirement: '^8.8 || ^9'
